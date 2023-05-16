@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Alert } from "react-bootstrap";
-import styles from "../../styles/LogIn.module.css";
+import styles from "../../styles/AuthForms.module.css";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -40,7 +40,7 @@ const LogIn = () => {
     <>
       <h1>Log in</h1>
       <hr />
-      <Form onSubmit={handleSubmit} className={styles.LogInForm}>
+      <Form onSubmit={handleSubmit} className={styles.AuthForm}>
         <Form.Group controlId="username">
           <Form.Label hidden>Username</Form.Label>
           <Form.Control
@@ -80,7 +80,7 @@ const LogIn = () => {
           </Alert>
         ))}
       </Form>
-      <div className={styles.RegisterInfo}>
+      <div className={styles.Info}>
         If you don't have an account you can{" "}
         <Link to="/register">register here</Link>.
       </div>

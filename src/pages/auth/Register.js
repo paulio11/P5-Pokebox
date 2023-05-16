@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import styles from "../../styles/AuthForms.module.css";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -32,7 +33,7 @@ const Register = () => {
     <>
       <h1>Register</h1>
       <hr />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className={styles.AuthForm}>
         <Form.Group>
           <Form.Label hidden>Username</Form.Label>
           <Form.Control
@@ -67,7 +68,7 @@ const Register = () => {
           Register
         </Button>
       </Form>
-      <div>
+      <div className={styles.Info}>
         If you already have an account you can{" "}
         <Link to="/login">log in here</Link>.
       </div>
