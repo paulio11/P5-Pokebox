@@ -1,7 +1,12 @@
-.ListContainer {
+.ResultsContainer {
   display: flex;
   margin-top: 32px;
   gap: 32px;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+
+.SearchForm {
+  max-width: 342px;
+  margin: 0 auto 16px;
 }
