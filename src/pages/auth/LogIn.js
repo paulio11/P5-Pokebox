@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -10,6 +10,7 @@ const LogIn = () => {
     password: "",
   });
   const { username, password } = logInData;
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -20,7 +21,10 @@ const LogIn = () => {
       setCurrentUser(data.user);
       // Navigate to user profile when implemented
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      // Catch any errors in the response
+      setErrors(error.response?.data);
+    }
   };
 
   const handleChange = (event) => {
@@ -45,6 +49,11 @@ const LogIn = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {errors.username?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Form.Group>
           <Form.Label hiddne>Password</Form.Label>
           <Form.Control
@@ -55,9 +64,19 @@ const LogIn = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {errors.password?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Button variant="danger" type="submit">
           Log in
         </Button>
+        {errors.non_field_errors?.map((message, idx) => (
+          <Alert key={idx} variant="warning" className="mt-3">
+            {message}
+          </Alert>
+        ))}
       </Form>
     </>
   );
