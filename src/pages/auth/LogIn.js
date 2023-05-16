@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Alert } from "react-bootstrap";
+import styles from "../../styles/LogIn.module.css";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -17,7 +19,7 @@ const LogIn = () => {
     event.preventDefault();
     try {
       // Send login data to server and get response
-      const { data } = await axios.post("dj-rest-auth/login", logInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
       // Navigate to user profile when implemented
       navigate("/");
@@ -38,7 +40,7 @@ const LogIn = () => {
     <>
       <h1>Log in</h1>
       <hr />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className={styles.LogInForm}>
         <Form.Group controlId="username">
           <Form.Label hidden>Username</Form.Label>
           <Form.Control
@@ -55,11 +57,11 @@ const LogIn = () => {
           </Alert>
         ))}
         <Form.Group>
-          <Form.Label hiddne>Password</Form.Label>
+          <Form.Label hidden>Password</Form.Label>
           <Form.Control
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={handleChange}
           />
@@ -78,6 +80,10 @@ const LogIn = () => {
           </Alert>
         ))}
       </Form>
+      <div className={styles.RegisterInfo}>
+        If you don't have an account you can{" "}
+        <Link to="/register">register here</Link>.
+      </div>
     </>
   );
 };
