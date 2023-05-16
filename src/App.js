@@ -6,6 +6,7 @@ import Register from "./pages/auth/Register";
 import styles from "./styles/App.module.css";
 import PokemonList from "./pages/pokemon/PokemonList";
 import PokemonDexPage from "./pages/pokemon/PokemonDexPage";
+import TrainerList from "./pages/trainers/TrainerList";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/pokemon" element={<PokemonList />} />
           <Route exact path="/pokemon/:id" element={<PokemonDexPage />} />
+          <Route exact path="/trainers" element={<TrainerList />} />
         </Routes>
       </Container>
     </>
