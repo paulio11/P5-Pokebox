@@ -15,9 +15,7 @@ export const FetchPokemonList = async () => {
 export const FetchPokemonData = async (query, list) => {
   try {
     if (query) {
-      // Make a GET request to pokeApi for the specified pokemon
       const { data } = await pokeApi.get(`pokemon/${query}`);
-      // Return data in an array
       return [data];
     }
     if (list) {
@@ -40,4 +38,12 @@ export const FetchPokemonData = async (query, list) => {
     }
     throw error;
   }
+};
+
+// Fetch data from a pokemon's species page using pokemon ID
+export const FetchSpeciesData = async (id) => {
+  try {
+    const response = await pokeApi.get(`pokemon-species/${id}`);
+    return response.data;
+  } catch (error) {}
 };
