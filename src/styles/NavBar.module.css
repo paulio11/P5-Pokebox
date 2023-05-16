@@ -1,0 +1,18 @@
+.BrandLogo {
+  width: 40px;
+  height: 40;
+}
+
+.NavBrand:hover {
+  text-decoration: none;
+}
+
+.NavLink {
+  padding: 0.5rem 1rem 0.5rem 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.NavLink:hover {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
