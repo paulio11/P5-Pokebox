@@ -1,0 +1,12 @@
+.ResultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.SearchForm {
+  max-width: 342px;
+  margin: 0 auto 16px;
+}
