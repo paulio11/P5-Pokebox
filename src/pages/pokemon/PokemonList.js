@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
 import { Form } from "react-bootstrap";
 import styles from "../../styles/PokemonList.module.css";
+import Pokemon from "./Pokemon";
 
 const PokemonList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -51,7 +52,7 @@ const PokemonList = () => {
       {loaded ? (
         <div className={styles.ResultsContainer}>
           {results.map((pokemon, index) => (
-            <p key={index}>{pokemon.name}</p>
+            <Pokemon key={index} {...pokemon} />
           ))}
         </div>
       ) : (
