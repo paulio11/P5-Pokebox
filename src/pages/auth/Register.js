@@ -25,7 +25,7 @@ const Register = () => {
     event.preventDefault();
     try {
       // Send form data to api register endpoint
-      await axios.post("dj-rest-auth/registration", registerData);
+      await axios.post("dj-rest-auth/registration/", registerData);
       // If successful navigate to the login page
       navigate("/login");
     } catch (error) {
