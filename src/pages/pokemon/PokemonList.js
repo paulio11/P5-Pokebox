@@ -3,6 +3,7 @@ import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
 import { Form } from "react-bootstrap";
 import styles from "../../styles/PokemonList.module.css";
 import Pokemon from "./Pokemon";
+import LoadingText from "../../components/LoadingText";
 
 const PokemonList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -56,7 +57,7 @@ const PokemonList = () => {
           ))}
         </div>
       ) : (
-        "Loading..."
+        <LoadingText />
       )}
     </>
   );
