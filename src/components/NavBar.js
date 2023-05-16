@@ -3,12 +3,26 @@ import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import pokeball from "../assets/pokeball.png";
 import styles from "../styles/NavBar.module.css";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import axios from "axios";
 
 const NavBar = () => {
   // Get current user from context
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
+  const handleLogOut = async () => {
+    try {
+      // Send log out request to API and then set current user to none
+      await axios.post("dj-rest-auth/logout");
+      setCurrentUser(null);
+    } catch (error) {}
+  };
+
+  // Variables for logged in and logged out nav link items
   const loggedOutItems = (
     <>
       <NavLink to="/login" className={styles.NavLink}>
@@ -24,7 +38,7 @@ const NavBar = () => {
       <span className={styles.NavLink}>
         Logged in as <strong>{currentUser?.username}</strong>
       </span>
-      <NavLink to="/logout" className={styles.NavLink}>
+      <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
         Log out
       </NavLink>
     </>
