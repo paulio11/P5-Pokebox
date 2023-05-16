@@ -3,8 +3,33 @@ import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import pokeball from "../assets/pokeball.png";
 import styles from "../styles/NavBar.module.css";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const NavBar = () => {
+  // Get current user from context
+  const currentUser = useCurrentUser();
+
+  const loggedOutItems = (
+    <>
+      <NavLink to="/login" className={styles.NavLink}>
+        Log in
+      </NavLink>
+      <NavLink to="/register" className={styles.NavLink}>
+        Register
+      </NavLink>
+    </>
+  );
+  const loggedInItems = (
+    <>
+      <span className={styles.NavLink}>
+        Logged in as <strong>{currentUser?.username}</strong>
+      </span>
+      <NavLink to="/logout" className={styles.NavLink}>
+        Log out
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar bg="light" expand="lg">
       <NavLink to="/" className={styles.NavBrand}>
@@ -24,15 +49,7 @@ const NavBar = () => {
           </NavLink>
         </Nav>
         <Nav className="ml-auto">
-          <NavLink to="/login" className={styles.NavLink}>
-            Log in
-          </NavLink>
-          <NavLink to="/login" className={styles.NavLink}>
-            Log out
-          </NavLink>
-          <NavLink to="/login" className={styles.NavLink}>
-            Register
-          </NavLink>
+          {currentUser ? loggedInItems : loggedOutItems}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
