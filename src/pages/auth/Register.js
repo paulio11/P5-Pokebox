@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/AuthForms.module.css";
 
@@ -12,6 +12,7 @@ const Register = () => {
   });
   const { username, password1, password2 } = registerData;
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setRegisterData({
@@ -27,7 +28,10 @@ const Register = () => {
       await axios.post("dj-rest-auth/registration", registerData);
       // If successful navigate to the login page
       navigate("/login");
-    } catch (error) {}
+    } catch (error) {
+      // Catch any errors in the response
+      setErrors(error.response?.data);
+    }
   };
   return (
     <>
@@ -44,6 +48,11 @@ const Register = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {errors.username?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
         <Form.Group>
           <Form.Label hidden>Password</Form.Label>
           <Form.Control
@@ -54,6 +63,11 @@ const Register = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {errors.password1?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Form.Group>
           <Form.Label hidden>Confirm Password</Form.Label>
           <Form.Control
@@ -64,9 +78,19 @@ const Register = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {errors.password2?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Button type="submit" variant="danger">
           Register
         </Button>
+        {errors.non_field_errors?.map((message, idx) => (
+          <Alert key={idx} variant="warning" className="mt-3">
+            {message}
+          </Alert>
+        ))}
       </Form>
       <div className={styles.Info}>
         If you already have an account you can{" "}
