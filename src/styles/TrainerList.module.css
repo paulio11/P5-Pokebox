@@ -6,7 +6,21 @@
   justify-content: flex-start;
 }
 
-.SearchForm {
-  max-width: 342px;
-  margin: 0 auto 16px;
+.SortForm {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.SortForm > * {
+  width: 30%;
+}
+
+@media (max-width: 766px) {
+  .SortForm > * {
+    width: 100%;
+  }
+  .SortForm {
+    display: block;
+  }
 }
