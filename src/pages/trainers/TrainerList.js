@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import LoadingText from "../../components/LoadingText";
 import { axiosReq } from "../../api/AxiosDefaults";
+import Trainer from "./Trainer";
+import styles from "../../styles/TrainerList.module.css";
 
 const TrainerList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -9,7 +11,7 @@ const TrainerList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosReq("profiles");
+        const response = await axiosReq.get("profiles");
         setList(response.data.results);
         setLoaded(true);
       } catch (error) {}
@@ -25,9 +27,11 @@ const TrainerList = () => {
       <hr />
       {loaded ? (
         <>
-          {list.map((trainer) => (
-            <div key={trainer.id}>{trainer.owner}</div>
-          ))}
+          <div className={styles.ListContainer}>
+            {list.map((trainer) => (
+              <Trainer key={trainer.id} {...trainer} />
+            ))}
+          </div>
         </>
       ) : (
         <LoadingText />

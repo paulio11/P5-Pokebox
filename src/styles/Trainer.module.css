@@ -1,0 +1,56 @@
+.TrainerCard {
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 16px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.TrainerCard:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 992px) {
+  .TrainerCard {
+    width: 48%;
+  }
+}
+
+.Header {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.TrainerName {
+  font-size: larger;
+  font-weight: bolder;
+  margin-bottom: 12px;
+}
+
+.Avatar {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CollectionBar {
+  width: 100%;
+}
+
+.CollectionPercent {
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+}
