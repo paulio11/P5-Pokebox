@@ -7,6 +7,7 @@ import styles from "./styles/App.module.css";
 import PokemonList from "./pages/pokemon/PokemonList";
 import PokemonDexPage from "./pages/pokemon/PokemonDexPage";
 import TrainerList from "./pages/trainers/TrainerList";
+import TrainerProfilePage from "./pages/trainers/TrainerProfilePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/pokemon" element={<PokemonList />} />
           <Route exact path="/pokemon/:id" element={<PokemonDexPage />} />
           <Route exact path="/trainers" element={<TrainerList />} />
+          <Route exact path="/trainer/:id" element={<TrainerProfilePage />} />
         </Routes>
       </Container>
     </>
