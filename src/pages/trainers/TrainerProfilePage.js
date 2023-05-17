@@ -3,7 +3,15 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
 import LoadingText from "../../components/LoadingText";
 import styles from "../../styles/TrainerProfilePage.module.css";
-import { Col, ProgressBar, Row, Accordion, Card } from "react-bootstrap";
+import {
+  Col,
+  ProgressBar,
+  Row,
+  Accordion,
+  Card,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
@@ -93,37 +101,49 @@ const TrainerProfilePage = () => {
                   className={styles.CollectionContainer}
                   onClick={handleClick}
                 >
-                  <Accordion defaultActiveKey="0">
-                    <Card className={styles.Card}>
-                      <Accordion.Toggle as={Card.Header} eventKey="1">
-                        <div className={styles.CollectionInfo}>
-                          <Ball size={pokemon.length} />
-                          <ProgressBar
-                            variant="danger"
-                            now={pokemon.length}
-                            max={1010}
-                            className={styles.CollectionBar}
-                          />
-                          <div className={styles.CollectionPercent}>
-                            {((pokemon.length / 1010) * 100).toFixed(2)}%
-                          </div>
-                        </div>
-                      </Accordion.Toggle>
-                      <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                          {collectionLoaded ? (
-                            <div className={styles.PokemonContainer}>
-                              {colData.map((pokemon, index) => (
-                                <Pokemon key={index} {...pokemon} />
-                              ))}
+                  <OverlayTrigger
+                    overlay={
+                      <Tooltip>
+                        Click to show/hide my Pokémon collection!
+                      </Tooltip>
+                    }
+                  >
+                    <Accordion defaultActiveKey="0">
+                      <Card className={styles.Card}>
+                        <Accordion.Toggle
+                          as={Card.Header}
+                          eventKey="1"
+                          className={styles.AccordianHeader}
+                        >
+                          <div className={styles.CollectionInfo}>
+                            <Ball size={pokemon.length} />
+                            <ProgressBar
+                              variant="danger"
+                              now={pokemon.length}
+                              max={1010}
+                              className={styles.CollectionBar}
+                            />
+                            <div className={styles.CollectionPercent}>
+                              {((pokemon.length / 1010) * 100).toFixed(2)}%
                             </div>
-                          ) : (
-                            <LoadingText />
-                          )}
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                  </Accordion>
+                          </div>
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>
+                            {collectionLoaded ? (
+                              <div className={styles.PokemonContainer}>
+                                {colData.map((pokemon, index) => (
+                                  <Pokemon key={index} {...pokemon} />
+                                ))}
+                              </div>
+                            ) : (
+                              <LoadingText />
+                            )}
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </OverlayTrigger>
                 </div>
               </Col>
             </Row>
