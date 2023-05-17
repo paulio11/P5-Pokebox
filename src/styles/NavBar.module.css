@@ -16,3 +16,16 @@
   text-decoration: none;
   color: rgba(0, 0, 0, 0.7);
 }
+
+.LoggedInAs {
+  padding: 0.5rem 1rem 0.5rem 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.LoggedInAs > a {
+  color: #ba0000;
+}
+
+.LoggedInAs > a:hover {
+  color: #ef0101;
+}
