@@ -20,6 +20,15 @@
   }
 }
 
+.TrainerLink {
+  color: inherit;
+}
+
+.TrainerLink:hover {
+  text-decoration: none;
+  color: #ba0000;
+}
+
 .Header {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;

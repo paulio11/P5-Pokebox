@@ -9,6 +9,7 @@
 .SortForm {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   gap: 16px;
 }
 
@@ -16,7 +17,7 @@
   width: 30%;
 }
 
-@media (max-width: 766px) {
+@media (max-width: 767px) {
   .SortForm > * {
     width: 100%;
   }
