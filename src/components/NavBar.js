@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import pokeball from "../assets/pokeball.png";
+import { Link, NavLink } from "react-router-dom";
+import brandlogo from "../assets/brandlogo.png";
 import styles from "../styles/NavBar.module.css";
 import {
   useCurrentUser,
@@ -35,8 +35,11 @@ const NavBar = () => {
   );
   const loggedInItems = (
     <>
-      <span className={styles.NavLink}>
-        Logged in as <strong>{currentUser?.username}</strong>
+      <span className={styles.LoggedInAs}>
+        Logged in as{" "}
+        <Link to={`/trainer/${currentUser?.profile_id}`}>
+          <strong>{currentUser?.username}</strong>
+        </Link>
       </span>
       <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
         Log out
@@ -48,7 +51,11 @@ const NavBar = () => {
     <Navbar bg="light" expand="lg">
       <NavLink to="/" className={styles.NavBrand}>
         <Navbar.Brand className="d-flex align-items-center">
-          <img src={pokeball} alt="Pokébox Logo" className={styles.BrandLogo} />
+          <img
+            src={brandlogo}
+            alt="Pokébox Logo"
+            className={styles.BrandLogo}
+          />
           <strong>POKÉBOX</strong>
         </Navbar.Brand>
       </NavLink>
