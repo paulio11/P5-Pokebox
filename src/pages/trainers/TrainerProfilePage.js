@@ -7,24 +7,32 @@ import { Col, ProgressBar, Row, Accordion, Card } from "react-bootstrap";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
+import TrainerDairy from "../dairy/TrainerDairy";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
-  const [pokemonLoaded, setPokemonLoaded] = useState(false);
+  const [collectionLoaded, setCollectionLoaded] = useState(false);
   const [data, setData] = useState([]);
   const { owner, created, avatar, about, favorite, pokemon } = data;
   const [colData, setColData] = useState([]);
   const [favData, setFavData] = useState(null);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axiosReq(`profiles/${id}`);
         setData(data);
+        setLoaded(true);
       } catch (error) {}
     };
 
+    setLoaded(false);
+    fetchData();
+  }, [id]);
+
+  useEffect(() => {
     const getFavData = async () => {
       try {
         const response = await FetchPokemonData(favorite, null);
@@ -32,32 +40,19 @@ const TrainerProfilePage = () => {
       } catch (error) {}
     };
 
-    const fetchAll = async () => {
-      setLoaded(false);
-      await fetchData();
-      if (favorite) {
-        await getFavData();
-      }
-      setLoaded(true);
-    };
+    getFavData();
+  }, [favorite]);
 
-    fetchAll();
-  }, [id, favorite]);
-
-  useEffect(() => {
-    const getColData = async () => {
-      if (pokemon?.length) {
-        try {
-          const response = await FetchPokemonData(null, pokemon);
-          setColData(response);
-          setPokemonLoaded(true);
-        } catch (error) {}
-      }
-    };
-
-    setPokemonLoaded(false);
-    getColData();
-  }, [pokemon]);
+  const handleClick = async () => {
+    if (!clicked && pokemon?.length) {
+      try {
+        const response = await FetchPokemonData(null, pokemon);
+        setColData(response);
+        setCollectionLoaded(true);
+        setClicked(true);
+      } catch (error) {}
+    }
+  };
 
   return (
     <>
@@ -85,7 +80,7 @@ const TrainerProfilePage = () => {
                   I have collected {pokemon.length} Pokémon!
                 </div>
               </Col>
-              {favorite && (
+              {favData && (
                 <Col xs={12} md={2}>
                   <div className={styles.FavText}>My favorite Pokémon is:</div>
                   {favData && <Pokemon {...favData} trainerPage />}
@@ -94,7 +89,10 @@ const TrainerProfilePage = () => {
             </Row>
             <Row>
               <Col>
-                <div className={styles.CollectionContainer}>
+                <div
+                  className={styles.CollectionContainer}
+                  onClick={handleClick}
+                >
                   <Accordion defaultActiveKey="0">
                     <Card className={styles.Card}>
                       <Accordion.Toggle as={Card.Header} eventKey="1">
@@ -113,7 +111,7 @@ const TrainerProfilePage = () => {
                       </Accordion.Toggle>
                       <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                          {pokemonLoaded ? (
+                          {collectionLoaded ? (
                             <div className={styles.PokemonContainer}>
                               {colData.map((pokemon, index) => (
                                 <Pokemon key={index} {...pokemon} />
@@ -130,6 +128,7 @@ const TrainerProfilePage = () => {
               </Col>
             </Row>
           </div>
+          <TrainerDairy owner={owner} />
         </>
       ) : (
         <LoadingText />
