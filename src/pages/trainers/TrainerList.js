@@ -56,7 +56,7 @@ const TrainerList = () => {
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>
-          <Form.Label>Search</Form.Label>
+          <Form.Label hidden>Search</Form.Label>
           <Form.Control
             value={query}
             placeholder="Search"
@@ -92,7 +92,6 @@ const TrainerList = () => {
           </>
         )}
       </Form>
-
       {loaded ? (
         <>
           <div className={styles.ResultsContainer}>
