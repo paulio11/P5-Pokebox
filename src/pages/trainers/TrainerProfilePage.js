@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
 import LoadingText from "../../components/LoadingText";
 import styles from "../../styles/TrainerProfilePage.module.css";
-import { Col, ProgressBar, Row } from "react-bootstrap";
+import { Col, ProgressBar, Row, Accordion, Card } from "react-bootstrap";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
@@ -11,8 +11,10 @@ import Ball from "../../components/Ball";
 const TrainerProfilePage = () => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
-  const [data, setData] = useState({});
+  const [pokemonLoaded, setPokemonLoaded] = useState(false);
+  const [data, setData] = useState([]);
   const { owner, created, avatar, about, favorite, pokemon } = data;
+  const [colData, setColData] = useState([]);
   const [favData, setFavData] = useState(null);
 
   useEffect(() => {
@@ -20,31 +22,42 @@ const TrainerProfilePage = () => {
       try {
         const { data } = await axiosReq(`profiles/${id}`);
         setData(data);
-        setLoaded(true);
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     };
 
     const getFavData = async () => {
       try {
         const response = await FetchPokemonData(favorite, null);
         setFavData(response[0]);
-      } catch (error) {
-        console.error(error);
-      }
+      } catch (error) {}
     };
 
-    const fetchDataAndFavData = async () => {
+    const fetchAll = async () => {
       setLoaded(false);
       await fetchData();
       if (favorite) {
         await getFavData();
       }
+      setLoaded(true);
     };
 
-    fetchDataAndFavData();
+    fetchAll();
   }, [id, favorite]);
+
+  useEffect(() => {
+    const getColData = async () => {
+      if (pokemon?.length) {
+        try {
+          const response = await FetchPokemonData(null, pokemon);
+          setColData(response);
+          setPokemonLoaded(true);
+        } catch (error) {}
+      }
+    };
+
+    setPokemonLoaded(false);
+    getColData();
+  }, [pokemon]);
 
   return (
     <>
@@ -81,18 +94,38 @@ const TrainerProfilePage = () => {
             </Row>
             <Row>
               <Col>
-                <hr />
-                <div className={styles.CollectionInfo}>
-                  <Ball size={pokemon.length} />
-                  <ProgressBar
-                    variant="danger"
-                    now={pokemon.length}
-                    max={1010}
-                    className={styles.CollectionBar}
-                  />
-                  <div className={styles.CollectionPercent}>
-                    {((pokemon.length / 1010) * 100).toFixed(2)}%
-                  </div>
+                <div className={styles.CollectionContainer}>
+                  <Accordion defaultActiveKey="0">
+                    <Card className={styles.Card}>
+                      <Accordion.Toggle as={Card.Header} eventKey="1">
+                        <div className={styles.CollectionInfo}>
+                          <Ball size={pokemon.length} />
+                          <ProgressBar
+                            variant="danger"
+                            now={pokemon.length}
+                            max={1010}
+                            className={styles.CollectionBar}
+                          />
+                          <div className={styles.CollectionPercent}>
+                            {((pokemon.length / 1010) * 100).toFixed(2)}%
+                          </div>
+                        </div>
+                      </Accordion.Toggle>
+                      <Accordion.Collapse eventKey="1">
+                        <Card.Body>
+                          {pokemonLoaded ? (
+                            <div className={styles.PokemonContainer}>
+                              {colData.map((pokemon, index) => (
+                                <Pokemon key={index} {...pokemon} />
+                              ))}
+                            </div>
+                          ) : (
+                            <LoadingText />
+                          )}
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  </Accordion>
                 </div>
               </Col>
             </Row>

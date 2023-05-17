@@ -56,6 +56,23 @@
   }
 }
 
+.CollectionContainer {
+  margin-top: 12px;
+}
+
+.Card:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.PokemonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
 .CollectionInfo {
   display: flex;
   justify-content: space-between;
