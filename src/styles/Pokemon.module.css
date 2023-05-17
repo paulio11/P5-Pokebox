@@ -14,6 +14,16 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
+.TrainerPage {
+  height: auto;
+  width: 100%;
+  border: none;
+}
+
+.TrainerPage:hover {
+  box-shadow: none;
+}
+
 .Text {
   text-transform: capitalize;
   font-family: "Courier New", Courier, monospace;
@@ -27,3 +37,12 @@
   text-decoration: none;
   color: initial;
 }
+/* 
+@media (max-width: 767px) {
+  .TrainerPage {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+  }
+} */

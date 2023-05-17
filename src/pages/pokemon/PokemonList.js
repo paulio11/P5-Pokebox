@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
 import { Form } from "react-bootstrap";
 import styles from "../../styles/PokemonList.module.css";
-import Pokemon from "./Pokemon";
+import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";
 
 const PokemonList = () => {
