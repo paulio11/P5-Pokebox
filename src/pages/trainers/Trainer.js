@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../styles/Trainer.module.css";
 import { ProgressBar, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Ball from "../../components/Ball";
 
 const Trainer = (props) => {
   const { id, owner, avatar, pokemon, about, created } = props;
@@ -33,6 +34,7 @@ const Trainer = (props) => {
             <Col>
               <hr />
               <div className={styles.Footer}>
+                <Ball size={pokemon.length} />
                 <ProgressBar
                   now={pokemon.length}
                   max={1010}
