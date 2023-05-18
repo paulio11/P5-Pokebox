@@ -21,10 +21,6 @@
   margin-bottom: 12px;
 }
 
-.Created {
-  margin-bottom: 12px;
-}
-
 .PostImage {
   width: 100%;
   border-radius: 5px;
@@ -32,10 +28,42 @@
 
 .Owner {
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+  font-weight: bold;
   margin-bottom: 12px;
+}
+
+.LikeContainer {
+  display: flex;
+  align-items: center;
 }
 
 .LikeHeart {
   font-size: 32px;
   cursor: pointer;
+}
+
+.Liked {
+  color: #ff6e86 !important;
+}
+
+.LikeCount {
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.Avatar {
+  border-radius: 50%;
+  width: 60px;
+}
+
+.Link {
+  color: #ba0000;
+}
+
+.Link:hover {
+  color: #ef0101;
 }
