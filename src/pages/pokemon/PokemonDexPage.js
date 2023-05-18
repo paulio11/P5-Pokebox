@@ -44,7 +44,7 @@ const PokemonDexPage = () => {
         <>
           <div className={styles.Header}>
             <div className={styles.Number}># {pData.id}</div>
-            <h1>{sData.name}</h1>
+            <h1 className={styles.FirstCap}>{sData.name}</h1>
           </div>
           <hr />
           <div className={styles.Container}>
