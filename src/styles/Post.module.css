@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
+
+.Post {
+  padding: 32px;
+  border-radius: 15px;
+  width: 100%;
+  background-color: #f8f9fa;
+  margin-bottom: 24px;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Body {
+  font-family: "Kalam";
+  font-size: 20px;
+  color: #4a4a4a;
+  margin-bottom: 12px;
+}
+
+.Created {
+  margin-bottom: 12px;
+}
+
+.PostImage {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.Owner {
+  text-align: right;
+  margin-bottom: 12px;
+}
+
+.LikeHeart {
+  font-size: 32px;
+  cursor: pointer;
+}
