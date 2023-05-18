@@ -109,7 +109,9 @@ const PokemonDexPage = () => {
                 to={`/pokemon/${pData.id - 1}`}
                 onClick={scrollUp}
               >
-                <span>{pData.id - 1}</span>
+                <span>
+                  <i className="fas fa-arrow-left" /> {pData.id - 1}
+                </span>
               </Link>
             )}
             {pData.id !== 1010 && (
@@ -118,7 +120,9 @@ const PokemonDexPage = () => {
                 to={`/pokemon/${pData.id + 1}`}
                 onClick={scrollUp}
               >
-                <span>{pData.id + 1}</span>
+                <span>
+                  {pData.id + 1} <i className="fas fa-arrow-right" />
+                </span>
               </Link>
             )}
           </div>
