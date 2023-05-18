@@ -21,10 +21,10 @@ const TrainerProfilePage = () => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
   const [collectionLoaded, setCollectionLoaded] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); // Profile data
   const { owner, created, avatar, about, favorite, pokemon } = data;
-  const [colData, setColData] = useState([]);
-  const [favData, setFavData] = useState(null);
+  const [colData, setColData] = useState([]); // Collection data
+  const [favData, setFavData] = useState(null); // Favorite Pokémon data
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
@@ -101,15 +101,15 @@ const TrainerProfilePage = () => {
                   className={styles.CollectionContainer}
                   onClick={handleClick}
                 >
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip>
-                        Click to show/hide my Pokémon collection!
-                      </Tooltip>
-                    }
-                  >
-                    <Accordion defaultActiveKey="0">
-                      <Card className={styles.Card}>
+                  <Accordion defaultActiveKey="0">
+                    <Card className={styles.Card}>
+                      <OverlayTrigger
+                        overlay={
+                          <Tooltip>
+                            Click to show/hide my Pokémon collection!
+                          </Tooltip>
+                        }
+                      >
                         <Accordion.Toggle
                           as={Card.Header}
                           eventKey="1"
@@ -128,22 +128,22 @@ const TrainerProfilePage = () => {
                             </div>
                           </div>
                         </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="1">
-                          <Card.Body>
-                            {collectionLoaded ? (
-                              <div className={styles.PokemonContainer}>
-                                {colData.map((pokemon, index) => (
-                                  <Pokemon key={index} {...pokemon} />
-                                ))}
-                              </div>
-                            ) : (
-                              <LoadingText />
-                            )}
-                          </Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                    </Accordion>
-                  </OverlayTrigger>
+                      </OverlayTrigger>
+                      <Accordion.Collapse eventKey="1">
+                        <Card.Body>
+                          {collectionLoaded ? (
+                            <div className={styles.PokemonContainer}>
+                              {colData.map((pokemon, index) => (
+                                <Pokemon key={index} {...pokemon} />
+                              ))}
+                            </div>
+                          ) : (
+                            <LoadingText />
+                          )}
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  </Accordion>
                 </div>
               </Col>
             </Row>
