@@ -28,14 +28,6 @@ const PokemonDexPage = () => {
     fetchData();
   }, [id]);
 
-  const scrollUp = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <>
       {loaded ? (
@@ -107,7 +99,6 @@ const PokemonDexPage = () => {
               <Link
                 className={styles.FooterLink}
                 to={`/pokemon/${pData.id - 1}`}
-                onClick={scrollUp}
               >
                 <span>
                   <i className="fas fa-arrow-left" /> {pData.id - 1}
@@ -118,7 +109,6 @@ const PokemonDexPage = () => {
               <Link
                 className={styles.FooterLink}
                 to={`/pokemon/${pData.id + 1}`}
-                onClick={scrollUp}
               >
                 <span>
                   {pData.id + 1} <i className="fas fa-arrow-right" />
