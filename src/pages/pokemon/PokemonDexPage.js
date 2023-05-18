@@ -4,8 +4,6 @@ import { FetchPokemonData, FetchSpeciesData } from "../../utils/PokeApi";
 import LoadingText from "../../components/LoadingText";
 import styles from "../../styles/PokemonDexPage.module.css";
 import { Col, ProgressBar, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
@@ -111,9 +109,7 @@ const PokemonDexPage = () => {
                 to={`/pokemon/${pData.id - 1}`}
                 onClick={scrollUp}
               >
-                <span>
-                  <FontAwesomeIcon icon={faArrowLeft} /> {pData.id - 1}
-                </span>
+                <span>{pData.id - 1}</span>
               </Link>
             )}
             {pData.id !== 1010 && (
@@ -122,9 +118,7 @@ const PokemonDexPage = () => {
                 to={`/pokemon/${pData.id + 1}`}
                 onClick={scrollUp}
               >
-                <span>
-                  {pData.id + 1} <FontAwesomeIcon icon={faArrowRight} />
-                </span>
+                <span>{pData.id + 1}</span>
               </Link>
             )}
           </div>

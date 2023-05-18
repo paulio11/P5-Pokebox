@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { axiosRes } from "../../api/AxiosDefaults";
 
 const Post = (props) => {
@@ -48,13 +46,6 @@ const Post = (props) => {
           )}
           <div>
             <span>{like_count}</span>
-            <span>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={styles.LikeHeart}
-                onClick={handleLike}
-              />
-            </span>
           </div>
         </div>
         <hr />

@@ -13,7 +13,6 @@ const TrainerDairy = ({ owner }) => {
       try {
         const { data } = await axiosReq.get(`posts/?owner=${owner}`);
         setPosts(data);
-        console.log(data);
         setLoaded(true);
       } catch (error) {}
     };
