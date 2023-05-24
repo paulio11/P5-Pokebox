@@ -4,6 +4,7 @@ import { Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+import PostCommentFooter from "../../components/PostCommentFooter";
 
 const Post = (props) => {
   const {
@@ -88,17 +89,11 @@ const Post = (props) => {
         <Row>
           <Col xs={12} lg={image ? 6 : undefined}>
             <div className={styles.Body}>{body}</div>
-            <Link
-              to={`/trainer/${profile_id}`}
-              className={`${styles.Link} ${styles.Owner}`}
-            >
-              {owner}
-              <img
-                src={profile_avatar}
-                alt={`${owner}'s avatar`}
-                className={styles.Avatar}
-              />
-            </Link>
+            <PostCommentFooter
+              profile_id={profile_id}
+              profile_avatar={profile_avatar}
+              owner={owner}
+            />
           </Col>
           {image && (
             <Col xs={12} lg={6}>
