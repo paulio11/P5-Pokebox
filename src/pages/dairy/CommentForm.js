@@ -39,6 +39,7 @@ const CommentForm = (props) => {
           value={body}
           onChange={handleChange}
           rows={4}
+          required
         />
       </Form.Group>
       <div className={styles.Footer}>

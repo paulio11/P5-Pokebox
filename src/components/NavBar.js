@@ -68,6 +68,11 @@ const NavBar = () => {
           <NavLink to="/trainers" className={styles.NavLink}>
             Trainers
           </NavLink>
+          {currentUser && (
+            <NavLink to="/newpost" className={styles.NavLink}>
+              <i className="fas fa-plus" /> New Dairy Entry
+            </NavLink>
+          )}
         </Nav>
         <Nav className="ml-auto">
           {currentUser ? loggedInItems : loggedOutItems}
