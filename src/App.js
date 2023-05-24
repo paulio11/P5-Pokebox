@@ -8,6 +8,7 @@ import PokemonList from "./pages/pokemon/PokemonList";
 import PokemonDexPage from "./pages/pokemon/PokemonDexPage";
 import TrainerList from "./pages/trainers/TrainerList";
 import TrainerProfilePage from "./pages/trainers/TrainerProfilePage";
+import PostPage from "./pages/dairy/PostPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/pokemon/:id" element={<PokemonDexPage />} />
           <Route exact path="/trainers" element={<TrainerList />} />
           <Route exact path="/trainer/:id" element={<TrainerProfilePage />} />
+          <Route exact path="/post/:id" element={<PostPage />} />
         </Routes>
       </Container>
     </>
