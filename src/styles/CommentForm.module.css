@@ -1,0 +1,8 @@
+.Footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Form {
+  margin-bottom: 24px;
+}

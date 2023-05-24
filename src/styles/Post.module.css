@@ -26,16 +26,6 @@
   border-radius: 5px;
 }
 
-.Owner {
-  text-align: right;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
 .LikeContainer {
   display: flex;
   align-items: center;
@@ -53,11 +43,6 @@
 .LikeCount {
   font-weight: bold;
   margin-right: 12px;
-}
-
-.Avatar {
-  border-radius: 50%;
-  width: 60px;
 }
 
 .Link {
