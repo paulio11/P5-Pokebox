@@ -12,7 +12,7 @@ const PostForm = () => {
     image: "",
   });
   const { body, image } = postData;
-  const imageInput = useRef(null);
+  const imageInput = useRef();
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
 
@@ -51,7 +51,9 @@ const PostForm = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("body", body);
-    formData.append("image", imageInput.current.files[0]);
+    if (imageInput.current.files.length > 0) {
+      formData.append("image", imageInput.current.files[0]);
+    }
 
     try {
       const { data } = await axiosReq.post("posts/", formData);
