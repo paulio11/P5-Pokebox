@@ -16,3 +16,12 @@
 .Link:hover {
   color: #ef0101;
 }
+
+.EditLink {
+  margin-right: 12px;
+  color: black;
+}
+
+.EditLink:hover {
+  color: #ef0101;
+}
