@@ -20,6 +20,7 @@ const Post = (props) => {
     setPosts,
   } = props;
   const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
 
   const handleLike = async () => {
     if (currentUser?.username === owner || !currentUser) {
@@ -57,9 +58,18 @@ const Post = (props) => {
     <>
       <div className={styles.Post}>
         <div className={styles.Header}>
-          <Link to={`/post/${id}`} className={styles.Link}>
-            {created}
-          </Link>
+          <div>
+            {is_owner && (
+              <OverlayTrigger overlay={<Tooltip>Edit post</Tooltip>}>
+                <Link to={`/editpost/${id}`} className={styles.EditLink}>
+                  <i className="fas fa-pen-to-square"></i>
+                </Link>
+              </OverlayTrigger>
+            )}
+            <Link to={`/post/${id}`} className={styles.Link}>
+              {created}
+            </Link>
+          </div>
           <div className={styles.LikeContainer}>
             <span className={styles.LikeCount}>{like_count}</span>
             <OverlayTrigger
@@ -68,6 +78,7 @@ const Post = (props) => {
                   {!currentUser && "Log in to like this post."}
                   {currentUser?.username === owner &&
                     "You can't like your own post."}
+                  {currentUser && "Click to like this post!"}
                 </Tooltip>
               }
             >

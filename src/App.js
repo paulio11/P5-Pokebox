@@ -10,6 +10,7 @@ import TrainerList from "./pages/trainers/TrainerList";
 import TrainerProfilePage from "./pages/trainers/TrainerProfilePage";
 import PostPage from "./pages/dairy/PostPage";
 import PostForm from "./pages/dairy/PostForm";
+import PostEditForm from "./pages/dairy/PostEditForm";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/trainer/:id" element={<TrainerProfilePage />} />
           <Route exact path="/post/:id" element={<PostPage />} />
           <Route exact path="/newpost" element={<PostForm />} />
+          <Route exact path="/editpost/:id" element={<PostEditForm />} />
         </Routes>
       </Container>
     </>

@@ -36,6 +36,15 @@
   cursor: pointer;
 }
 
+.EditLink {
+  margin-right: 12px;
+  color: black;
+}
+
+.EditLink:hover {
+  color: #ef0101;
+}
+
 .Liked {
   color: #ff6e86 !important;
 }

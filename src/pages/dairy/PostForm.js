@@ -97,7 +97,7 @@ const PostForm = () => {
                       variant="danger"
                       onClick={() => imageInput.current.click()}
                     >
-                      Change Image
+                      Change image
                     </Button>
                   </Form.Label>
                 </>
@@ -107,7 +107,7 @@ const PostForm = () => {
                     variant="danger"
                     onClick={() => imageInput.current.click()}
                   >
-                    Select Image (optional)
+                    Select image (optional)
                   </Button>
                 </Form.Label>
               )}
