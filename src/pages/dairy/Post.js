@@ -76,9 +76,12 @@ const Post = (props) => {
               overlay={
                 <Tooltip>
                   {!currentUser && "Log in to like this post."}
-                  {currentUser?.username === owner &&
+                  {currentUser &&
+                    currentUser?.username !== owner &&
+                    "Click to like this post!"}
+                  {currentUser &&
+                    currentUser?.username === owner &&
                     "You can't like your own post."}
-                  {currentUser && "Click to like this post!"}
                 </Tooltip>
               }
             >
