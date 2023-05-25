@@ -156,6 +156,9 @@ const PostEditForm = () => {
             </Row>
           </Form>
           <div className={styles.ButtonContainer}>
+            <Button variant="secondary" onClick={() => navigate(-1)}>
+              Cancel
+            </Button>
             <Button onClick={handleSubmit} variant="danger">
               Save changes
             </Button>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { Button, Form } from "react-bootstrap";
 import styles from "../../styles/CommentEditForm.module.css";
+import CustomModal from "../../components/CustomModal";
 
 const CommentEditForm = (props) => {
   const { id, body, setShowEditForm, setComments } = props;
@@ -34,6 +35,18 @@ const CommentEditForm = (props) => {
     }
   };
 
+  const handleDelete = async () => {
+    setShowEditForm(false);
+    try {
+      await axiosRes.delete(`comments/${id}`);
+      // reduce post comment count later
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (error) {}
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
@@ -51,7 +64,14 @@ const CommentEditForm = (props) => {
         <Button disabled={!body.trim()} type="submit" variant="danger">
           Save
         </Button>
-        <Button variant="dark">Delete</Button>
+        <CustomModal buttonText="Delete" heading="Delete Comment">
+          <p>Are you sure you want to delete this comment?</p>
+          <div className={styles.ModalButtons}>
+            <Button variant="danger" onClick={handleDelete}>
+              Yes
+            </Button>
+          </div>
+        </CustomModal>
       </div>
     </Form>
   );
