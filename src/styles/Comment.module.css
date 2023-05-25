@@ -20,6 +20,7 @@
 .EditLink {
   margin-right: 12px;
   color: black;
+  cursor: pointer;
 }
 
 .EditLink:hover {
