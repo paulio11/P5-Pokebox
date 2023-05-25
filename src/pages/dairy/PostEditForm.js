@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { axiosReq } from "../../api/AxiosDefaults";
+import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Col, Form, Row, Button } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
+import CustomModal from "../../components/CustomModal";
 
 const PostEditForm = () => {
   const { id } = useParams();
@@ -78,6 +79,13 @@ const PostEditForm = () => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`posts/${id}`);
+      navigate(`/trainer/${currentUser?.profile_id}`);
+    } catch (error) {}
+  };
+
   return (
     <>
       <h1>Editing Dairy Entry</h1>
@@ -147,9 +155,22 @@ const PostEditForm = () => {
               </Col>
             </Row>
           </Form>
-          <Button onClick={handleSubmit} variant="danger">
-            Save changes
-          </Button>
+          <div className={styles.ButtonContainer}>
+            <Button onClick={handleSubmit} variant="danger">
+              Save changes
+            </Button>
+            <CustomModal
+              buttonText="Delete dairy entry"
+              heading="Delete Dairy Entry"
+            >
+              <p>Are you sure you want to delete this dairy entry?</p>
+              <div className={styles.ModalButtons}>
+                <Button variant="danger" onClick={handleDelete}>
+                  Yes
+                </Button>
+              </div>
+            </CustomModal>
+          </div>
         </>
       ) : (
         ""
