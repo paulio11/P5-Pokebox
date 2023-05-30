@@ -15,7 +15,11 @@ import {
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
+import avataroverlay from "../../assets/avataroverlay.png";
 import TrainerDairy from "../dairy/TrainerDairy";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import AboutEditForm from "./AboutEditForm";
+import AvatarModal from "./AvatarModal";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
@@ -26,6 +30,12 @@ const TrainerProfilePage = () => {
   const [colData, setColData] = useState([]); // Collection data
   const [favData, setFavData] = useState(null); // Favorite Pokémon data
   const [clicked, setClicked] = useState(false);
+  const [showAboutEdit, setShowAboutEdit] = useState(false);
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false); // For avatar
+  const [newAvatar, setNewAvatar] = useState(false);
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.profile_id.toString() === id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +48,7 @@ const TrainerProfilePage = () => {
 
     setLoaded(false);
     fetchData();
-  }, [id]);
+  }, [id, newAvatar]);
 
   useEffect(() => {
     const getFavData = async () => {
@@ -62,6 +72,10 @@ const TrainerProfilePage = () => {
     }
   };
 
+  const handleHover = () => {
+    setIsHovered(!isHovered);
+  };
+
   return (
     <>
       {loaded ? (
@@ -74,16 +88,66 @@ const TrainerProfilePage = () => {
           <div className={styles.ProfileContainer}>
             <Row>
               <Col xs={12} md={2} className={styles.AvatarCol}>
-                <img
-                  src={avatar}
-                  alt={`${owner}'s avatar`}
-                  className={styles.Avatar}
+                <div
+                  className={`${styles.AvatarContainer} ${
+                    is_owner && styles.AvatarOwner
+                  }`}
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleHover}
+                  onClick={() => {
+                    if (is_owner) {
+                      setShowAvatarModal(!showAvatarModal);
+                    }
+                  }}
+                >
+                  <img
+                    src={avatar}
+                    alt={`${owner}'s avatar`}
+                    className={styles.Avatar}
+                  />
+                  {isHovered && is_owner && (
+                    <img
+                      src={avataroverlay}
+                      alt="edit avatar overlay"
+                      className={styles.AvatarOverlay}
+                    />
+                  )}
+                </div>
+                <AvatarModal
+                  showAvatarModal={showAvatarModal}
+                  setShowAvatarModal={setShowAvatarModal}
+                  data={data}
+                  reload={setNewAvatar}
                 />
               </Col>
               <Col xs={12} md={favorite ? 8 : 10}>
                 <h2>{owner}</h2>
                 <div className={styles.Date}>Joined: {created}</div>
-                <div>{about}</div>
+                <div>
+                  {is_owner && !showAboutEdit && (
+                    <>
+                      <OverlayTrigger
+                        overlay={<Tooltip>Edit your description</Tooltip>}
+                      >
+                        <i
+                          className={`fas fa-pen-to-square ${styles.EditLink}`}
+                          onClick={() => setShowAboutEdit(true)}
+                        ></i>
+                      </OverlayTrigger>
+                    </>
+                  )}
+                  {showAboutEdit ? (
+                    <AboutEditForm
+                      id={id}
+                      about={about}
+                      setShowAboutEdit={setShowAboutEdit}
+                      setData={setData}
+                      data={data}
+                    />
+                  ) : (
+                    <>{about}</>
+                  )}
+                </div>
                 <div className={styles.Length}>
                   I have collected {pokemon.length} Pokémon!
                 </div>

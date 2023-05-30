@@ -27,11 +27,30 @@
   text-align: center;
 }
 
-.Avatar {
+.Avatar,
+.AvatarOverlay {
   border-radius: 50%;
   width: 100%;
   max-width: 300px;
   margin-bottom: 12px;
+}
+
+.AvatarContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.AvatarOwner {
+  cursor: pointer;
+}
+
+.AvatarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .Date {
@@ -94,4 +113,13 @@
   text-align: right;
   font-weight: bold;
   color: #303030;
+}
+
+.EditLink {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.EditLink:hover {
+  color: #ef0101;
 }

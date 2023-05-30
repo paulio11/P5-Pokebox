@@ -61,7 +61,6 @@ const PostEditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("cklicked");
     const formData = new FormData();
     formData.append("body", body);
 
