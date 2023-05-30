@@ -13,6 +13,7 @@ import PostForm from "./pages/dairy/PostForm";
 import PostEditForm from "./pages/dairy/PostEditForm";
 import ToTopButton from "./components/ToTopButton";
 import Footer from "./components/Footer";
+import AllPosts from "./pages/dairy/AllPosts";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 element={<TrainerProfilePage />}
               />
               <Route exact path="/post/:id" element={<PostPage />} />
+              <Route exact path="/posts" element={<AllPosts />} />
               <Route exact path="/newpost" element={<PostForm />} />
               <Route exact path="/editpost/:id" element={<PostEditForm />} />
             </Routes>

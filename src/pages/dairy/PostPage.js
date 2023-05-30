@@ -33,7 +33,9 @@ const PostPage = () => {
 
   return (
     <>
-      <h1>Dairy entry by {post?.results[0]?.owner}</h1>
+      <h1>
+        Dairy entry by {post.results[0]?.owner ? post.results[0].owner : "..."}
+      </h1>
       <hr />
       {loaded ? (
         <>

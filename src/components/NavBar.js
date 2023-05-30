@@ -68,6 +68,9 @@ const NavBar = () => {
           <NavLink to="/trainers" className={styles.NavLink}>
             Trainers
           </NavLink>
+          <NavLink to="/posts" className={styles.NavLink}>
+            All Dairy Entries
+          </NavLink>
           {currentUser && (
             <NavLink to="/newpost" className={styles.NavLink}>
               <i className="fas fa-plus" /> New Dairy Entry
