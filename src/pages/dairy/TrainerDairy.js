@@ -3,6 +3,7 @@ import { axiosReq } from "../../api/AxiosDefaults";
 import LoadingText from "../../components/LoadingText";
 import Post from "./Post";
 import styles from "../../styles/TrainerDariy.module.css";
+import { Alert } from "react-bootstrap";
 
 const TrainerDairy = ({ owner }) => {
   const [loaded, setLoaded] = useState(false);
@@ -26,9 +27,15 @@ const TrainerDairy = ({ owner }) => {
       <h2 className={styles.Heading}>Trainer Dairy</h2>
       {loaded ? (
         <>
-          {posts.results.map((post, index) => (
-            <Post key={index} {...post} setPosts={setPosts} />
-          ))}
+          {posts.results.length ? (
+            <>
+              {posts.results.map((post, index) => (
+                <Post key={index} {...post} setPosts={setPosts} />
+              ))}
+            </>
+          ) : (
+            <Alert variant="dark">{owner} has no dairy entries</Alert>
+          )}
         </>
       ) : (
         <LoadingText />

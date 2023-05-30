@@ -11,6 +11,7 @@ import {
   Card,
   OverlayTrigger,
   Tooltip,
+  Alert,
 } from "react-bootstrap";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
@@ -66,10 +67,10 @@ const TrainerProfilePage = () => {
       try {
         const response = await FetchPokemonData(null, pokemon);
         setColData(response);
-        setCollectionLoaded(true);
         setClicked(true);
       } catch (error) {}
     }
+    setCollectionLoaded(true);
   };
 
   const handleHover = () => {
@@ -195,6 +196,11 @@ const TrainerProfilePage = () => {
                       </OverlayTrigger>
                       <Accordion.Collapse eventKey="1">
                         <Card.Body>
+                          {!pokemon.length && (
+                            <Alert variant="dark">
+                              {owner} has not collected any Pokémon yet
+                            </Alert>
+                          )}
                           {collectionLoaded ? (
                             <div className={styles.PokemonContainer}>
                               {colData.map((pokemon, index) => (
