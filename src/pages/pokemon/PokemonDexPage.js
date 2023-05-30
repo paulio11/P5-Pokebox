@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { FetchPokemonData, FetchSpeciesData } from "../../utils/PokeApi";
-import LoadingText from "../../components/LoadingText";
-import styles from "../../styles/PokemonDexPage.module.css";
-import { Col, ProgressBar, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { FetchPokemonData, FetchSpeciesData } from "../../utils/PokeApi";
+import { UpdateCollection } from "../../utils/Collection";
 import { axiosReq } from "../../api/AxiosDefaults";
+import styles from "../../styles/PokemonDexPage.module.css";
+import { Col, Row, ProgressBar } from "react-bootstrap";
+import LoadingText from "../../components/LoadingText";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
-  const [pData, setPData] = useState([]); // Pokemon (P) data
-  const [sData, setSData] = useState([]); // Pokemon (S) species data
-  const [favPokemon, setFavPokemon] = useState("");
   const currentUser = useCurrentUser();
+  const [pData, setPData] = useState({});
+  const [sData, setSData] = useState({});
+  const [uData, setUData] = useState({});
+  const [hasPokemon, setHasPokemon] = useState(false);
+  const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,38 +27,45 @@ const PokemonDexPage = () => {
         ]);
         setPData(pResponse[0]);
         setSData(sResponse);
+
+        if (currentUser) {
+          const uResponse = await axiosReq.get(
+            `profiles/${currentUser.profile_id}`
+          );
+          setUData(uResponse.data);
+        }
+
         setLoaded(true);
       } catch (error) {}
     };
 
     setLoaded(false);
     fetchData();
-  }, [id]);
+  }, [id, currentUser]);
 
   useEffect(() => {
-    const fetchFavData = async () => {
-      try {
-        const response = await axiosReq.get(
-          `profiles/${currentUser.profile_id}`
-        );
-        setFavPokemon(response.data.favorite);
-      } catch (error) {}
-    };
-
-    if (currentUser) {
-      fetchFavData();
+    setIsFav(uData.favorite === pData.name);
+    if (uData.pokemon?.length) {
+      setHasPokemon(uData.pokemon.includes(pData.id));
     }
-  }, [currentUser]);
+  }, [uData.favorite, uData.pokemon, pData.name, pData.id]);
+
+  const handleClick = () => {
+    setHasPokemon(!hasPokemon);
+    UpdateCollection(pData.id, uData, setUData);
+  };
 
   const handleFavorite = async () => {
     try {
-      await axiosReq.patch(`profiles/${currentUser.profile_id}`, {
-        favorite: pData.name,
-      });
-      setFavPokemon(pData.name);
-    } catch (error) {
-      console.log(error);
-    }
+      const response = await axiosReq.patch(
+        `profiles/${currentUser?.profile_id}`,
+        {
+          favorite: pData.name,
+        }
+      );
+      setIsFav(true);
+      setUData(response.data);
+    } catch (error) {}
   };
 
   return (
@@ -70,8 +80,27 @@ const PokemonDexPage = () => {
           <div className={styles.Container}>
             <Row>
               <Col xs={12} md={6}>
-                <button className={styles.CollectionBtn}>
-                  Add {sData.name} NYI
+                <button className={styles.CollectionBtn} onClick={handleClick}>
+                  {hasPokemon ? (
+                    <>
+                      <i
+                        className={`fas fa-square-check ${
+                          hasPokemon && styles.GreenTick
+                        }`}
+                      ></i>{" "}
+                      Remove{" "}
+                      <span className={styles.FirstCap}>{sData.name}</span> from
+                      your collection
+                    </>
+                  ) : (
+                    <>
+                      <i
+                        className={`fas fa-square-xmark ${styles.RedCross}`}
+                      ></i>{" "}
+                      Add <span className={styles.FirstCap}>{sData.name}</span>{" "}
+                      to your collection
+                    </>
+                  )}
                 </button>
                 <img
                   src={pData.sprites.other["official-artwork"].front_default}
@@ -117,7 +146,7 @@ const PokemonDexPage = () => {
                     </div>
                   ))}
                 </div>
-                {currentUser && favPokemon !== pData.name && (
+                {!isFav && currentUser && (
                   <button
                     onClick={handleFavorite}
                     className={`${styles.CollectionBtn} ${styles.FavBtn}`}
@@ -126,7 +155,7 @@ const PokemonDexPage = () => {
                     your favorite Pokémon
                   </button>
                 )}
-                {currentUser && favPokemon === pData.name && (
+                {isFav && (
                   <div className={styles.FavInfo}>
                     <span className={styles.FirstCap}>{sData.name}</span> is
                     your favorite Pokémon <i className="fas fa-heart"></i>
