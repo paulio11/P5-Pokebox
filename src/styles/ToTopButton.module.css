@@ -1,0 +1,13 @@
+.TopButton {
+  position: fixed;
+  bottom: 0;
+  right: 16px;
+  z-index: 99;
+  opacity: 0;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.Visible {
+  opacity: 1 !important;
+}

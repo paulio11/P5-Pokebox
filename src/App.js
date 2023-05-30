@@ -11,10 +11,12 @@ import TrainerProfilePage from "./pages/trainers/TrainerProfilePage";
 import PostPage from "./pages/dairy/PostPage";
 import PostForm from "./pages/dairy/PostForm";
 import PostEditForm from "./pages/dairy/PostEditForm";
+import ToTopButton from "./components/ToTopButton";
 
 function App() {
   return (
     <>
+      <ToTopButton />
       <NavBar />
       <Container className={styles.MainContainer}>
         <Routes>
