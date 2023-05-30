@@ -2,6 +2,13 @@
   padding-top: 60px;
 }
 
+.Page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 h1 {
   color: #ba0000;
 }
