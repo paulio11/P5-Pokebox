@@ -74,7 +74,7 @@ const Post = (props) => {
           <div className={styles.HeaderIcons}>
             <div className={styles.CommentInfo}>
               <span className={styles.Count}>{comment_count}</span>
-              <i className={`fas fa-comment ${styles.CommentIcon}`}></i>
+              <i className={`far fa-comment ${styles.CommentIcon}`}></i>
             </div>
             <div className={styles.LikeContainer}>
               <span className={styles.Count}>{like_count}</span>
