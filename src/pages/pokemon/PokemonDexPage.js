@@ -4,12 +4,16 @@ import { FetchPokemonData, FetchSpeciesData } from "../../utils/PokeApi";
 import LoadingText from "../../components/LoadingText";
 import styles from "../../styles/PokemonDexPage.module.css";
 import { Col, ProgressBar, Row } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { axiosReq } from "../../api/AxiosDefaults";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
   const [loaded, setLoaded] = useState(false);
   const [pData, setPData] = useState([]); // Pokemon (P) data
   const [sData, setSData] = useState([]); // Pokemon (S) species data
+  const [favPokemon, setFavPokemon] = useState("");
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +31,32 @@ const PokemonDexPage = () => {
     setLoaded(false);
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    const fetchFavData = async () => {
+      try {
+        const response = await axiosReq.get(
+          `profiles/${currentUser.profile_id}`
+        );
+        setFavPokemon(response.data.favorite);
+      } catch (error) {}
+    };
+
+    if (currentUser) {
+      fetchFavData();
+    }
+  }, [currentUser]);
+
+  const handleFavorite = async () => {
+    try {
+      await axiosReq.patch(`profiles/${currentUser.profile_id}`, {
+        favorite: pData.name,
+      });
+      setFavPokemon(pData.name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -87,6 +117,21 @@ const PokemonDexPage = () => {
                     </div>
                   ))}
                 </div>
+                {currentUser && favPokemon !== pData.name && (
+                  <button
+                    onClick={handleFavorite}
+                    className={`${styles.CollectionBtn} ${styles.FavBtn}`}
+                  >
+                    Set <span className={styles.FirstCap}>{sData.name}</span> as
+                    your favorite Pokémon
+                  </button>
+                )}
+                {currentUser && favPokemon === pData.name && (
+                  <div className={styles.FavInfo}>
+                    <span className={styles.FirstCap}>{sData.name}</span> is
+                    your favorite Pokémon <i className="fas fa-heart"></i>
+                  </div>
+                )}
               </Col>
             </Row>
           </div>

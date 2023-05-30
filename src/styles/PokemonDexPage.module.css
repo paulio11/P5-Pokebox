@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.FirstCap:first-letter {
+.FirstCap {
   text-transform: capitalize;
 }
 
@@ -36,6 +36,20 @@
 
 .CollectionBtn:hover {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.FavBtn {
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+.FavInfo {
+  background-color: pink;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  width: fit-content;
+  margin-top: 24px;
 }
 
 .Artwork {
