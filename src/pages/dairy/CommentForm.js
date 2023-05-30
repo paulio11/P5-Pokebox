@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import styles from "../../styles/CommentForm.module.css";
 
 const CommentForm = (props) => {
-  const { post, setComments } = props;
+  const { post, setComments, setPost } = props;
   const [body, setBody] = useState("");
 
   const handleChange = (event) => {
@@ -22,7 +22,14 @@ const CommentForm = (props) => {
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      // increase post comment count here later
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comment_count: prevPost.results[0].comment_count + 1,
+          },
+        ],
+      }));
       setBody("");
     } catch (error) {
       console.log(error);

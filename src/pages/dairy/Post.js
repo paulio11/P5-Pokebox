@@ -17,6 +17,7 @@ const Post = (props) => {
     like_count,
     profile_id,
     profile_avatar,
+    comment_count,
     setPosts,
   } = props;
   const currentUser = useCurrentUser();
@@ -70,33 +71,39 @@ const Post = (props) => {
               {created}
             </Link>
           </div>
-          <div className={styles.LikeContainer}>
-            <span className={styles.LikeCount}>{like_count}</span>
-            <OverlayTrigger
-              overlay={
-                <Tooltip>
-                  {!currentUser && "Log in to like this post."}
-                  {currentUser &&
-                    currentUser?.username !== owner &&
-                    "Click to like this post!"}
-                  {currentUser &&
-                    currentUser?.username === owner &&
-                    "You can't like your own post."}
-                </Tooltip>
-              }
-            >
-              {like_id ? (
-                <i
-                  className={`fas fa-heart ${styles.LikeHeart} ${styles.Liked}`}
-                  onClick={handleUnlike}
-                />
-              ) : (
-                <i
-                  className={`far fa-heart ${styles.LikeHeart}`}
-                  onClick={handleLike}
-                />
-              )}
-            </OverlayTrigger>
+          <div className={styles.HeaderIcons}>
+            <div className={styles.CommentInfo}>
+              <span className={styles.Count}>{comment_count}</span>
+              <i className={`fas fa-comment ${styles.CommentIcon}`}></i>
+            </div>
+            <div className={styles.LikeContainer}>
+              <span className={styles.Count}>{like_count}</span>
+              <OverlayTrigger
+                overlay={
+                  <Tooltip>
+                    {!currentUser && "Log in to like this post."}
+                    {currentUser &&
+                      currentUser?.username !== owner &&
+                      "Click to like this post!"}
+                    {currentUser &&
+                      currentUser?.username === owner &&
+                      "You can't like your own post."}
+                  </Tooltip>
+                }
+              >
+                {like_id ? (
+                  <i
+                    className={`fas fa-heart ${styles.LikeHeart} ${styles.Liked}`}
+                    onClick={handleUnlike}
+                  />
+                ) : (
+                  <i
+                    className={`far fa-heart ${styles.LikeHeart}`}
+                    onClick={handleLike}
+                  />
+                )}
+              </OverlayTrigger>
+            </div>
           </div>
         </div>
         <hr />

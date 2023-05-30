@@ -23,6 +23,7 @@ const PostPage = () => {
         axiosReq.get(`comments/?post=${id}`),
       ]);
       setPost({ results: [post] });
+      console.log(post);
       setComments(comments);
       setLoaded(true);
     };
@@ -50,6 +51,7 @@ const PostPage = () => {
                       key={index}
                       {...comment}
                       setComments={setComments}
+                      setPost={setPost}
                     />
                   ))}
                 </>

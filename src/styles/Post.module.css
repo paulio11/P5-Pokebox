@@ -26,12 +26,19 @@
   border-radius: 5px;
 }
 
-.LikeContainer {
+.HeaderIcons {
+  display: flex;
+  gap: 12px;
+}
+
+.LikeContainer,
+.CommentInfo {
   display: flex;
   align-items: center;
 }
 
-.LikeHeart {
+.LikeHeart,
+.CommentIcon {
   font-size: 32px;
   cursor: pointer;
 }
@@ -49,7 +56,7 @@
   color: #ff6e86 !important;
 }
 
-.LikeCount {
+.Count {
   font-weight: bold;
   margin-right: 12px;
 }
