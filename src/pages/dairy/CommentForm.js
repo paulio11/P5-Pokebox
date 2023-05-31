@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/CommentForm.module.css";
 
 const CommentForm = (props) => {
   const { post, setComments, setPost } = props;
   const [body, setBody] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setBody(event.target.value);
@@ -32,7 +33,7 @@ const CommentForm = (props) => {
       }));
       setBody("");
     } catch (error) {
-      console.log(error);
+      setErrors(error.response?.data);
     }
   };
 
@@ -50,6 +51,11 @@ const CommentForm = (props) => {
           required
         />
       </Form.Group>
+      {errors.body?.map((message, index) => (
+        <Alert key={index} variant="warning">
+          {message}
+        </Alert>
+      ))}
       <div className={styles.Footer}>
         <Button type="submit" variant="danger">
           Post comment

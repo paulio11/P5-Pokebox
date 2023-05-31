@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/CommentEditForm.module.css";
 import CustomModal from "../../components/CustomModal";
 
 const CommentEditForm = (props) => {
   const { id, body, setShowEditForm, setComments, setPost } = props;
   const [commentBody, setCommentBody] = useState(body);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -31,7 +32,7 @@ const CommentEditForm = (props) => {
       }));
       setShowEditForm(false);
     } catch (error) {
-      console.log(error);
+      setErrors(error.response?.data);
     }
   };
 
@@ -66,6 +67,11 @@ const CommentEditForm = (props) => {
           required
         />
       </Form.Group>
+      {errors.body?.map((message, index) => (
+        <Alert key={index} variant="warning">
+          {message}
+        </Alert>
+      ))}
       <div className={styles.ButtonContainer}>
         <Button onClick={() => setShowEditForm(false)} variant="secondary">
           Cancel
