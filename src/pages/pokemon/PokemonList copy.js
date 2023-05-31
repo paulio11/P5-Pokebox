@@ -5,8 +5,7 @@ import styles from "../../styles/PokemonList.module.css";
 import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";
 import Sobble from "../../assets/sobble.png";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from "../../api/AxiosDefaults";
+import { currentUser } from "../../contexts/CurrentUserContext";
 
 const PokemonList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -14,8 +13,6 @@ const PokemonList = () => {
   const [query, setQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
   const currentUser = useCurrentUser();
-  const [profileData, setProfileData] = useState({});
-  // const [collectionData, setCollectionData] = useState([]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -31,15 +28,6 @@ const PokemonList = () => {
       } catch (error) {}
     };
 
-    const fetchProfile = async () => {
-      if (currentUser) {
-        const response = await axiosReq.get(
-          `profiles/${currentUser.profile_id}`
-        );
-        setProfileData(response.data);
-      }
-    };
-
     setNoResults(false);
     setLoaded(false);
 
@@ -47,12 +35,10 @@ const PokemonList = () => {
       fetchResults();
     }, 1000);
 
-    fetchProfile();
-
     return () => {
       clearTimeout(queryTimer);
     };
-  }, [query, currentUser]);
+  }, [query]);
 
   const handleChange = (event) => {
     setQuery(event.target.value.toLowerCase());
@@ -74,13 +60,7 @@ const PokemonList = () => {
       {loaded ? (
         <div className={styles.ResultsContainer}>
           {results.map((pokemon, index) => (
-            <Pokemon
-              key={index}
-              {...pokemon}
-              profileData={profileData}
-              setProfileData={setProfileData}
-              currentUser={currentUser}
-            />
+            <Pokemon key={index} {...pokemon} />
           ))}
         </div>
       ) : (

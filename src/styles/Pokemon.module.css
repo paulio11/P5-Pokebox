@@ -38,12 +38,9 @@
   text-decoration: none;
   color: initial;
 }
-/* 
-@media (max-width: 767px) {
-  .TrainerPage {
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 16px;
-    width: fit-content;
-  }
-} */
+
+.Greyscale {
+  background-color: #e5e2e2;
+  filter: grayscale(100%);
+  border: 1px solid lightgray;
+}
