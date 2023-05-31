@@ -25,10 +25,20 @@ const NavBar = () => {
   // Variables for logged in and logged out nav link items
   const loggedOutItems = (
     <>
-      <NavLink to="/login" className={styles.NavLink}>
+      <NavLink
+        to="/login"
+        className={({ isActive }) =>
+          isActive ? styles.NavLinkActive : styles.NavLink
+        }
+      >
         Log in
       </NavLink>
-      <NavLink to="/register" className={styles.NavLink}>
+      <NavLink
+        to="/register"
+        className={({ isActive }) =>
+          isActive ? styles.NavLinkActive : styles.NavLink
+        }
+      >
         Register
       </NavLink>
     </>
@@ -41,8 +51,13 @@ const NavBar = () => {
           <strong>{currentUser?.username}</strong>
         </Link>
       </span>
-      <NavLink to="/settings" className={styles.NavLink}>
-        Account
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          isActive ? styles.NavLinkActive : styles.NavLink
+        }
+      >
+        Settings
       </NavLink>
       <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
         Log out
@@ -65,17 +80,37 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <NavLink to="/pokemon" className={styles.NavLink}>
+          <NavLink
+            to="/pokemon"
+            className={({ isActive }) =>
+              isActive ? styles.NavLinkActive : styles.NavLink
+            }
+          >
             Pokémon
           </NavLink>
-          <NavLink to="/trainers" className={styles.NavLink}>
+          <NavLink
+            to="/trainers"
+            className={({ isActive }) =>
+              isActive ? styles.NavLinkActive : styles.NavLink
+            }
+          >
             Trainers
           </NavLink>
-          <NavLink to="/posts" className={styles.NavLink}>
+          <NavLink
+            to="/posts"
+            className={({ isActive }) =>
+              isActive ? styles.NavLinkActive : styles.NavLink
+            }
+          >
             All Dairy Entries
           </NavLink>
           {currentUser && (
-            <NavLink to="/newpost" className={styles.NavLink}>
+            <NavLink
+              to="/newpost"
+              className={({ isActive }) =>
+                isActive ? styles.NavLinkActive : styles.NavLink
+              }
+            >
               <i className="fas fa-plus" /> New Dairy Entry
             </NavLink>
           )}

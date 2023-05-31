@@ -12,7 +12,13 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.NavLink:hover {
+.NavLinkActive {
+  padding: 0.5rem 1rem 0.5rem 0;
+  color: #ba0000;
+}
+
+.NavLink:hover,
+.NavLinkActive:hover {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.7);
 }

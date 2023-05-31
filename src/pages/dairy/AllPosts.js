@@ -19,7 +19,7 @@ const AllPosts = () => {
       try {
         const { data } = await axiosReq.get(
           `posts/?ordering=${sortOrder}${sortBy}&likes__owner__profile=${
-            likeCheck ? currentUser.profile_id : ""
+            likeCheck ? currentUser?.profile_id : ""
           }`
         );
         setPosts(data);
@@ -29,7 +29,7 @@ const AllPosts = () => {
 
     setLoaded(false);
     fetchPosts();
-  }, [sortBy, sortOrder, likeCheck, currentUser.profile_id]);
+  }, [sortBy, sortOrder, likeCheck, currentUser?.profile_id]);
 
   const handleSortChange = (event) => {
     const { name, value } = event.target;
