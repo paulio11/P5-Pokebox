@@ -10,3 +10,12 @@
   max-width: 342px;
   margin: 0 auto 16px;
 }
+
+.SearchError {
+  margin-bottom: 32px;
+  font-size: 24px;
+}
+
+.SearchJoke {
+  margin-top: 16px;
+}

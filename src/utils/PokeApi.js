@@ -13,7 +13,7 @@ export const FetchPokemonList = async () => {
 
 // This function asynchronously fetches data about Pokémon based on the provided
 // query or list of Pokémon names.
-export const FetchPokemonData = async (query, list) => {
+export const FetchPokemonData = async (query, list, setNoResults) => {
   try {
     // If a query is provided, fetch data for a single Pokémon.
     if (query) {
@@ -56,6 +56,7 @@ export const FetchPokemonData = async (query, list) => {
   } catch (error) {
     // If the API returns a 404 status code, return an empty array.
     if (error.response?.status === 404) {
+      setNoResults(true);
       return [];
     }
 
