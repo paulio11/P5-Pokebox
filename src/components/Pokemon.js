@@ -8,7 +8,7 @@ const Pokemon = (props) => {
     id,
     species,
     sprites,
-    trainerPage, // fix trainer page display
+    trainerPage,
     listPage,
     profileData,
     setProfileData,

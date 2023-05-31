@@ -15,7 +15,7 @@ const PokemonList = () => {
   const [query, setQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
   const currentUser = useCurrentUser();
-  const [profileData, setProfileData] = useState({});
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     const fetchResults = async () => {
