@@ -43,7 +43,7 @@ const AboutEditForm = (props) => {
       >
         Cancel
       </Button>
-      <Button disabled={!about.trim()} type="submit" variant="danger">
+      <Button type="submit" variant="danger">
         Save
       </Button>
     </Form>
