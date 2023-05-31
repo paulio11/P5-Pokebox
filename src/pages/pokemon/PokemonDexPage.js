@@ -91,28 +91,34 @@ const PokemonDexPage = () => {
           <div className={styles.Container}>
             <Row>
               <Col xs={12} md={6}>
-                <button className={styles.CollectionBtn} onClick={handleClick}>
-                  {hasPokemon ? (
-                    <>
-                      <i
-                        className={`fas fa-square-check ${
-                          hasPokemon && styles.GreenTick
-                        }`}
-                      ></i>{" "}
-                      Remove{" "}
-                      <span className={styles.FirstCap}>{sData.name}</span> from
-                      your collection
-                    </>
-                  ) : (
-                    <>
-                      <i
-                        className={`fas fa-square-xmark ${styles.RedCross}`}
-                      ></i>{" "}
-                      Add <span className={styles.FirstCap}>{sData.name}</span>{" "}
-                      to your collection
-                    </>
-                  )}
-                </button>
+                {currentUser && (
+                  <button
+                    className={styles.CollectionBtn}
+                    onClick={handleClick}
+                  >
+                    {hasPokemon ? (
+                      <>
+                        <i
+                          className={`fas fa-square-check ${
+                            hasPokemon && styles.GreenTick
+                          }`}
+                        ></i>{" "}
+                        Remove{" "}
+                        <span className={styles.FirstCap}>{sData.name}</span>{" "}
+                        from your collection
+                      </>
+                    ) : (
+                      <>
+                        <i
+                          className={`fas fa-square-xmark ${styles.RedCross}`}
+                        ></i>{" "}
+                        Add{" "}
+                        <span className={styles.FirstCap}>{sData.name}</span> to
+                        your collection
+                      </>
+                    )}
+                  </button>
+                )}
                 <img
                   src={pData.sprites.other["official-artwork"].front_default}
                   alt={`${sData.name}'s official artwork`}
