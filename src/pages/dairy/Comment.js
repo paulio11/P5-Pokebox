@@ -6,8 +6,16 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentEditForm from "../dairy/CommentEditForm";
 
 const Comment = (props) => {
-  const { id, owner, created, body, profile_id, profile_avatar, setComments } =
-    props;
+  const {
+    id,
+    owner,
+    created,
+    body,
+    profile_id,
+    profile_avatar,
+    setComments,
+    setPost,
+  } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const [showEditForm, setShowEditForm] = useState(false);
@@ -33,6 +41,7 @@ const Comment = (props) => {
             body={body}
             setShowEditForm={setShowEditForm}
             setComments={setComments}
+            setPost={setPost}
           />
         ) : (
           <p>{body}</p>

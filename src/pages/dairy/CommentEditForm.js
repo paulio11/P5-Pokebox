@@ -5,7 +5,7 @@ import styles from "../../styles/CommentEditForm.module.css";
 import CustomModal from "../../components/CustomModal";
 
 const CommentEditForm = (props) => {
-  const { id, body, setShowEditForm, setComments } = props;
+  const { id, body, setShowEditForm, setComments, setPost } = props;
   const [commentBody, setCommentBody] = useState(body);
 
   const handleChange = (event) => {
@@ -39,7 +39,14 @@ const CommentEditForm = (props) => {
     setShowEditForm(false);
     try {
       await axiosRes.delete(`comments/${id}`);
-      // reduce post comment count later
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comment_count: prevPost.results[0].comment_count - 1,
+          },
+        ],
+      }));
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
