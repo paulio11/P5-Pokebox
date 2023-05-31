@@ -1,0 +1,11 @@
+.FormContainer {
+  padding: 32px;
+  border-radius: 15px;
+  width: 100%;
+  background-color: #f8f9fa;
+  margin-bottom: 24px;
+}
+
+.UsernameForm {
+  margin-bottom: 30px;
+}
