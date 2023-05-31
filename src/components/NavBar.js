@@ -8,11 +8,14 @@ import {
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   // Get current user from context
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleLogOut = async () => {
     try {
@@ -66,7 +69,7 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" expanded={expanded}>
       <NavLink to="/" className={styles.NavBrand}>
         <Navbar.Brand className="d-flex align-items-center">
           <img
@@ -77,7 +80,11 @@ const NavBar = () => {
           <strong>POKÉBOX</strong>
         </Navbar.Brand>
       </NavLink>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        ref={ref}
+        onClick={() => setExpanded(!expanded)}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <NavLink
