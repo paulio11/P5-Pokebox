@@ -127,7 +127,11 @@ const Settings = () => {
           </Col>
         </Row>
       </div>
-      {message && <Alert variant="success">{message}</Alert>}
+      {message && (
+        <Alert variant="success" onClose={() => setMessage("")} dismissible>
+          {message}
+        </Alert>
+      )}
     </>
   );
 };
