@@ -41,6 +41,9 @@ const NavBar = () => {
           <strong>{currentUser?.username}</strong>
         </Link>
       </span>
+      <NavLink to="/settings" className={styles.NavLink}>
+        Account
+      </NavLink>
       <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
         Log out
       </NavLink>

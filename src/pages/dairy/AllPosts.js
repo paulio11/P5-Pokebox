@@ -47,6 +47,13 @@ const AllPosts = () => {
       <h1>All Dairy Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
+        {currentUser && (
+          <Form.Check
+            label="Show only entries I liked"
+            name="like_check"
+            onChange={handleSortChange}
+          />
+        )}
         <Form.Group>
           <Form.Label>Sort By</Form.Label>
           <Form.Control
@@ -72,13 +79,6 @@ const AllPosts = () => {
             <option value="-">Descending</option>
           </Form.Control>
         </Form.Group>
-        {currentUser && (
-          <Form.Check
-            label="Show only posts I liked"
-            name="like_check"
-            onChange={handleSortChange}
-          />
-        )}
       </Form>
       {loaded ? (
         <>
