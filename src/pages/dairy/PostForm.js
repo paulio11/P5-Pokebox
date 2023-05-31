@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -15,6 +15,7 @@ const PostForm = () => {
   const imageInput = useRef();
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
+  const [errors, setErrors] = useState({});
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -54,11 +55,14 @@ const PostForm = () => {
     if (imageInput.current.files.length > 0) {
       formData.append("image", imageInput.current.files[0]);
     }
-
     try {
       const { data } = await axiosReq.post("posts/", formData);
       navigate(`/post/${data.id}`);
-    } catch (error) {}
+    } catch (error) {
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
+    }
   };
 
   return (
@@ -78,9 +82,15 @@ const PostForm = () => {
                 name="body"
                 value={body}
                 onChange={handleChange}
+                maxLength={400}
                 placeholder="Write your new dairy entry here."
               />
             </Form.Group>
+            {errors.body?.map((message, index) => (
+              <Alert key={index} variant="warning">
+                {message}
+              </Alert>
+            ))}
             <PostCommentFooter
               profile_id={currentUser?.profile_id}
               profile_avatar={currentUser?.profile_avatar}
@@ -91,7 +101,11 @@ const PostForm = () => {
             <Form.Group>
               {image ? (
                 <>
-                  <img src={image} className={styles.PostImage} />
+                  <img
+                    src={image}
+                    className={styles.PostImage}
+                    alt="uploaded file"
+                  />
                   <Form.Label>
                     <Button
                       variant="danger"
@@ -118,6 +132,11 @@ const PostForm = () => {
                 style={{ display: "none" }}
               />
             </Form.Group>
+            {errors.image?.map((message, index) => (
+              <Alert key={index} variant="warning">
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>

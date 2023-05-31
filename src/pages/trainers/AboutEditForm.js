@@ -33,6 +33,7 @@ const AboutEditForm = (props) => {
           value={formAbout}
           onChange={handleChange}
           rows={4}
+          maxLength={400}
         />
       </Form.Group>
       <Button

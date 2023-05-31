@@ -46,6 +46,7 @@ const CommentForm = (props) => {
           value={body}
           onChange={handleChange}
           rows={4}
+          maxLength={400}
           required
         />
       </Form.Group>

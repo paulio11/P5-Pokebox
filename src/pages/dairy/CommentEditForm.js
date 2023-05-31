@@ -55,6 +55,8 @@ const CommentEditForm = (props) => {
           value={commentBody}
           onChange={handleChange}
           rows={4}
+          maxLength={400}
+          required
         />
       </Form.Group>
       <div className={styles.ButtonContainer}>

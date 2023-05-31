@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Col, Form, Row, Button } from "react-bootstrap";
+import { Col, Form, Row, Button, Alert } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
@@ -20,6 +20,7 @@ const PostEditForm = () => {
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === postData?.owner;
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -74,7 +75,9 @@ const PostEditForm = () => {
       await axiosReq.put(`posts/${id}`, formData);
       navigate(`/post/${id}`);
     } catch (error) {
-      console.log(error);
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
     }
   };
 
@@ -82,7 +85,11 @@ const PostEditForm = () => {
     try {
       await axiosRes.delete(`posts/${id}`);
       navigate(`/trainer/${currentUser?.profile_id}`);
-    } catch (error) {}
+    } catch (error) {
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
+    }
   };
 
   return (
@@ -109,8 +116,14 @@ const PostEditForm = () => {
                     name="body"
                     value={body}
                     onChange={handleChange}
+                    maxLength={400}
                   />
                 </Form.Group>
+                {errors.body?.map((message, index) => (
+                  <Alert key={index} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
                 <PostCommentFooter
                   profile_id={currentUser?.profile_id}
                   profile_avatar={currentUser?.profile_avatar}
@@ -121,7 +134,11 @@ const PostEditForm = () => {
                 <Form.Group>
                   {image ? (
                     <>
-                      <img src={image} className={styles.PostImage} />
+                      <img
+                        src={image}
+                        className={styles.PostImage}
+                        alt="uploaded file"
+                      />
                       <Form.Label>
                         <Button
                           variant="danger"
@@ -151,6 +168,11 @@ const PostEditForm = () => {
                     style={{ display: "none" }}
                   />
                 </Form.Group>
+                {errors.image?.map((message, idx) => (
+                  <Alert key={idx} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
               </Col>
             </Row>
           </Form>
