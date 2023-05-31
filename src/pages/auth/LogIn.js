@@ -21,8 +21,7 @@ const LogIn = () => {
       // Send login data to server and get response
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
-      // Navigate to user profile when implemented
-      navigate("/");
+      navigate(`/trainer/${data.user.profile_id}`);
     } catch (error) {
       // Catch any errors in the response
       setErrors(error.response?.data);
