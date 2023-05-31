@@ -16,7 +16,9 @@ const Pokemon = (props) => {
   const [collected, setCollected] = useState(false);
 
   useEffect(() => {
-    setCollected(profileData?.pokemon.includes(id));
+    if (profileData) {
+      setCollected(profileData?.pokemon?.includes(id));
+    }
   }, [profileData, id]);
 
   const handleRightClick = (event) => {
