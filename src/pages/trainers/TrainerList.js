@@ -11,6 +11,7 @@ const TrainerList = () => {
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("pokemon");
   const [sortOrder, setSortOrder] = useState("desc");
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,9 +23,16 @@ const TrainerList = () => {
         );
         setResults(response.data.results);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        if (error.response?.status === 404) {
+          setLoaded(true);
+          setNoResults(true);
+        }
+      }
     };
 
+    setResults({});
+    setNoResults(false);
     setLoaded(false);
 
     const queryTimer = setTimeout(() => {
@@ -63,6 +71,13 @@ const TrainerList = () => {
             onChange={handleChange}
           />
         </Form.Group>
+        {noResults && (
+          <div className="d-flex flex-column align-items-center">
+            <span className={styles.SearchError}>
+              No trainer named <strong>{query}</strong> found!
+            </span>
+          </div>
+        )}
         {!query && (
           <>
             <Form.Group>
@@ -94,11 +109,13 @@ const TrainerList = () => {
       </Form>
       {loaded ? (
         <>
-          <div className={styles.ResultsContainer}>
-            {results.map((trainer) => (
-              <Trainer key={trainer.id} {...trainer} />
-            ))}
-          </div>
+          {results.length && (
+            <div className={styles.ResultsContainer}>
+              {results.map((trainer) => (
+                <Trainer key={trainer.id} {...trainer} />
+              ))}
+            </div>
+          )}
         </>
       ) : (
         <LoadingText />
