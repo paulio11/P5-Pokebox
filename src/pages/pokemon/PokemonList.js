@@ -7,6 +7,7 @@ import LoadingText from "../../components/LoadingText";
 import Sobble from "../../assets/sobble.png";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/AxiosDefaults";
+import CustomModal from "../../components/CustomModal";
 
 const PokemonList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -61,7 +62,23 @@ const PokemonList = () => {
 
   return (
     <>
-      <h1>Pokemon</h1>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>Pokemon</h1>
+        <CustomModal buttonText="Help" heading="Instructions">
+          <h5>Search</h5>
+          <p>
+            Use the search box to search for a Pokémon by their name or pokédex
+            number.
+          </p>
+          <h5>Pokémon Information</h5>
+          <p>Click or tap on a Pokémon to go to their pokédex page.</p>
+          <h5>Manage Collection</h5>
+          <p>
+            Right click or long tap on a Pokémon to add or remove it from your
+            collection. Requires you to be logged in.
+          </p>
+        </CustomModal>
+      </div>
       <hr />
       <Form className={styles.SearchForm}>
         <Form.Label hidden>Search for a Pokémon</Form.Label>
