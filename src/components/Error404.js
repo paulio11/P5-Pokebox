@@ -3,18 +3,19 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Error404 = (props) => {
-  const { pokemon, trainer, post, query } = props;
+  const { pokemon, trainer, post, page, query } = props;
   const navigate = useNavigate();
 
   return (
     <>
-      <h1>Error</h1>
+      <h1>Error 404</h1>
       <hr />
       <p>
         The {pokemon && "Pokémon"}
         {trainer && "trainer with ID:"}
-        {post && "dairy entry with ID:"} <strong>{query}</strong> could not be
-        found.
+        {post && "dairy entry with ID:"}
+        {page && "page you were looking for"} <strong>{query && query} </strong>
+        could not be found.
       </p>
       <Button variant="danger" onClick={() => navigate(-1)}>
         <i className="fas fa-arrow-left" /> Go back

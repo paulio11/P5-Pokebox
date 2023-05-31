@@ -15,6 +15,7 @@ import ToTopButton from "./components/ToTopButton";
 import Footer from "./components/Footer";
 import AllPosts from "./pages/dairy/AllPosts";
 import Settings from "./pages/account/Settings";
+import Error404 from "./components/Error404";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
               <Route exact path="/newpost" element={<PostForm />} />
               <Route exact path="/editpost/:id" element={<PostEditForm />} />
               <Route exact path="/settings" element={<Settings />} />
+              <Route path="*" element={<Error404 page />} />
             </Routes>
           </Container>
         </div>
