@@ -7,6 +7,7 @@ import { axiosReq } from "../../api/AxiosDefaults";
 import styles from "../../styles/PokemonDexPage.module.css";
 import { Col, Row, ProgressBar } from "react-bootstrap";
 import LoadingText from "../../components/LoadingText";
+import Error404 from "../../components/Error404";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
@@ -17,28 +18,34 @@ const PokemonDexPage = () => {
   const [uData, setUData] = useState({});
   const [hasPokemon, setHasPokemon] = useState(false);
   const [isFav, setIsFav] = useState(false);
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [pResponse, sResponse] = await Promise.all([
-          FetchPokemonData(id, null),
+          FetchPokemonData(id, null, setNoResults),
           FetchSpeciesData(id),
         ]);
-        setPData(pResponse[0]);
-        setSData(sResponse);
 
-        if (currentUser) {
-          const uResponse = await axiosReq.get(
-            `profiles/${currentUser.profile_id}`
-          );
-          setUData(uResponse.data);
+        // Check if the response from FetchPokemonData is valid
+        if (pResponse && pResponse[0]) {
+          setPData(pResponse[0]);
+          setSData(sResponse);
+
+          if (currentUser) {
+            const uResponse = await axiosReq.get(
+              `profiles/${currentUser.profile_id}`
+            );
+            setUData(uResponse.data);
+          }
+
+          setLoaded(true);
         }
-
-        setLoaded(true);
       } catch (error) {}
     };
 
+    setNoResults(false);
     setLoaded(false);
     fetchData();
   }, [id, currentUser]);
@@ -67,6 +74,10 @@ const PokemonDexPage = () => {
       setUData(response.data);
     } catch (error) {}
   };
+
+  if (noResults) {
+    return <Error404 pokemon query={id} />;
+  }
 
   return (
     <>

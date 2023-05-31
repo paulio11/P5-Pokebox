@@ -21,6 +21,7 @@ import TrainerDairy from "../dairy/TrainerDairy";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AboutEditForm from "./AboutEditForm";
 import AvatarModal from "./AvatarModal";
+import Error404 from "../../components/Error404";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
@@ -37,6 +38,7 @@ const TrainerProfilePage = () => {
   const [newAvatar, setNewAvatar] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.profile_id.toString() === id;
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,9 +46,14 @@ const TrainerProfilePage = () => {
         const { data } = await axiosReq(`profiles/${id}`);
         setData(data);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        if (error.response?.status === 404) {
+          setNoResults(true);
+        }
+      }
     };
 
+    setNoResults(false);
     setLoaded(false);
     fetchData();
   }, [id, newAvatar]);
@@ -76,6 +83,10 @@ const TrainerProfilePage = () => {
   const handleHover = () => {
     setIsHovered(!isHovered);
   };
+
+  if (noResults) {
+    return <Error404 trainer query={id} />;
+  }
 
   return (
     <>

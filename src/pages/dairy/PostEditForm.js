@@ -7,6 +7,7 @@ import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
 import CustomModal from "../../components/CustomModal";
+import Error404 from "../../components/Error404";
 
 const PostEditForm = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const PostEditForm = () => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === postData?.owner;
   const [errors, setErrors] = useState({});
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -28,8 +30,14 @@ const PostEditForm = () => {
         const { data } = await axiosReq.get(`posts/${id}`);
         setPostData(data);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        if (error.response?.status === 404) {
+          setNoResults(true);
+        }
+      }
     };
+
+    setNoResults(false);
     setLoaded(false);
     fetchPost();
   }, [id]);
@@ -51,15 +59,6 @@ const PostEditForm = () => {
     }
   };
 
-  // const handleRemoveImage = () => {
-  //   URL.revokeObjectURL(image);
-  //   imageInput.current.value = null;
-  //   setPostData({
-  //     ...postData,
-  //     image: null,
-  //   });
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -68,9 +67,7 @@ const PostEditForm = () => {
     if (imageInput.current.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
-    // else {
-    //   formData.append("image", null);
-    // }
+
     try {
       await axiosReq.put(`posts/${id}`, formData);
       navigate(`/post/${id}`);
@@ -91,6 +88,10 @@ const PostEditForm = () => {
       }
     }
   };
+
+  if (noResults) {
+    return <Error404 post query={id} />;
+  }
 
   return (
     <>

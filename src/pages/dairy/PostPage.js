@@ -8,6 +8,7 @@ import { Alert, Col, Row } from "react-bootstrap";
 import CommentForm from "./CommentForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/PostPage.module.css";
+import Error404 from "../../components/Error404";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -15,22 +16,33 @@ const PostPage = () => {
   const [post, setPost] = useState({ results: [] });
   const [comments, setComments] = useState({ results: [] });
   const currentUser = useCurrentUser();
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const [{ data: post }, { data: comments }] = await Promise.all([
-        axiosReq.get(`posts/${id}`),
-        axiosReq.get(`comments/?post=${id}`),
-      ]);
-      setPost({ results: [post] });
-      console.log(post);
-      setComments(comments);
-      setLoaded(true);
+      try {
+        const [{ data: post }, { data: comments }] = await Promise.all([
+          axiosReq.get(`posts/${id}`),
+          axiosReq.get(`comments/?post=${id}`),
+        ]);
+        setPost({ results: [post] });
+        setComments(comments);
+        setLoaded(true);
+      } catch (error) {
+        if (error.response?.status === 404) {
+          setNoResults(true);
+        }
+      }
     };
 
+    setNoResults(false);
     setLoaded(false);
     fetchData();
   }, [id]);
+
+  if (noResults) {
+    return <Error404 post query={id} />;
+  }
 
   return (
     <>
