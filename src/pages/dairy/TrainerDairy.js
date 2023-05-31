@@ -5,14 +5,15 @@ import Post from "./Post";
 import styles from "../../styles/TrainerDariy.module.css";
 import { Alert } from "react-bootstrap";
 
-const TrainerDairy = ({ owner }) => {
+const TrainerDairy = (props) => {
+  const { id, owner } = props;
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`posts/?owner=${owner}`);
+        const { data } = await axiosReq.get(`posts/?owner__profile=${id}`);
         setPosts(data);
         setLoaded(true);
       } catch (error) {}
@@ -20,7 +21,7 @@ const TrainerDairy = ({ owner }) => {
 
     setLoaded(false);
     fetchPosts();
-  }, [owner]);
+  }, [id]);
 
   return (
     <>

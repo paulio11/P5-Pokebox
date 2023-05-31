@@ -218,7 +218,7 @@ const TrainerProfilePage = () => {
               </Col>
             </Row>
           </div>
-          <TrainerDairy owner={owner} />
+          <TrainerDairy owner={owner} id={id.toString()} />
         </>
       ) : (
         <LoadingText />
