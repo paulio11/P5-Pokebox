@@ -31,7 +31,6 @@ const TrainerProfilePage = () => {
   const { owner, created, avatar, about, favorite, pokemon } = data;
   const [colData, setColData] = useState([]); // Collection data
   const [favData, setFavData] = useState(null); // Favorite Pokémon data
-  const [clicked, setClicked] = useState(false);
   const [showAboutEdit, setShowAboutEdit] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false); // For avatar
@@ -53,6 +52,7 @@ const TrainerProfilePage = () => {
       }
     };
 
+    setCollectionLoaded(false);
     setNoResults(false);
     setLoaded(false);
     fetchData();
@@ -70,14 +70,13 @@ const TrainerProfilePage = () => {
   }, [favorite]);
 
   const handleClick = async () => {
-    if (!clicked && pokemon?.length) {
+    if (pokemon?.length && !collectionLoaded) {
       try {
         const response = await FetchPokemonData(null, pokemon);
         setColData(response);
-        setClicked(true);
       } catch (error) {}
+      setCollectionLoaded(true);
     }
-    setCollectionLoaded(true);
   };
 
   const handleHover = () => {
@@ -215,7 +214,12 @@ const TrainerProfilePage = () => {
                           {collectionLoaded ? (
                             <div className={styles.PokemonContainer}>
                               {colData.map((pokemon, index) => (
-                                <Pokemon key={index} {...pokemon} />
+                                <Pokemon
+                                  key={index}
+                                  {...pokemon}
+                                  profileData={data}
+                                  setProfileData={setData}
+                                />
                               ))}
                             </div>
                           ) : (

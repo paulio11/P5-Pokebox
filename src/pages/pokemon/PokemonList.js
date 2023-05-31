@@ -16,7 +16,6 @@ const PokemonList = () => {
   const [noResults, setNoResults] = useState(false);
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState({});
-  // const [collectionData, setCollectionData] = useState([]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -96,7 +95,7 @@ const PokemonList = () => {
               {...pokemon}
               profileData={profileData}
               setProfileData={setProfileData}
-              currentUser={currentUser}
+              listPage
             />
           ))}
         </div>

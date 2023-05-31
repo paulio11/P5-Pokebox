@@ -9,6 +9,7 @@ const Pokemon = (props) => {
     species,
     sprites,
     trainerPage, // fix trainer page display
+    listPage,
     profileData,
     setProfileData,
   } = props;
@@ -20,15 +21,19 @@ const Pokemon = (props) => {
 
   const handleRightClick = (event) => {
     event.preventDefault();
-    if (profileData) {
+    if (profileData && listPage) {
       UpdateCollection(id, profileData, setProfileData);
       setCollected(!collected);
     }
   };
 
-  const className = collected
-    ? styles.PokemonCard
-    : `${styles.PokemonCard} ${styles.Greyscale}`;
+  const className = `${styles.PokemonCard} ${
+    trainerPage
+      ? styles.TrainerPage
+      : listPage && !collected
+      ? styles.Greyscale
+      : ""
+  }`;
 
   return (
     <Link to={`/pokemon/${id}`} className={styles.PokemonLink}>
