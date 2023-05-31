@@ -16,7 +16,7 @@ const Settings = () => {
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("test");
+  const [message, setMessage] = useState("");
 
   const handleUpdateUsername = async (event) => {
     event.preventDefault();
