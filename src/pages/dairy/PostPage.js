@@ -57,22 +57,20 @@ const PostPage = () => {
           <Row>
             <Col xs={12} lg={6} className="order-2 order-lg-1">
               {comments.results.length ? (
-                <>
-                  <InfiniteScroll
-                    children={comments.results.map((comment, index) => (
-                      <Comment
-                        key={index}
-                        {...comment}
-                        setComments={setComments}
-                        setPost={setPost}
-                      />
-                    ))}
-                    dataLength={comments.results.length}
-                    loader={<LoadingText />}
-                    hasMore={!!comments.next}
-                    next={() => fetchMoreData(comments, setComments)}
-                  />
-                </>
+                <InfiniteScroll
+                  children={comments.results.map((comment, index) => (
+                    <Comment
+                      key={index}
+                      {...comment}
+                      setComments={setComments}
+                      setPost={setPost}
+                    />
+                  ))}
+                  dataLength={comments.results.length}
+                  loader={<LoadingText />}
+                  hasMore={!!comments.next}
+                  next={() => fetchMoreData(comments, setComments)}
+                />
               ) : (
                 <Alert variant="secondary">
                   This diary entry has no comments yet.

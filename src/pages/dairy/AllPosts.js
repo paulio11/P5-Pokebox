@@ -5,6 +5,8 @@ import { Alert, Form } from "react-bootstrap";
 import Post from "./Post";
 import styles from "../../styles/AllPosts.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/Utils";
 
 const AllPosts = () => {
   const [loaded, setLoaded] = useState(false);
@@ -100,11 +102,15 @@ const AllPosts = () => {
       {loaded ? (
         <>
           {posts.results.length ? (
-            <>
-              {posts.results.map((post, index) => (
+            <InfiniteScroll
+              children={posts.results.map((post, index) => (
                 <Post key={index} {...post} setPosts={setPosts} />
               ))}
-            </>
+              dataLength={posts.results.length}
+              loader={<LoadingText />}
+              hasMore={!!posts.next}
+              next={() => fetchMoreData(posts, setPosts)}
+            />
           ) : (
             <Alert variant="dark">There are no dairy entries yet!</Alert>
           )}
