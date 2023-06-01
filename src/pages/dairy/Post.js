@@ -3,7 +3,7 @@ import styles from "../../styles/Post.module.css";
 import { Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PostCommentFooter from "../../components/PostCommentFooter";
 
 const Post = (props) => {
@@ -22,6 +22,7 @@ const Post = (props) => {
   } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const navigate = useNavigate();
 
   const handleLike = async () => {
     if (currentUser?.username === owner || !currentUser) {
@@ -72,7 +73,10 @@ const Post = (props) => {
             </Link>
           </div>
           <div className={styles.HeaderIcons}>
-            <div className={styles.CommentInfo}>
+            <div
+              className={styles.CommentInfo}
+              onClick={() => navigate(`/post/${id}`)}
+            >
               <span className={styles.Count}>{comment_count}</span>
               <i className={`far fa-comment ${styles.CommentIcon}`}></i>
             </div>

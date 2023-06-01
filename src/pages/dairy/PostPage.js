@@ -46,12 +46,10 @@ const PostPage = () => {
 
   return (
     <>
-      <h1>
-        Dairy entry by {post.results[0]?.owner ? post.results[0].owner : "..."}
-      </h1>
-      <hr />
       {loaded ? (
         <>
+          <h1>Dairy entry by {post.results[0].owner}</h1>
+          <hr />
           <Post {...post.results[0]} setPosts={setPost} />
           <h2 className={styles.CommentsHeading}>Comments</h2>
           <Row>
