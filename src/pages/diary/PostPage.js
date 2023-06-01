@@ -11,6 +11,7 @@ import styles from "../../styles/PostPage.module.css";
 import Error404 from "../../components/Error404";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
+import useTitle from "../../hooks/useTitle";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -41,6 +42,8 @@ const PostPage = () => {
     setLoaded(false);
     fetchData();
   }, [id]);
+
+  useTitle(`Diary Entry #${id}`);
 
   if (noResults) {
     return <Error404 post query={id} />;

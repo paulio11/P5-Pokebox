@@ -8,6 +8,7 @@ import Sobble from "../../assets/sobble.png";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/AxiosDefaults";
 import CustomModal from "../../components/CustomModal";
+import useTitle from "../../hooks/useTitle";
 
 const PokemonList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +17,8 @@ const PokemonList = () => {
   const [noResults, setNoResults] = useState(false);
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState(null);
+
+  useTitle("Pokémon");
 
   useEffect(() => {
     const fetchResults = async () => {

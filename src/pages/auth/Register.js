@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/AuthForms.module.css";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -13,6 +14,8 @@ const Register = () => {
   const { username, password1, password2 } = registerData;
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+
+  useTitle("Register");
 
   const handleChange = (event) => {
     setRegisterData({

@@ -6,6 +6,7 @@ import styles from "../../styles/TrainerList.module.css";
 import { Form } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
+import useTitle from "../../hooks/useTitle";
 
 const TrainerList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -14,6 +15,8 @@ const TrainerList = () => {
   const [sortBy, setSortBy] = useState("pokemon");
   const [sortOrder, setSortOrder] = useState("desc");
   const [noResults, setNoResults] = useState(false);
+
+  useTitle("Trainers");
 
   useEffect(() => {
     const fetchData = async () => {

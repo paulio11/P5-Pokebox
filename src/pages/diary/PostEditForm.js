@@ -8,6 +8,7 @@ import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
 import CustomModal from "../../components/CustomModal";
 import Error404 from "../../components/Error404";
+import useTitle from "../../hooks/useTitle";
 
 const PostEditForm = () => {
   const { id } = useParams();
@@ -23,6 +24,8 @@ const PostEditForm = () => {
   const is_owner = currentUser?.username === postData?.owner;
   const [errors, setErrors] = useState({});
   const [noResults, setNoResults] = useState(false);
+
+  useTitle("Editing Diary Entry");
 
   useEffect(() => {
     const fetchPost = async () => {

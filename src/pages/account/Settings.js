@@ -6,6 +6,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/AxiosDefaults";
 import styles from "../../styles/Settings.module.css";
+import useTitle from "../../hooks/useTitle";
 
 const Settings = () => {
   const currentUser = useCurrentUser();
@@ -17,6 +18,8 @@ const Settings = () => {
   const [newPassword2, setNewPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+
+  useTitle("Account Settings");
 
   const handleUpdateUsername = async (event) => {
     event.preventDefault();

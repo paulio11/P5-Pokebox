@@ -4,6 +4,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/AuthForms.module.css";
+import useTitle from "../../hooks/useTitle";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -14,6 +15,8 @@ const LogIn = () => {
   const { username, password } = logInData;
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  useTitle("Log In");
 
   const handleSubmit = async (event) => {
     event.preventDefault();

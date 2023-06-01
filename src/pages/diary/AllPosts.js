@@ -7,6 +7,7 @@ import styles from "../../styles/AllPosts.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
+import useTitle from "../../hooks/useTitle";
 
 const AllPosts = () => {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +17,8 @@ const AllPosts = () => {
   const [likeCheck, setLikeCheck] = useState(false);
   const [imageCheck, setImageCheck] = useState(false);
   const currentUser = useCurrentUser();
+
+  useTitle("Diary Entries");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -56,7 +59,7 @@ const AllPosts = () => {
 
   return (
     <>
-      <h1>All Diary Entries</h1>
+      <h1>Diary Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>

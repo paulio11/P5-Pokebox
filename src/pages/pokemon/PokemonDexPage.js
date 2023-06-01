@@ -8,6 +8,7 @@ import styles from "../../styles/PokemonDexPage.module.css";
 import { Col, Row, ProgressBar } from "react-bootstrap";
 import LoadingText from "../../components/LoadingText";
 import Error404 from "../../components/Error404";
+import useTitle from "../../hooks/useTitle";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
@@ -49,6 +50,14 @@ const PokemonDexPage = () => {
     setLoaded(false);
     fetchData();
   }, [id, currentUser]);
+
+  useTitle(
+    `${
+      sData.name
+        ? sData.name.charAt(0).toUpperCase() + sData.name.slice(1).toLowerCase()
+        : "Loading..."
+    }`
+  );
 
   useEffect(() => {
     setIsFav(uData.favorite === pData.name);

@@ -22,6 +22,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AboutEditForm from "./AboutEditForm";
 import AvatarModal from "./AvatarModal";
 import Error404 from "../../components/Error404";
+import useTitle from "../../hooks/useTitle";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
@@ -57,6 +58,8 @@ const TrainerProfilePage = () => {
     setLoaded(false);
     fetchData();
   }, [id, newAvatar]);
+
+  useTitle(`${owner ? owner : "Loading..."}`);
 
   useEffect(() => {
     const getFavData = async () => {

@@ -5,6 +5,7 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import useTitle from "../../hooks/useTitle";
 
 const PostForm = () => {
   const [postData, setPostData] = useState({
@@ -16,6 +17,8 @@ const PostForm = () => {
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
+
+  useTitle("New Diary Entry");
 
   const getCurrentTime = () => {
     const now = new Date();

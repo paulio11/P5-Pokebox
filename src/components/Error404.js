@@ -1,10 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../hooks/useTitle";
 
 const Error404 = (props) => {
   const { pokemon, trainer, post, page, query } = props;
   const navigate = useNavigate();
+
+  useTitle("Error 404");
 
   return (
     <>

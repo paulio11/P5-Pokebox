@@ -109,7 +109,7 @@ const NavBar = () => {
               isActive ? styles.NavLinkActive : styles.NavLink
             }
           >
-            All Diary Entries
+            Diary Entries
           </NavLink>
           {currentUser && (
             <NavLink
