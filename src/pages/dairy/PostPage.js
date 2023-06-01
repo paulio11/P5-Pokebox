@@ -9,6 +9,8 @@ import CommentForm from "./CommentForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/PostPage.module.css";
 import Error404 from "../../components/Error404";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/Utils";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -56,14 +58,20 @@ const PostPage = () => {
             <Col xs={12} lg={6} className="order-2 order-lg-1">
               {comments.results.length ? (
                 <>
-                  {comments.results.map((comment, index) => (
-                    <Comment
-                      key={index}
-                      {...comment}
-                      setComments={setComments}
-                      setPost={setPost}
-                    />
-                  ))}
+                  <InfiniteScroll
+                    children={comments.results.map((comment, index) => (
+                      <Comment
+                        key={index}
+                        {...comment}
+                        setComments={setComments}
+                        setPost={setPost}
+                      />
+                    ))}
+                    dataLength={comments.results.length}
+                    loader={<LoadingText />}
+                    hasMore={!!comments.next}
+                    next={() => fetchMoreData(comments, setComments)}
+                  />
                 </>
               ) : (
                 <Alert variant="secondary">
