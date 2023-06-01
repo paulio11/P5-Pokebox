@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
-import { Alert, Form, ProgressBar } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import styles from "../../styles/PokemonList.module.css";
 import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";
@@ -105,14 +105,18 @@ const PokemonList = () => {
             (results.length !== 1010 ? (
               <Alert variant="danger">
                 Error fetching data for <strong>{1010 - results.length}</strong>{" "}
-                Pokémon. There may be an issue with PokéAPI. Check{" "}
+                Pokémon.
+                <hr />
+                There may be an issue with PokéAPI. Check{" "}
                 <Alert.Link
                   href="https://pokeapi.statuspage.io/"
                   target="_blank"
                 >
                   here
                 </Alert.Link>{" "}
-                for status updates.
+                for status updates or{" "}
+                <Alert.Link href="/pokemon">reload the page</Alert.Link> to try
+                again.
               </Alert>
             ) : (
               <Alert variant="success">
