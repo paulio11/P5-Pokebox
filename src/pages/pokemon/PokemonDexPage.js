@@ -145,7 +145,7 @@ const PokemonDexPage = () => {
                 <div className={styles.FlavorText}>
                   {sData.flavor_text_entries
                     .find((entry) => entry.language.name === "en")
-                    ?.flavor_text.replace(/\n/g, " ") ||
+                    ?.flavor_text.replace(/\n|\f/g, " ") ||
                     "This Pokémon is still a mystery!"}
                 </div>
                 <div className={styles.Stats}>
