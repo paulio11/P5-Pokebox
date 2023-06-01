@@ -4,6 +4,8 @@ import { axiosReq } from "../../api/AxiosDefaults";
 import Trainer from "./Trainer";
 import styles from "../../styles/TrainerList.module.css";
 import { Form } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/Utils";
 
 const TrainerList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -110,11 +112,16 @@ const TrainerList = () => {
       {loaded ? (
         <>
           {results.length && (
-            <div className={styles.ResultsContainer}>
-              {results.map((trainer) => (
+            <InfiniteScroll
+              className={styles.ResultsContainer}
+              children={results.map((trainer) => (
                 <Trainer key={trainer.id} {...trainer} />
               ))}
-            </div>
+              dataLength={results.length}
+              loader={<LoadingText />}
+              hasMore={!!results.next}
+              next={() => fetchMoreData(results, setResults)}
+            />
           )}
         </>
       ) : (
