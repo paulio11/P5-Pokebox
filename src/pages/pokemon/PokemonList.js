@@ -62,7 +62,7 @@ const PokemonList = () => {
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
-        <h1>Pokemon</h1>
+        <h1>Pokémon</h1>
         <CustomModal buttonText="Help" heading="Instructions">
           <h5>Search</h5>
           <p>

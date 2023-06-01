@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+.Header {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header h1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.Item {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Item img {
+  filter: grayscale(100%);
+  height: 250px;
+}
+
+.Item:hover img {
+  filter: none;
+}
+
+.Item h2 {
+  font-family: "Lilita One";
+  font-size: 40px;
+  margin-top: 28px;
+}
+
+.ItemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 60px;
+}

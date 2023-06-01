@@ -62,7 +62,7 @@ const TrainerList = () => {
 
   return (
     <>
-      <h1>Our Pokémon Trainers</h1>
+      <h1>Trainers</h1>
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>

@@ -8,14 +8,15 @@ import PokemonList from "./pages/pokemon/PokemonList";
 import PokemonDexPage from "./pages/pokemon/PokemonDexPage";
 import TrainerList from "./pages/trainers/TrainerList";
 import TrainerProfilePage from "./pages/trainers/TrainerProfilePage";
-import PostPage from "./pages/dairy/PostPage";
-import PostForm from "./pages/dairy/PostForm";
-import PostEditForm from "./pages/dairy/PostEditForm";
+import PostPage from "./pages/diary/PostPage";
+import PostForm from "./pages/diary/PostForm";
+import PostEditForm from "./pages/diary/PostEditForm";
 import ToTopButton from "./components/ToTopButton";
 import Footer from "./components/Footer";
-import AllPosts from "./pages/dairy/AllPosts";
+import AllPosts from "./pages/diary/AllPosts";
 import Settings from "./pages/account/Settings";
 import Error404 from "./components/Error404";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <NavBar />
           <Container className={styles.MainContainer}>
             <Routes>
-              <Route exact path="/" element={<h1>Home</h1>} />
+              <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LogIn />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/pokemon" element={<PokemonList />} />
