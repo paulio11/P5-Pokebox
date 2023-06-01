@@ -3,7 +3,7 @@ import styles from "../../styles/Comment.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import CommentEditForm from "../dairy/CommentEditForm";
+import CommentEditForm from "../diary/CommentEditForm";
 
 const Comment = (props) => {
   const {

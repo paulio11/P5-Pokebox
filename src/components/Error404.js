@@ -13,7 +13,7 @@ const Error404 = (props) => {
       <p>
         The {pokemon && "Pokémon"}
         {trainer && "trainer with ID:"}
-        {post && "dairy entry with ID:"}
+        {post && "diary entry with ID:"}
         {page && "page you were looking for"} <strong>{query && query} </strong>
         could not be found.
       </p>

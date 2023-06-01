@@ -95,7 +95,7 @@ const PostEditForm = () => {
 
   return (
     <>
-      <h1>Editing Dairy Entry</h1>
+      <h1>Editing Diary Entry</h1>
       <hr />
       {loaded ? "" : <LoadingText />}
       {is_owner ? (
@@ -110,7 +110,7 @@ const PostEditForm = () => {
             <Row>
               <Col xs={12} lg={6}>
                 <Form.Group>
-                  <Form.Label hidden>Dairy Entry Text:</Form.Label>
+                  <Form.Label hidden>Diary Entry Text:</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={6}
@@ -185,10 +185,10 @@ const PostEditForm = () => {
               Save changes
             </Button>
             <CustomModal
-              buttonText="Delete dairy entry"
-              heading="Delete Dairy Entry"
+              buttonText="Delete diary entry"
+              heading="Delete Diary Entry"
             >
-              <p>Are you sure you want to delete this dairy entry?</p>
+              <p>Are you sure you want to delete this diary entry?</p>
               <div className={styles.ModalButtons}>
                 <Button variant="danger" onClick={handleDelete}>
                   Yes

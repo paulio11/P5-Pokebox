@@ -17,7 +17,7 @@ import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
 import avataroverlay from "../../assets/avataroverlay.png";
-import TrainerDairy from "../dairy/TrainerDairy";
+import TrainerDiary from "../diary/TrainerDiary";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AboutEditForm from "./AboutEditForm";
 import AvatarModal from "./AvatarModal";
@@ -233,7 +233,7 @@ const TrainerProfilePage = () => {
               </Col>
             </Row>
           </div>
-          <TrainerDairy owner={owner} id={id.toString()} />
+          <TrainerDiary owner={owner} id={id.toString()} />
         </>
       ) : (
         <LoadingText />

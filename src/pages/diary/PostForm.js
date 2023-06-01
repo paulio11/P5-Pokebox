@@ -67,7 +67,7 @@ const PostForm = () => {
 
   return (
     <>
-      <h1>New Dairy Entry</h1>
+      <h1>New Diary Entry</h1>
       <hr />
       <Form className={styles.Container}>
         <div className={styles.Time}>{currentTime}</div>
@@ -75,7 +75,7 @@ const PostForm = () => {
         <Row>
           <Col xs={12} lg={6}>
             <Form.Group>
-              <Form.Label hidden>Dairy Entry Text:</Form.Label>
+              <Form.Label hidden>Diary Entry Text:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={6}
@@ -83,7 +83,7 @@ const PostForm = () => {
                 value={body}
                 onChange={handleChange}
                 maxLength={400}
-                placeholder="Write your new dairy entry here."
+                placeholder="Write your new diary entry here."
               />
             </Form.Group>
             {errors.body?.map((message, index) => (
@@ -141,7 +141,7 @@ const PostForm = () => {
         </Row>
       </Form>
       <Button onClick={handleSubmit} variant="danger">
-        Post dairy entry
+        Post diary entry
       </Button>
     </>
   );

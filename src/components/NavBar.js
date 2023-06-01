@@ -109,7 +109,7 @@ const NavBar = () => {
               isActive ? styles.NavLinkActive : styles.NavLink
             }
           >
-            All Dairy Entries
+            All Diary Entries
           </NavLink>
           {currentUser && (
             <NavLink
@@ -118,7 +118,7 @@ const NavBar = () => {
                 isActive ? styles.NavLinkActive : styles.NavLink
               }
             >
-              <i className="fas fa-plus" /> New Dairy Entry
+              <i className="fas fa-plus" /> New Diary Entry
             </NavLink>
           )}
         </Nav>

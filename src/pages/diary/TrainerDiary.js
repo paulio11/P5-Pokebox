@@ -7,7 +7,7 @@ import { Alert } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
 
-const TrainerDairy = (props) => {
+const TrainerDiary = (props) => {
   const { id, owner } = props;
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState({});
@@ -27,7 +27,7 @@ const TrainerDairy = (props) => {
 
   return (
     <>
-      <h2 className={styles.Heading}>Trainer Dairy</h2>
+      <h2 className={styles.Heading}>Trainer Diary</h2>
       {loaded ? (
         <>
           {posts.results.length ? (
@@ -41,7 +41,7 @@ const TrainerDairy = (props) => {
               next={() => fetchMoreData(posts, setPosts)}
             />
           ) : (
-            <Alert variant="dark">{owner} has no dairy entries</Alert>
+            <Alert variant="dark">{owner} has no diary entries</Alert>
           )}
         </>
       ) : (
@@ -51,4 +51,4 @@ const TrainerDairy = (props) => {
   );
 };
 
-export default TrainerDairy;
+export default TrainerDiary;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
-import Post from "../../pages/dairy/Post";
-import Comment from "../../pages/dairy/Comment";
+import Post from "../../pages/diary/Post";
+import Comment from "../../pages/diary/Comment";
 import LoadingText from "../../components/LoadingText";
 import { Alert, Col, Row } from "react-bootstrap";
 import CommentForm from "./CommentForm";
@@ -50,7 +50,7 @@ const PostPage = () => {
     <>
       {loaded ? (
         <>
-          <h1>Dairy entry by {post.results[0].owner}</h1>
+          <h1>Diary entry by {post.results[0].owner}</h1>
           <hr />
           <Post {...post.results[0]} setPosts={setPost} />
           <h2 className={styles.CommentsHeading}>Comments</h2>
@@ -88,7 +88,7 @@ const PostPage = () => {
                 />
               ) : (
                 <Alert variant="secondary">
-                  Log in to add a comment to this dairy entry.
+                  Log in to add a comment to this diary entry.
                 </Alert>
               )}
             </Col>

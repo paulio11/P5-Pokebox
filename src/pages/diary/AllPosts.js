@@ -56,7 +56,7 @@ const AllPosts = () => {
 
   return (
     <>
-      <h1>All Dairy Entries</h1>
+      <h1>All Diary Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>
@@ -112,7 +112,7 @@ const AllPosts = () => {
               next={() => fetchMoreData(posts, setPosts)}
             />
           ) : (
-            <Alert variant="dark">There are no dairy entries yet!</Alert>
+            <Alert variant="dark">There are no diary entries yet!</Alert>
           )}
         </>
       ) : (
