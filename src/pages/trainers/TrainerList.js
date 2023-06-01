@@ -71,13 +71,6 @@ const TrainerList = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        {noResults && (
-          <div className="d-flex flex-column align-items-center">
-            <span className={styles.SearchError}>
-              No trainer named <strong>{query}</strong> found!
-            </span>
-          </div>
-        )}
         {!query && (
           <>
             <Form.Group>
@@ -107,6 +100,13 @@ const TrainerList = () => {
           </>
         )}
       </Form>
+      {noResults && (
+        <div className="d-flex flex-column align-items-center">
+          <span className={styles.SearchError}>
+            No trainer named <strong>{query}</strong> found!
+          </span>
+        </div>
+      )}
       {loaded ? (
         <>
           {results.length && (
