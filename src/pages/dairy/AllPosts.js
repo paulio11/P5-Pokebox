@@ -12,6 +12,7 @@ const AllPosts = () => {
   const [sortBy, setSortBy] = useState("created");
   const [sortOrder, setSortOrder] = useState("-");
   const [likeCheck, setLikeCheck] = useState(false);
+  const [imageCheck, setImageCheck] = useState(false);
   const currentUser = useCurrentUser();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const AllPosts = () => {
         const { data } = await axiosReq.get(
           `posts/?ordering=${sortOrder}${sortBy}&likes__owner__profile=${
             likeCheck ? currentUser?.profile_id : ""
-          }`
+          }&has_image=${imageCheck && "True"}`
         );
         setPosts(data);
         setLoaded(true);
@@ -29,16 +30,25 @@ const AllPosts = () => {
 
     setLoaded(false);
     fetchPosts();
-  }, [sortBy, sortOrder, likeCheck, currentUser?.profile_id]);
+  }, [sortBy, sortOrder, likeCheck, imageCheck, currentUser?.profile_id]);
 
   const handleSortChange = (event) => {
     const { name, value } = event.target;
-    if (name === "sort_by") {
-      setSortBy(value);
-    } else if (name === "sort_order") {
-      setSortOrder(value);
-    } else if (name === "like_check") {
-      setLikeCheck(!likeCheck);
+    switch (name) {
+      case "sort_by":
+        setSortBy(value);
+        break;
+      case "sort_order":
+        setSortOrder(value);
+        break;
+      case "like_check":
+        setLikeCheck(!likeCheck);
+        break;
+      case "image_check":
+        setImageCheck(!imageCheck);
+        break;
+      default:
+        break;
     }
   };
 
@@ -47,13 +57,6 @@ const AllPosts = () => {
       <h1>All Dairy Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
-        {currentUser && (
-          <Form.Check
-            label="Show only entries I liked"
-            name="like_check"
-            onChange={handleSortChange}
-          />
-        )}
         <Form.Group>
           <Form.Label>Sort By</Form.Label>
           <Form.Control
@@ -79,6 +82,20 @@ const AllPosts = () => {
             <option value="-">Descending</option>
           </Form.Control>
         </Form.Group>
+        <div>
+          {currentUser && (
+            <Form.Check
+              label="Show only entries I liked"
+              name="like_check"
+              onChange={handleSortChange}
+            />
+          )}
+          <Form.Check
+            label="Show only entries with an image"
+            name="image_check"
+            onChange={handleSortChange}
+          />
+        </div>
       </Form>
       {loaded ? (
         <>
