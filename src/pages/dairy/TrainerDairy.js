@@ -4,6 +4,8 @@ import LoadingText from "../../components/LoadingText";
 import Post from "./Post";
 import styles from "../../styles/TrainerDariy.module.css";
 import { Alert } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/Utils";
 
 const TrainerDairy = (props) => {
   const { id, owner } = props;
@@ -29,11 +31,15 @@ const TrainerDairy = (props) => {
       {loaded ? (
         <>
           {posts.results.length ? (
-            <>
-              {posts.results.map((post, index) => (
+            <InfiniteScroll
+              children={posts.results.map((post, index) => (
                 <Post key={index} {...post} setPosts={setPosts} />
               ))}
-            </>
+              dataLength={posts.results.length}
+              loader={<LoadingText />}
+              hasMore={!!posts.next}
+              next={() => fetchMoreData(posts, setPosts)}
+            />
           ) : (
             <Alert variant="dark">{owner} has no dairy entries</Alert>
           )}
