@@ -8,6 +8,7 @@
   border-radius: 6px;
   padding: 6px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .PokemonCard:hover {

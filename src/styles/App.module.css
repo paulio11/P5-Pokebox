@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
 .MainContainer {
   padding-top: 60px;
 }
@@ -11,4 +13,5 @@
 
 h1 {
   color: #ba0000;
+  font-family: "Lilita One", Verdana, sans-serif;
 }
