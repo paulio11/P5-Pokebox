@@ -7,6 +7,7 @@ import {
 import { axiosRes } from "../../api/AxiosDefaults";
 import styles from "../../styles/Settings.module.css";
 import useTitle from "../../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const currentUser = useCurrentUser();
@@ -18,6 +19,7 @@ const Settings = () => {
   const [newPassword2, setNewPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useTitle("Account Settings");
 
@@ -56,84 +58,104 @@ const Settings = () => {
     <>
       <h1>Account Settings</h1>
       <hr />
-      <div className={styles.FormContainer}>
-        <Row>
-          <Col xs={12} lg={6}>
-            <h2>Username</h2>
-            <hr />
-            <Form
-              onSubmit={handleUpdateUsername}
-              className={styles.UsernameForm}
-            >
-              <Form.Group>
-                <Form.Label hidden>Username:</Form.Label>
-                <Form.Control
-                  placeholder={currentUser?.username || "Username"}
-                  type="text"
-                  value={newUsername}
-                  onChange={(event) => setNewUsername(event.target.value)}
-                  required={true}
-                />
-              </Form.Group>
-              {errors.username && (
-                <Alert variant="warning">{errors.username}</Alert>
-              )}
-              <Button type="submit" variant="danger">
-                Change username
-              </Button>
-            </Form>
-          </Col>
-          <Col xs={12} lg={6}>
-            <h2>Password</h2>
-            <hr />
-            <Form onSubmit={handleUpdatePassword}>
-              <Form.Group>
-                <Form.Label hidden>Old Password:</Form.Label>
-                <Form.Control
-                  placeholder="Old password"
-                  type="password"
-                  value={oldPassword}
-                  onChange={(event) => setOldPassword(event.target.value)}
-                  required={true}
-                />
-              </Form.Group>
-              {errors.old_password && (
-                <Alert variant="warning">{errors.old_password}</Alert>
-              )}
-              <Form.Group>
-                <Form.Label hidden>New Password:</Form.Label>
-                <Form.Control
-                  placeholder="New password"
-                  type="password"
-                  value={newPassword1}
-                  onChange={(event) => setNewPassword1(event.target.value)}
-                  required={true}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label hidden>Confirm New Password:</Form.Label>
-                <Form.Control
-                  placeholder="Confirm new password"
-                  type="password"
-                  value={newPassword2}
-                  onChange={(event) => setNewPassword2(event.target.value)}
-                  required={true}
-                />
-              </Form.Group>
-              {errors.new_password2 && (
-                <Alert variant="warning">{errors.new_password2}</Alert>
-              )}
-              <Button type="submit" variant="danger">
-                Change password
-              </Button>
-            </Form>
-          </Col>
-        </Row>
-      </div>
-      {message && (
-        <Alert variant="success" onClose={() => setMessage("")} dismissible>
-          {message}
-        </Alert>
+      {currentUser ? (
+        <>
+          <div className={styles.FormContainer}>
+            <Row>
+              <Col xs={12} lg={6}>
+                <h2>Username</h2>
+                <hr />
+                <Form
+                  onSubmit={handleUpdateUsername}
+                  className={styles.UsernameForm}
+                >
+                  <Form.Group>
+                    <Form.Label hidden>Username:</Form.Label>
+                    <Form.Control
+                      placeholder={currentUser?.username || "Username"}
+                      type="text"
+                      value={newUsername}
+                      onChange={(event) => setNewUsername(event.target.value)}
+                      required={true}
+                    />
+                  </Form.Group>
+                  {errors.username && (
+                    <Alert variant="warning">{errors.username}</Alert>
+                  )}
+                  <Button type="submit" variant="danger">
+                    Change username
+                  </Button>
+                </Form>
+              </Col>
+              <Col xs={12} lg={6}>
+                <h2>Password</h2>
+                <hr />
+                <Form onSubmit={handleUpdatePassword}>
+                  <Form.Group>
+                    <Form.Label hidden>Old Password:</Form.Label>
+                    <Form.Control
+                      placeholder="Old password"
+                      type="password"
+                      value={oldPassword}
+                      onChange={(event) => setOldPassword(event.target.value)}
+                      required={true}
+                    />
+                  </Form.Group>
+                  {errors.old_password && (
+                    <Alert variant="warning">{errors.old_password}</Alert>
+                  )}
+                  <Form.Group>
+                    <Form.Label hidden>New Password:</Form.Label>
+                    <Form.Control
+                      placeholder="New password"
+                      type="password"
+                      value={newPassword1}
+                      onChange={(event) => setNewPassword1(event.target.value)}
+                      required={true}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label hidden>Confirm New Password:</Form.Label>
+                    <Form.Control
+                      placeholder="Confirm new password"
+                      type="password"
+                      value={newPassword2}
+                      onChange={(event) => setNewPassword2(event.target.value)}
+                      required={true}
+                    />
+                  </Form.Group>
+                  {errors.new_password2 && (
+                    <Alert variant="warning">{errors.new_password2}</Alert>
+                  )}
+                  <Button type="submit" variant="danger">
+                    Change password
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </div>
+          {message && (
+            <Alert variant="success" onClose={() => setMessage("")} dismissible>
+              {message}
+            </Alert>
+          )}
+        </>
+      ) : (
+        <>
+          <Alert variant="dark">
+            You must be logged in to change your account settings.
+          </Alert>
+          <Button variant="danger" onClick={() => navigate(-1)}>
+            <i className="fas fa-arrow-left" /> Go back
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => navigate("/login")}
+            className="ml-3"
+          >
+            Log in
+          </Button>
+        </>
       )}
     </>
   );

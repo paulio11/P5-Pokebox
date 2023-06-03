@@ -72,80 +72,100 @@ const PostForm = () => {
     <>
       <h1>New Diary Entry</h1>
       <hr />
-      <Form className={styles.Container}>
-        <div className={styles.Time}>{currentTime}</div>
-        <hr />
-        <Row>
-          <Col xs={12} lg={6}>
-            <Form.Group>
-              <Form.Label hidden>Diary Entry Text:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={6}
-                name="body"
-                value={body}
-                onChange={handleChange}
-                maxLength={400}
-                placeholder="Write your new diary entry here."
-              />
-            </Form.Group>
-            {errors.body?.map((message, index) => (
-              <Alert key={index} variant="warning">
-                {message}
-              </Alert>
-            ))}
-            <PostCommentFooter
-              profile_id={currentUser?.profile_id}
-              profile_avatar={currentUser?.profile_avatar}
-              owner={currentUser?.username}
-            />
-          </Col>
-          <Col xs={12} lg={6}>
-            <Form.Group>
-              {image ? (
-                <>
-                  <img
-                    src={image}
-                    className={styles.PostImage}
-                    alt="uploaded file"
+      {currentUser ? (
+        <>
+          <Form className={styles.Container}>
+            <div className={styles.Time}>{currentTime}</div>
+            <hr />
+            <Row>
+              <Col xs={12} lg={6}>
+                <Form.Group>
+                  <Form.Label hidden>Diary Entry Text:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={6}
+                    name="body"
+                    value={body}
+                    onChange={handleChange}
+                    maxLength={400}
+                    placeholder="Write your new diary entry here."
                   />
-                  <Form.Label>
-                    <Button
-                      variant="danger"
-                      onClick={() => imageInput.current.click()}
-                    >
-                      Change image
-                    </Button>
-                  </Form.Label>
-                </>
-              ) : (
-                <Form.Label>
-                  <Button
-                    variant="danger"
-                    onClick={() => imageInput.current.click()}
-                  >
-                    Select image (optional)
-                  </Button>
-                </Form.Label>
-              )}
-              <Form.File
-                accept="image/*"
-                onChange={handleImage}
-                ref={imageInput}
-                style={{ display: "none" }}
-              />
-            </Form.Group>
-            {errors.image?.map((message, index) => (
-              <Alert key={index} variant="warning">
-                {message}
-              </Alert>
-            ))}
-          </Col>
-        </Row>
-      </Form>
-      <Button onClick={handleSubmit} variant="danger">
-        Post diary entry
-      </Button>
+                </Form.Group>
+                {errors.body?.map((message, index) => (
+                  <Alert key={index} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
+                <PostCommentFooter
+                  profile_id={currentUser?.profile_id}
+                  profile_avatar={currentUser?.profile_avatar}
+                  owner={currentUser?.username}
+                />
+              </Col>
+              <Col xs={12} lg={6}>
+                <Form.Group>
+                  {image ? (
+                    <>
+                      <img
+                        src={image}
+                        className={styles.PostImage}
+                        alt="uploaded file"
+                      />
+                      <Form.Label>
+                        <Button
+                          variant="danger"
+                          onClick={() => imageInput.current.click()}
+                        >
+                          Change image
+                        </Button>
+                      </Form.Label>
+                    </>
+                  ) : (
+                    <Form.Label>
+                      <Button
+                        variant="danger"
+                        onClick={() => imageInput.current.click()}
+                      >
+                        Select image (optional)
+                      </Button>
+                    </Form.Label>
+                  )}
+                  <Form.File
+                    accept="image/*"
+                    onChange={handleImage}
+                    ref={imageInput}
+                    style={{ display: "none" }}
+                  />
+                </Form.Group>
+                {errors.image?.map((message, index) => (
+                  <Alert key={index} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
+              </Col>
+            </Row>
+          </Form>
+          <Button onClick={handleSubmit} variant="danger">
+            Post diary entry
+          </Button>
+        </>
+      ) : (
+        <>
+          <Alert variant="dark">
+            You must be logged in to create a new diary entry.
+          </Alert>
+          <Button variant="danger" onClick={() => navigate(-1)}>
+            <i className="fas fa-arrow-left" /> Go back
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => navigate("/login")}
+            className="ml-3"
+          >
+            Log in
+          </Button>
+        </>
+      )}
     </>
   );
 };
