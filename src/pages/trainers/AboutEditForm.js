@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 
 const AboutEditForm = (props) => {
   const { id, about, setShowAboutEdit, setData, data } = props;
   const [formAbout, setFormAbout] = useState(about);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setFormAbout(event.target.value);
@@ -21,7 +22,9 @@ const AboutEditForm = (props) => {
         about: formAbout,
       });
       setShowAboutEdit(false);
-    } catch (error) {}
+    } catch (error) {
+      setErrors(error.response?.data);
+    }
   };
 
   return (
@@ -37,6 +40,11 @@ const AboutEditForm = (props) => {
             maxLength={400}
           />
         </Form.Group>
+        {errors.about?.map((message, index) => (
+          <Alert key={index} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Button
           onClick={() => setShowAboutEdit(false)}
           variant="secondary"
