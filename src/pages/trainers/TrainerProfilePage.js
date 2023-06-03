@@ -78,8 +78,8 @@ const TrainerProfilePage = () => {
         const response = await FetchPokemonData(null, pokemon);
         setColData(response);
       } catch (error) {}
-      setCollectionLoaded(true);
     }
+    setCollectionLoaded(true);
   };
 
   const handleHover = () => {
