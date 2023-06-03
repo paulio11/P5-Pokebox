@@ -25,28 +25,30 @@ const AboutEditForm = (props) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label hidden>About:</Form.Label>
-        <Form.Control
-          as="textarea"
-          value={formAbout}
-          onChange={handleChange}
-          rows={4}
-          maxLength={400}
-        />
-      </Form.Group>
-      <Button
-        onClick={() => setShowAboutEdit(false)}
-        variant="secondary"
-        className="mr-3"
-      >
-        Cancel
-      </Button>
-      <Button type="submit" variant="danger">
-        Save
-      </Button>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label hidden>About:</Form.Label>
+          <Form.Control
+            as="textarea"
+            value={formAbout}
+            onChange={handleChange}
+            rows={4}
+            maxLength={400}
+          />
+        </Form.Group>
+        <Button
+          onClick={() => setShowAboutEdit(false)}
+          variant="secondary"
+          className="mr-3"
+        >
+          Cancel
+        </Button>
+        <Button type="submit" variant="danger">
+          Save
+        </Button>
+      </Form>
+    </>
   );
 };
 

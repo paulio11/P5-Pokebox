@@ -35,10 +35,10 @@ const TrainerProfilePage = () => {
   const [showAboutEdit, setShowAboutEdit] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false); // For avatar
-  const [newAvatar, setNewAvatar] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.profile_id.toString() === id;
   const [noResults, setNoResults] = useState(false);
+  const [avatarReload, setAvatarReload] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +57,7 @@ const TrainerProfilePage = () => {
     setNoResults(false);
     setLoaded(false);
     fetchData();
-  }, [id, newAvatar]);
+  }, [id, avatarReload]);
 
   useTitle(`${owner ? owner : "Loading..."}`);
 
@@ -127,11 +127,18 @@ const TrainerProfilePage = () => {
                     />
                   )}
                 </div>
+                {showAboutEdit && (
+                  <div className={styles.AvatarText}>
+                    <i className="fas fa-arrow-up d-block"></i> Click to change
+                    your avatar
+                  </div>
+                )}
                 <AvatarModal
                   showAvatarModal={showAvatarModal}
                   setShowAvatarModal={setShowAvatarModal}
                   data={data}
-                  reload={setNewAvatar}
+                  reload={setAvatarReload}
+                  value={avatarReload}
                 />
               </Col>
               <Col xs={12} md={favorite ? 8 : 10}>
@@ -141,7 +148,7 @@ const TrainerProfilePage = () => {
                   {is_owner && !showAboutEdit && (
                     <>
                       <OverlayTrigger
-                        overlay={<Tooltip>Edit your description</Tooltip>}
+                        overlay={<Tooltip>Edit your profile</Tooltip>}
                       >
                         <i
                           className={`fas fa-pen-to-square ${styles.EditLink}`}

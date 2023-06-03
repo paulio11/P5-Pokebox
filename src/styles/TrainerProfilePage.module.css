@@ -53,6 +53,11 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+.AvatarText {
+  font-size: smaller;
+  margin-bottom: 12px;
+}
+
 .Date {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;

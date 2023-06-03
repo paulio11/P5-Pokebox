@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/AvatarModal.module.css";
 import { axiosReq } from "../../api/AxiosDefaults";
 
 const AvatarModal = (props) => {
-  const { showAvatarModal, setShowAvatarModal, data, reload } = props;
+  const { showAvatarModal, setShowAvatarModal, data, reload, value } = props;
   const { id, avatar } = data;
   const [newAvatar, setNewAvatar] = useState(null);
   const avatarInput = useRef(null);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,8 +17,10 @@ const AvatarModal = (props) => {
     try {
       await axiosReq.patch(`profiles/${id}`, formData);
       setShowAvatarModal(false);
-      reload(true);
-    } catch (error) {}
+      reload(value + 1);
+    } catch (error) {
+      setErrors(error.response?.data);
+    }
   };
 
   const handleChange = (event) => {
@@ -52,6 +55,12 @@ const AvatarModal = (props) => {
               onChange={handleChange}
             />
           </Form.Group>
+          {errors.avatar?.map((message, index) => (
+            <Alert key={index} variant="warning">
+              {message}
+            </Alert>
+          ))}
+          <p>Your image will be cropped to 300px by 300px.</p>
           <div className={styles.ButtonContainer}>
             <Button
               variant="secondary"
