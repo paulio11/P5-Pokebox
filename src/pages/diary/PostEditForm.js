@@ -13,10 +13,11 @@ import useTitle from "../../hooks/useTitle";
 const PostEditForm = () => {
   const { id } = useParams();
   const [postData, setPostData] = useState({
+    owner: "",
     body: "",
     image: "",
   });
-  const { body, image } = postData;
+  const { body, image, owner } = postData;
   const [loaded, setLoaded] = useState(false);
   const imageInput = useRef(null);
   const navigate = useNavigate();
@@ -100,8 +101,8 @@ const PostEditForm = () => {
     <>
       <h1>Editing Diary Entry</h1>
       <hr />
-      {loaded ? "" : <LoadingText />}
-      {is_owner ? (
+      {!loaded && <LoadingText />}
+      {is_owner && loaded && (
         <>
           <Form
             onSubmit={handleSubmit}
@@ -150,9 +151,6 @@ const PostEditForm = () => {
                         >
                           Change image
                         </Button>
-                        {/* <Button variant="danger" onClick={handleRemoveImage}>
-                          Remove image
-                        </Button> */}
                       </Form.Label>
                     </>
                   ) : (
@@ -200,8 +198,17 @@ const PostEditForm = () => {
             </CustomModal>
           </div>
         </>
-      ) : (
-        ""
+      )}
+      {!is_owner && loaded && (
+        <>
+          <Alert variant="dark">
+            You do not have permission to edit <strong>{owner}'s</strong> diary
+            entry.
+          </Alert>
+          <Button variant="danger" onClick={() => navigate(-1)}>
+            <i className="fas fa-arrow-left" /> Go back
+          </Button>
+        </>
       )}
     </>
   );
