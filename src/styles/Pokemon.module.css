@@ -11,10 +11,6 @@
   color: initial;
 }
 
-.PokemonCard * {
-  pointer-events: none;
-}
-
 .PokemonCard:hover {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
@@ -36,12 +32,6 @@
   font-weight: bold;
   text-align: center;
   font-size: 14px;
-}
-
-.PokemonLink,
-.PokemonLink:hover {
-  text-decoration: none;
-  color: initial;
 }
 
 .Greyscale {
