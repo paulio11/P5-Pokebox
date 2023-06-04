@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "../styles/Pokemon.module.css";
 import { UpdateCollection } from "../utils/Collection";
+import { useNavigate } from "react-router-dom";
 
 const Pokemon = (props) => {
   const {
@@ -14,6 +14,7 @@ const Pokemon = (props) => {
     setProfileData,
   } = props;
   const [collected, setCollected] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (profileData) {
@@ -38,13 +39,15 @@ const Pokemon = (props) => {
   }`;
 
   return (
-    <Link to={`/pokemon/${id}`} className={styles.PokemonLink}>
-      <div className={className} onContextMenu={handleRightClick}>
-        <img src={sprites.front_default} alt={`${species.name}'s sprite`} />
-        <span className={styles.Text}>[{id}]</span>
-        <span className={styles.Text}>{species.name}</span>
-      </div>
-    </Link>
+    <div
+      className={className}
+      onContextMenu={handleRightClick}
+      onClick={() => navigate(`/pokemon/${id}`)}
+    >
+      <img src={sprites.front_default} alt={`${species.name}'s sprite`} />
+      <span className={styles.Text}>[{id}]</span>
+      <span className={styles.Text}>{species.name}</span>
+    </div>
   );
 };
 
