@@ -12,8 +12,8 @@ const TrainerList = () => {
   const [loaded, setLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState("");
-  const [sortBy, setSortBy] = useState("pokemon");
-  const [sortOrder, setSortOrder] = useState("desc");
+  const [sortBy, setSortBy] = useState("col_size");
+  const [sortOrder, setSortOrder] = useState("-");
   const [noResults, setNoResults] = useState(false);
 
   useTitle("Trainers");
@@ -23,8 +23,8 @@ const TrainerList = () => {
       try {
         const response = await axiosReq.get(
           query
-            ? `profiles/?owner=${query}`
-            : `profiles/?sort_by=${sortBy}&sort_order=${sortOrder}`
+            ? `profiles/?owner__username=${query}`
+            : `profiles/?ordering=${sortOrder}${sortBy}`
         );
         setResults(response.data.results);
         setLoaded(true);
@@ -86,8 +86,9 @@ const TrainerList = () => {
                 value={sortBy}
                 onChange={handleSortChange}
               >
-                <option value="owner">Username</option>
-                <option value="pokemon">Pokémon collection</option>
+                <option value="owner__username">Username</option>
+                <option value="col_size">Pokémon collection</option>
+                <option value="created">Join date</option>
               </Form.Control>
             </Form.Group>
             <Form.Group>
@@ -98,8 +99,8 @@ const TrainerList = () => {
                 value={sortOrder}
                 onChange={handleSortChange}
               >
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="">Ascending</option>
+                <option value="-">Descending</option>
               </Form.Control>
             </Form.Group>
           </>
