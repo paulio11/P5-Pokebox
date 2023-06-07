@@ -1,6 +1,6 @@
 # Pokébox
 
-![Pokébox on devices](https://github.com/paulio11/P5-Pokebox/blob/documentation/images/readme-title.png)
+![Pokébox on devices](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-title.png)
 
 [Link to live website](https://project-5-pokebox.herokuapp.com/)
 
