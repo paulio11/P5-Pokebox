@@ -120,11 +120,41 @@ There will be two types of users visiting Pokébox. A new or logged out user and
 
 ### Timeboxing
 
+Using MoSCoW prioritisation I categorised the features needed to meet the requirements of the user stories into the following categories:
+
 #### Must Do
+
+The final version of Pokébox must include the following:
+
+- User sign up
+- User log in, log out
+- Search for Pokémon
+- Manage Pokémon collection
+- View Pokémon collection
+
+This would produce the **minimal viable product**.
 
 #### Should Do
 
+A more fully feature product would contain these features:
+
+- View Pokémon information
+- Read, post, edit and delete diary entries
+- View other user profiles and collections
+- List other users
+- Search for other users
+
 #### Could Do
+
+And if there is extra time, these features could be included:
+
+- User profile customisation
+- Commenting on posts
+- Viewing, editing and deleting comments
+
+An early version of Pokébox would contain the following - every **must do** feature, view Pokémon information and view other user profiles and collections from **should do**, and finally user profile customisation from **could do**.
+
+Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I could have added. See [unimplemented features](#unimplemented-features) below.
 
 ## User Experience
 
