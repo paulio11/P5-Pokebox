@@ -24,6 +24,7 @@ const ToTopButton = () => {
 
   return (
     <Button
+      aria-label="Scroll to top"
       variant="danger"
       className={`${styles.TopButton} ${isVisible && `${styles.Visible}`}`}
       onClick={handleClick}

@@ -54,7 +54,8 @@ const PokemonDexPage = () => {
   useTitle(
     `${
       sData.name
-        ? sData.name.charAt(0).toUpperCase() + sData.name.slice(1).toLowerCase()
+        ? sData.name.charAt(0).toUpperCase() +
+          sData.name.slice(1).toLowerCase()
         : "Loading..."
     }`
   );
@@ -122,8 +123,8 @@ const PokemonDexPage = () => {
                           className={`fas fa-square-xmark ${styles.RedCross}`}
                         ></i>{" "}
                         Add{" "}
-                        <span className={styles.FirstCap}>{sData.name}</span> to
-                        your collection
+                        <span className={styles.FirstCap}>{sData.name}</span>{" "}
+                        to your collection
                       </>
                     )}
                   </button>
@@ -165,6 +166,7 @@ const PokemonDexPage = () => {
                         <span>{base_stat}</span>
                       </div>
                       <ProgressBar
+                        aria-label={`${stat.name} progress bar is at ${base_stat}`}
                         now={base_stat}
                         max={255}
                         className={styles.StatBar}
@@ -177,8 +179,8 @@ const PokemonDexPage = () => {
                     onClick={handleFavorite}
                     className={`${styles.CollectionBtn} ${styles.FavBtn}`}
                   >
-                    Set <span className={styles.FirstCap}>{sData.name}</span> as
-                    your favorite Pokémon
+                    Set <span className={styles.FirstCap}>{sData.name}</span>{" "}
+                    as your favorite Pokémon
                   </button>
                 )}
                 {isFav && (
