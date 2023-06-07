@@ -3,8 +3,8 @@ import axios from "axios";
 export const pokeApi = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
   withCredentials: false,
-  // // To fix issues on page reload
-  // headers: { "Cache-Control": "no-cache" },
+  // To fix issues on page reload
+  headers: { "Cache-Control": "no-cache" },
 });
 
 // Enter your backend API url in the following variable:

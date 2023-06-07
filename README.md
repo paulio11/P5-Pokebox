@@ -26,10 +26,10 @@ Pokébox is a user-friendly website that allows Pokémon enthusiasts to easily k
 
 Building a website like Pokébox offers several benefits for users:
 
-1. Organization and Tracking: Pokébox provides a centralized platform for users to effectively organize and track their Pokémon collection. It allows users to keep a comprehensive record of their Pokémon, including details like species, stats, types, and more. This can be particularly useful for avid collectors who want to maintain a detailed inventory of their Pokémon.
-2. Easy Access and Convenience: By having a dedicated website like Pokébox, users can conveniently access their Pokémon collection from any device with an internet connection. This means you can easily manage and view your Pokémon data on-the-go, whether you're using a computer, smartphone, or tablet.
-3. Community Engagement: Pokébox can foster a sense of community among Pokémon enthusiasts. Users can connect with like-minded individuals, share their collections, and adventures. It provides a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
-4. Reference and Information: Pokébox integrates with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This can serve as a valuable reference tool for users. Having a reliable source of information can enhance their overall Pokémon experience.
+- Organization and Tracking: Pokébox provides a centralized platform for users to effectively organize and track their Pokémon collection. It allows users to keep a comprehensive record of their Pokémon, including details like species, stats, types, and more. This can be particularly useful for avid collectors who want to maintain a detailed inventory of their Pokémon.
+- Easy Access and Convenience: By having a dedicated website like Pokébox, users can conveniently access their Pokémon collection from any device with an internet connection. This means you can easily manage and view your Pokémon data on-the-go, whether you're using a computer, smartphone, or tablet.
+- Community Engagement: Pokébox can foster a sense of community among Pokémon enthusiasts. Users can connect with like-minded individuals, share their collections, and adventures. It provides a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
+- Reference and Information: Pokébox integrates with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This can serve as a valuable reference tool for users. Having a reliable source of information can enhance their overall Pokémon experience.
 
 ## Project Planning
 
@@ -154,7 +154,7 @@ And if there is extra time, these features could be included:
 
 An early version of Pokébox would contain the following - every **must do** feature, view Pokémon information and view other user profiles and collections from **should do**, and finally user profile customisation from **could do**.
 
-Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I could have added. See [unimplemented features](#unimplemented-features) below.
+Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I could have added given more time. See [unimplemented features](#unimplemented-features) below.
 
 ## User Experience
 
@@ -196,13 +196,65 @@ Fortunately due to the length of this project I was able to produce all of the a
 
 #### Typography
 
+Fonts are imported from [Google Fonts](https://fonts.google.com/). The font used for all `h1` headings is [Lilita One](https://fonts.google.com/specimen/Lilita+One). Lilita One is a stylish and bold display font inspired by Art Deco lettering. When used for my titles, it creates a striking contrast with the rest of the text, adding visual interest and emphasis. The rest of the text all uses the same font **Segoe UI**. Below are two examples of the Lilita One in use.
+
+**Home page header:**
+
+![Home page header](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-titlefont1.png)
+
+**Page heading:**
+
+![Page heading](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-titlefont2.png)
+
 #### Images
+
+Besides the Pokémon sprites and art the only other images used on the website are those **added by users**. These include user avatars and images shared in posts. This keeps the focus where it should be on the Pokémon and the user content. A placeholder image is used in cases where an user has not yet uploaded an avatar. This image is also used as the brand logo and favicon.
+
+![Brand logo and default avatar](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-logo.png)
 
 #### Colour Scheme
 
+Pokébox uses a restrained colour-scheme. The color scheme features a combination of dark and light colors, creating a sense of depth and contrast. The dark red serves as a bold focal point for elements such as links, buttons and headings, while the grays and accent colors add balance and versatility. The majority of colour comes from the images of the Pokémon and user content - again keeping the focus where it belongs.
+
+![Colour scheme](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-colours.png)
+
 #### Layout
 
+The website incorporates various Bootstrap components for its design and functionality. When viewed on desktop, the layout follows a two-column structure. However, on smaller screens like mobile devices, the navigation condenses into a user-friendly dropdown menu, and the layout seamlessly transitions to a single-column view. To ensure responsiveness across different screen sizes, Bootstrap containers and columns are employed to handle the layout adjustments. Here are some examples:
+
+<details>
+    <summary><strong>Pokémon Information page desktop layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-pokemon-desktop.png">
+</details>
+
+<details>
+    <summary><strong>Pokémon Information page mobile layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-pokemon-mobile.png">
+</details>
+
+<details>
+    <summary><strong>Trainer profile page desktop layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-trainer-desktop.png">
+</details>
+
+<details>
+    <summary><strong>Trainer profile page mobile layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-trainer-mobile.png">
+</details>
+
+<details>
+    <summary><strong>Diary entry page desktop layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-post-desktop.png">
+</details>
+
+<details>
+    <summary><strong>Diary entry page mobile layout</strong></summary>
+    <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-post-mobile.png">
+</details>
+
 ## Features
+
+### API Integration
 
 ### Components
 
