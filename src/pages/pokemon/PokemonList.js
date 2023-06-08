@@ -107,8 +107,8 @@ const PokemonList = () => {
           {!query &&
             (results.length !== 1010 ? (
               <Alert variant="danger">
-                Error fetching data for <strong>{1010 - results.length}</strong>{" "}
-                Pokémon.
+                Error fetching data for{" "}
+                <strong>{1010 - results.length}</strong> Pokémon.
                 <hr />
                 There may be an issue with PokéAPI. Check{" "}
                 <Alert.Link
@@ -123,7 +123,8 @@ const PokemonList = () => {
               </Alert>
             ) : (
               <Alert variant="success">
-                Data fetched successfully for all <strong>1010</strong> Pokémon.
+                Data fetched successfully for all <strong>1010</strong>{" "}
+                Pokémon.
               </Alert>
             ))}
         </>

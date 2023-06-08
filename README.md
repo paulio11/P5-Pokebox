@@ -31,6 +31,8 @@ Building a website like Pokébox offers several benefits for users:
 - Community Engagement: Pokébox can foster a sense of community among Pokémon enthusiasts. Users can connect with like-minded individuals, share their collections, and adventures. It provides a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
 - Reference and Information: Pokébox integrates with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This can serve as a valuable reference tool for users. Having a reliable source of information can enhance their overall Pokémon experience.
 
+[Back to top 🔺](#pokébox)
+
 ## Project Planning
 
 ### GitHub Project
@@ -156,6 +158,8 @@ An early version of Pokébox would contain the following - every **must do** fea
 
 Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I could have added given more time. See [unimplemented features](#unimplemented-features) below.
 
+[Back to top 🔺](#pokébox)
+
 ## User Experience
 
 ### Wireframes
@@ -252,11 +256,128 @@ The website incorporates various Bootstrap components for its design and functio
     <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-post-mobile.png">
 </details>
 
+[Back to top 🔺](#pokébox)
+
 ## Features
 
 ### API Integration
 
+Pokébox utilizes two powerful APIs to enhance its functionality. The first API is [PokéAPI](https://pokeapi.co/), an exceptional free and open-source RESTful API. PokéAPI offers developers seamless access to an extensive range of data associated with the beloved Pokémon video game series. Through this API, developers can easily retrieve comprehensive information about Pokémon, including details about their species, abilities, moves, types, and much more.
+
+The second API employed by Pokébox is a custom-built back-end API, developed using Django Rest Framework. To explore further details about this API, please visit its dedicated [repository](https://github.com/paulio11/P5-Pokebox-API).
+
+To talk to these APIs, I use [Axios](https://axios-http.com/docs/intro), a JavaScript library that allows making HTTP requests from web browsers. With Axios, I can interact with APIs by sending various types of requests, such as GET, POST, PUT, DELETE, and more.
+
+[AxiosDefaults.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/api/AxiosDefaults.js) contains the necessary options to interact with two APIs. It defines three Axios instances with specific configurations:
+
+1. `pokeApi` instance:
+   - `baseURL` is set as the main PokeAPI endpoint, which is the base URL used for all relative requests.
+   - The `Cache-Control` header is set to `no-cache` to resolve frequent data-fetching issues. By setting no-cache, failed requests are retried, ensuring fresh data is obtained when the page is reloaded.
+2. `axiosReq` and `axiosRes` instances:
+   - Both instances use the same `baseURL`, that of my back-end API, as the base URL for their requests.
+   - The `Content-Type` header is set to `multipart/form-data`, indicating that POST requests use multipart form data.
+   - `withCredentials` is set to `true`, allowing requests to include credentials like cookies, ensuring proper handling of authenticated requests.
+
 ### Components
+
+Leveraging React in the development of Pokébox enabled me to harness the power of components, which presented numerous benefits such as:
+
+- React components can be reused across different parts of the application, saving time and effort.
+- Components allow for a hierarchical and organized structure, simplifying the management and expansion of the codebase.
+- Components promote clean and modular code, making it easier to understand, update, and maintain the application.
+- Specific components can be updated without requiring a full page reload through React's virtual DOM, resulting in faster and more responsive user interfaces.
+
+#### [Ball.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Ball.js)
+
+This component is used on both the _Trainer List_ and _Trainer Profile_ pages. It takes the prop `size` (of the user's Pokémon collection) and returns a different image based on that size. Trainer's with a larger collection of Pokémon have their collection represented by a better Pokéball.
+
+![Small collection](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-ball-pokeball.png)
+
+![Medium collection](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-ball-greatball.png)
+
+![Big collection](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-ball-ultraball.png)
+
+![Complete collection](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-ball-masterball.png)
+
+#### [CustomModal.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/CustomModal.js)
+
+Used in different situations, the modal feature improves user experience in specific areas. It is employed for the help modal on the _Pokémon List_ page, user avatar editing, and confirmation prompts for post and comment deletion.
+
+- It uses the `useState` hook to manage the modal's visibility state.
+- It defines functions to handle showing and closing the modal.
+- The component renders a button that triggers the modal display.
+- The modal component includes a header with a close button and a title.
+- It also has a body section that renders it's children elements.
+
+![CustomModal component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-modal.png)
+
+#### [Error404.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Error404.js)
+
+This component replaces the whole page if the user tries to navigate to a diary entry, trainer or Pokémon that does not exist. It is returned if the `noResults` state is true. It will also be rendered if the user visits a route that does not exist.
+
+```
+if (noResults) {
+    return <Error404 pokemon query={id} />;
+}
+```
+
+- The contents depend on the presence of certain properties. If `pokemon` is truthy, it includes the text "Pokémon". If `trainer` is truthy, it includes the text "trainer with ID:". If `post` is truthy, it includes the text "diary entry with ID:". If `page` is truthy, it includes the text "page you were looking for". The `query` is displayed within a `<strong>` element if it exists. The error message concludes with the text "could not be found."
+- The button when clicked, triggers the `onClick` event handler, which navigates back in the browser history using the `navigate()` function.
+
+![Error404 component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-error404.png)
+
+#### [Footer.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Footer.js)
+
+The _Footer_ component provides a simple `div` with a contrasting background colour. It is called at the bottom of the main `App.js` file so it appears on every page. Using the follow CSS rule ensures the footer is always rendered at the bottom of the browser window, `Page` contains the main bootstrap `<Container>` and the footer component:
+
+```
+.Page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+```
+
+#### [LoadingText.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/LoadingText.js)
+
+This provides a bootstrap `<Spinner>` component with the text "Loading...", center aligned and styled to match the rest of the website. Displayed while the `loaded` state is false, it gracefully transitions to the fetched data from the Pokébox API or PokéAPI. It also serves as a loader within the `<InfiniteScroll />` component.
+
+![LoadingText component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-loader.gif)
+
+#### [NavBar.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/NavBar.js)
+
+The _NavBar_ component is a crucial element in the application's UI as it renders a navigation bar that dynamically adapts based on the user's authentication status. By placing it above the main container in the `App.js` file, it ensures the navigation bar appears consistently at the top of every page, providing easy access to essential links and options for seamless navigation throughout the application.
+
+- It retrieves the current user and a function to set the current user from `CurrentUserContext.js`.
+- The function `handleLogOut()` that is triggered when the user clicks on the "Log out" link. It sends a log out request to the Pokébox API endpoint using the axios and then sets the current user to null.
+- The component also defines two variables: `loggedOutItems` and `loggedInItems`. These variables store JSX code for the navigation links and options displayed when the user is logged out and logged in, respectively. The links include "Log in" and "Register" when logged out, and "Logged in as [username]", "Settings", and "Log out" when logged in.
+- Mainly it returns a `<Navbar>` component from the React Bootstrap library. It includes the website logo, name, a toggle button for the responsive menu, and two sets of navigation links (one on the left and one on the right) that change based on the user's authentication status. The active link is highlighted using a CSS class.
+
+**Expanded Navigation:**
+
+![Expanded navigation](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-navbar-full.png)
+
+**Collapsed Navigation:**
+
+![Collapsed navigation](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-navbar-small.png)
+
+#### [Pokemon.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Pokemon.js)
+
+The component plays a crucial role in three sections of the application: the Pokémon list, the user's collection, and the favorite Pokémon display. Within these areas, it efficiently renders vital information for each Pokémon, including the sprite, ID, and name. Moreover, users can conveniently add or remove a Pokémon from their collection by simply right-clicking on this component while on the Pokémon List page.
+
+- It manages the `collected` state using the useState hook, initially set to false. Then utilizes the `useEffect` hook to update the collected based on the user's Pokémon collection.
+- It defines a `handleRightClick()` function to handle the right-click event, preventing the default behavior and instead it updates the user's Pokémon collection.
+- The component handles styling based on whether the Pokémon's ID exists in the user's Pokémon collection array. This approach reflects the collected status of the Pokemon to the user, enhancing the visual representation of their collection.
+- Clicking the component navigates the user to the relevant Pokémon Information page.
+
+**The Pokémon component used on the list page, reflecting collected status:**
+
+![Pokémon component on list page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-pokemonlist.png)
+
+**The Pokémon component used on the trainer page, representing the trainer's favourite Pokémon and collection:**
+
+![Pokémon component on trainer page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-pokemoncollection.png)
 
 ### Pages
 
@@ -264,11 +385,19 @@ The website incorporates various Bootstrap components for its design and functio
 
 ### Hooks
 
+usenav, useeff, useref etc
+
 ### Unimplemented Features
+
+[Back to top 🔺](#pokébox)
 
 ## Bugs and Fixes
 
+[Back to top 🔺](#pokébox)
+
 ## Technologies
+
+[Back to top 🔺](#pokébox)
 
 ### Main Languages Used
 
@@ -280,7 +409,11 @@ The website incorporates various Bootstrap components for its design and functio
 
 ## Testing
 
+[Back to top 🔺](#pokébox)
+
 ## Deployment
+
+[Back to top 🔺](#pokébox)
 
 ## Credits
 
@@ -291,3 +424,5 @@ The website incorporates various Bootstrap components for its design and functio
 ### Images
 
 ### Acknowledgements
+
+[Back to top 🔺](#pokébox)
