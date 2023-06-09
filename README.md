@@ -434,6 +434,16 @@ The _Settings_ component represents an account settings page where the current u
 
 #### [Pokémon List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/pokemon/PokemonList.js)
 
+The _PokemonList_ component provides a search interface for users to search and view Pokémon. It fetches and displays the search results, provides instructions via a modal, and handles the display of success or error messages.
+
+- The `useEffect` hook is responsible for fetching the Pokémon data. That can either be a list or a specific query if the search input is used.
+- The data is mapped over and renders the _Pokemon_ component for each Pokémon.
+- If PokéAPI returns a 404 response from the search query an error message is displayed to the user.
+- The user is notified if PokéAPI returns an array of results less than 1010 (the number of Pokémon), as sometimes the requests can fail.
+- A logged in user is able to directly update their Pokémon collection on this page. Right clicking a Pokémon will add or remove it from their collection.
+
+![Pokémon list](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-pokemonlist.png)
+
 #### [Pokémon Infomation](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/pokemon/PokemonDexPage.js)
 
 The _PokemonDexPage_ component fetches and displays information about a specific Pokémon based on the provided `id` parameter from the URL. It also interacts with user data, the user's Pokémon collection and favorite Pokémon, and allows the user to add/remove Pokémon from their collection and set a favorite Pokémon. Buttons below the information allow the user to navigate to the previous and next Pokémon. The following Pokémon and species data is fetched and displayed from PokéAPI:
