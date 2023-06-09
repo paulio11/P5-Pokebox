@@ -717,4 +717,6 @@ Images fetched from PokéAPI contain official game artwork and sprites taken dir
 
 ### Acknowledgements
 
+Thanks to my fellow CI June 2022 students for help with manual testing and their suggestions.
+
 [Back to top 🔺](#pokébox)
