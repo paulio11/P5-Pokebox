@@ -228,7 +228,7 @@ const TrainerProfilePage = () => {
                                   key={index}
                                   {...pokemon}
                                   profileData={data}
-                                  setProfileData={setData}
+                                  // setProfileData={setData}
                                 />
                               ))}
                             </div>

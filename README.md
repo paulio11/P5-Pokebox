@@ -424,7 +424,7 @@ In mostly the same way as Login.js, Register.js manages user registration. Captu
 
 #### [Account Settings](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/account/Settings.js)
 
-The Settings component represents an account settings page where the current user can update their username and password. It utilizes state management, form handling, and API requests to communicate with the back-end.
+The _Settings_ component represents an account settings page where the current user can update their username and password. It utilizes state management, form handling, and API requests to communicate with the back-end.
 
 - Two functions, `handleUpdateUsername()` and `handleUpdatePassword()`, are defined to handle the form submissions for updating the username and password, respectively.
 - HTTP requests are made using an Axios instance to the back-end. If successful the user is notified.
@@ -436,21 +436,120 @@ The Settings component represents an account settings page where the current use
 
 #### [Pokémon Infomation](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/pokemon/PokemonDexPage.js)
 
+The _PokemonDexPage_ component fetches and displays information about a specific Pokémon based on the provided `id` parameter from the URL. It also interacts with user data, the user's Pokémon collection and favorite Pokémon, and allows the user to add/remove Pokémon from their collection and set a favorite Pokémon. Buttons below the information allow the user to navigate to the previous and next Pokémon. The following Pokémon and species data is fetched and displayed from PokéAPI:
+
+- The Pokémon's official artwork.
+- Genus text describing the type of Pokémon.
+  - The text displayed is from the first object in the genus array where the language value is "en".
+  - `sData.genera.find((entry) => entry.language.name === "en")?.genus`
+- The Pokémon's type.
+  - Since there can be more than one type per Pokémon the `types` objects are is mapped over.
+  - Specific styles are applied based on the type name to reflect the type.
+- Pokémon statistics mapped over then displayed as bootstrap `<ProgressBar />`
+- The Pokémon's flavour text (their Pokédex entry from the games).
+  - The text provided by PokéAPI is direct from the old games and theirfor are formatted to fit those lower console screen widths. This meant there were odd symbols and line breaks in the text.
+  - Text was cleared up using the JavaScript `replace()` function.
+  - Not all Pokémon have this flavour text data so in cases where it is not present the text "This Pokémon is still a mystery" is shown instead.
+
+```
+{sData.flavor_text_entries
+    .find((entry) => entry.language.name === "en")
+    ?.flavor_text.replace(/\n|\f/g, " ") ||
+    "This Pokémon is still a mystery!"}
+```
+
+![Pokémon information page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-pokemoninfo.png)
+
 #### [Trainer List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/TrainerList.js)
+
+Similar to the _Pokémon List_ page, the _TrainerList_ component generates a page that displays a comprehensive list of the website's users. It presents profile information for each user, offering the ability to sort and organize them by their username, creation date, and the size of their Pokémon collection. Additionally, users can search for specific trainers using their usernames. Every trainer is portrayed through the use of the [Trainer](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/Trainer.js) component.
+
+- The `fetchData()` function fetches the list of profiles, or a specific profile based on the presence of a search query.
+- The object returned is mapped over and the data is passed to the Trainer component as props.
+- If a search query returns a 404 error a message is displayed to the user instead.
+- The `handleSortChange()` function handles changes in the _Sort By_ and _Order By_ input fields. The values are used in the `fetchData()` function, changing the API endpoint to fetch the desired results.
+
+![Trainer list page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-trainerlist.png)
 
 #### [Trainer Profile](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/TrainerProfilePage.js)
 
-#### [Post List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/AllPosts.js) and [Trainer Diary](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/TrainerDiary.js)
+The _TrainerProfilePage_ component is responsible for rendering a trainer's profile page, including their avatar, personal information, favorite Pokemon, trainer diary, and Pokemon collection.
 
-#### [Post Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostPage.js)
+- The function `getFavData()` calls the function `FetchPokemonData` with the profile's favourite Pokémon as an arguement. This data is then passed to the `Pokemon` component as props along with the variable `trainerPage` which the component uses to style the output.
+- The `handleClick()` function is triggered when the bar representing the user's Pokémon collection is clicked. Once clicked it also calls the function `FetchPokemonData` but with the profile's Pokémon (collection) array as the argument.
+- If the user viewing the profile is the profile's `owner` an edit button appears to allow editing of the `about` text and `avatar`.
+  - Editing the avatar uses the [AvatarModal](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AvatarModal.js) component.
+  - Editing the about text uses the [AboutEditForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AboutEditForm.js) component. When called it is rendered in place of the about text.
+- There is an extensive use of the bootstrap `<Tooltip>` component. Highlighting the profile edit button and the collection display.
+- The profile's Pokémon collection is hidden at first, contained inside a bootstrap `<Accordian>` component.
+- The [TrainerDiary](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/TrainerDiary.js) component is used under the profile. This displays diary posts associated with the profile. See below.
 
-#### [Edit Post](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostEditForm.js) and [New Post Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostForm.js)
+**A user editing their profile:**
+
+![Editing the profile page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-profileedit.png)
+
+![Trainer profile page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-trainerprofile.png)
+
+#### [All Posts](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/AllPosts.js), [Trainer Diary](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/TrainerDiary.js) and [Post](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/Post.js)
+
+_Post_ is a component that takes data as props from either the data on _AllPosts_, _PostPage_ or _TrainerDiary_. Each post instance represents a diary entry fetched from Pokébox API.
+
+- It displays all information from the post model.
+- If the logged in user is the owner of the post an edit button is shown.
+- `handleLike()` is a function that likes the post by sending a POST request to the API endpoint, updating the posts state with the incremented like count and the assigned like ID if successful, and does nothing if the current user is the post owner or there is no current user.
+- `handleUnlike()` is the opposite function that unlikes a post by sending a DELETE request to API endpoint, updating the posts state with the decremented like count and setting the like ID to null if successful.
+
+_AllPosts_ displays a list of diary entries.
+
+- The `fetchPosts()` function fetches posts from Pokébox API.
+- The posts it fetches can be sorted by like count, comment count and creation date.
+- They can also be filtered by posts liked by the user or posts with an image.
+- The `handleSortChange()` function handles changes in the _Sort By_, _Order By_, _Posts with image_, _Posts I liked_ input fields. The values are used in the `fetchPosts()` function, changing the API endpoint to fetch the desired results.
+
+_TrainerDiary_ is similar to _AllPosts_ but the posts fetched are filtered by `owner`.
+
+- The endpoint `posts/?owner__profile=${id}` is used instead.
+- This component is used on the _Trainer Profile_ page.
+
+![All diary entries](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-postlist.png)
+
+#### [Post Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostPage.js) and [Comment](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/Comment.js)
+
+The _PostPage_ component displays a diary entry and it's comments. Each comment is an instance of the _Comment_ component.
+
+- If a user is logged in, the [CommentForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/CommentForm.js) component is rendered to allow the user to add a comment. Otherwise, a message prompting the user to log in is displayed.
+- When a user posts a new comment, the comment list is seamlessly updated in real-time without requiring a page reload. This smooth update is made possible by providing the `setComments` state as a prop to the _CommentForm_ component. Another great benefit of React.
+- If the logged in user is the owner of a comment instance the edit comment button is shown.
+- When clicked the comment text is replaced with the [CommentEditForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/CommentEditForm.js) component.
+
+![Post page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-post.png)
+
+#### [Post Edit Form](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostEditForm.js) and [Post Form](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostForm.js)
+
+The _PostForm_ component renders the diary entry form with the current time, input fields for the body and image, and buttons to handle image selection and form submission. It also displays any validation errors if they exist.
+
+- If no user is logged in, it renders an alert message indicating the requirement to log in and provides buttons for navigation and login.
+- The design and presentation of the form mirrors the visual structure of the resulting post object it generates.
+- To achieve this it includes the previously mentioned _PostCommentFooter_ component displaying the current user's avatar and username.
+- The `getCurrentTime()` function displays the current time.
+
+The _PostEditForm_ component allows users to modify their diary entries. By fetching the existing entry data, it enables users to make changes through the rendered form. This component takes care of the entire process, including handling form submission and deletion, with the added functionality of a modal to confirm deletion. If a user attempts to edit a post they don't own, the component communicates their lack of permission, ensuring a secure editing experience.
+
+![Post form](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-newpost.png)
+
+![Post edit form](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-editpost.png)
 
 ### Contexts
 
 ### Hooks
 
 usenav, useeff, useref etc
+
+### Utility Functions
+
+### Other
+
+inf scroll
 
 ### Unimplemented Features
 
