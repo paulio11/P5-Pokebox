@@ -654,21 +654,46 @@ Given more time, there are numerous additional features that could have been inc
 
 ## Technologies
 
-[Back to top 🔺](#pokébox)
+### Languages
 
-### Main Languages Used
+- [HTML5](https://en.wikipedia.org/wiki/HTML)
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - You can find all my CSS files [here](https://github.com/paulio11/P5-Pokebox/tree/main/src/styles).
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [JSX](<https://en.wikipedia.org/wiki/JSX_(JavaScript)>)
 
-### Frameworks
+### Frameworks, Libraries and Components
 
-### Libraries
+- [Bootstrap](https://getbootstrap.com/) - A frontend toolkit.
+- [React](https://react.dev/) - A library for web and native user interfaces.
+- [React Bootstrap](https://react-bootstrap.netlify.app/) - A React library for building responsive and customizable UI components with Bootstrap styling.
+- [React Infinte Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) - Allows implementation of infinite scrolling and loading of data.
+- [Axios](https://axios-http.com/docs/intro) - A promise based HTTP client.
+- [React Router](https://reactrouter.com/en/main/start/overview) - Enables client side routing.
+- [Font Awesome](https://fontawesome.com/) - An icon library with a vast collection of scalable vector icons for web and mobile.
 
 ### Software and Other
 
+- [Balsamiq](https://balsamiq.com/) - For the creation of my wireframes during the planning stages.
+- [GitHub](https://github.com/) - Repository hosting, commit history and project management with user stories.
+- [Heroku](https://heroku.com/) - Pokébox and it's API are deployed to Heroku.
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) - For testing of site performance and used to check if the website meets accessibility guidelines.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Used to debug and test website responsiveness.
+- [Google Fonts](https://fonts.google.com/) - Fonts imported from Google Fonts, see Typography section above.
+- [W3C Markup Validation Service](https://validator.w3.org/) - Used to validate HTML code.
+- [Jigsaw CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS code.
+- [JSHint JavaScript Code Quality Tool](https://jshint.com/) - Used to validate JavaScript code.
+
+[Back to top 🔺](#pokébox)
+
 ## Testing
+
+Testing information can be found [here](https://github.com/paulio11/P5-Pokebox/blob/main/TESTING.md).
 
 [Back to top 🔺](#pokébox)
 
 ## Deployment
+
+Deployment steps can be found [here](https://github.com/paulio11/P5-Pokebox/blob/main/DEPLOYMENT.md).
 
 [Back to top 🔺](#pokébox)
 
