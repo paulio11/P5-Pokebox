@@ -624,7 +624,7 @@ This file includes three functions:
 
 - `FetchPokemonList()`, which retrieves a list of the 1,010 current Pokémon from the PokéAPI's _pokemon_ endpoint.
 - `FetchSpeciesData()`, which fetches species data for a Pokémon from the PokéAPI's _pokemon-species_ endpoint.
-- `FetchPokemonData()`, a comprehensive function that takes either a query or a list as arguments and retrieves data from two PokéAPI endpoints. It returns data based on processing time, results, or errors received. The file contains detailed comments explaining the function's implementation. Please refer to the file for more information.
+- `FetchPokemonData()`, a comprehensive function that takes either a query or a list as arguments and retrieves data from two PokéAPI endpoints. It returns data based on processing time, results, or errors received. The file contains detailed comments explaining the function's implementation. Please refer to the file for more detailed information.
 
 ### Other
 
@@ -701,9 +701,19 @@ Deployment steps can be found [here](https://github.com/paulio11/P5-Pokebox/blob
 
 ### Code
 
+This project is loosely based on Moments by [Code Institute](https://codeinstitute.net/) a project designed to teach Django Rest Framework and React. There are some code similarities, in particular:
+
+- [CurrentUserContext.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/contexts/CurrentUserContext.js)
+- [useClickOutsideToggle.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/hooks/useClickOutsideToggle.js)
+- [Utils.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/utils/Utils.js)
+
 ### Text
 
+Information fetched from PokéAPI contain Pokémon flavour and genus text. This text along with the names of the Pokémon are the property of Nintendo / Creatures Inc / GAME FREAK inc.
+
 ### Images
+
+Images fetched from PokéAPI contain official game artwork and sprites taken directly from the Pokémon games. These assets are the property of Nintendo / Creatures Inc / GAME FREAK inc.
 
 ### Acknowledgements
 
