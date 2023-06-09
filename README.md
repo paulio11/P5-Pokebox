@@ -638,6 +638,14 @@ React Infinite Scroll is used in the following places:
 
 ### Unimplemented Features
 
+Given more time, there are numerous additional features that could have been incorporated into this project, many of which align with the features I previously implemented in a related project called [Squigl](https://github.com/paulio11/P4-Squigl-Twitter-Clone). Due to the extended development period of that project, I was able to successfully implement nearly all desired functionalities. Some of those elements could be seamlessly applied to enhance this project in a similar manner.
+
+- To optimize the performance of the _Pokémon List_ page, the implementation of the _React Infinite Scroll_ component would have been beneficial. Since the data for this page is paginated, integrating infinite scrolling would have been feasible. However, due to the complexity of making multiple concurrent requests to different endpoints, it would have required additional effort to ensure proper functionality.
+- User following. While developing the project, I implemented two filters for displaying posts with images, and liked posts. Introducing a third filter for posts from users you follow would not have required much additional work. However, I made a deliberate choice to prioritize integrating Pokémon-related features into the website.
+- Implementing moderation features, which are crucial for websites that allow user-generated content, was a successful addition to my [previous project](https://github.com/paulio11/P4-Squigl-Twitter-Clone). However, due to my focus on incorporating the Pokémon elements and learning React, I was unable to allocate sufficient time to implement moderation functionalities in this current project.
+- While utilizing the extensive information provided by the PokéAPI, I had the opportunity to include additional details such as a Pokémon's moveset, type advantages and disadvantages, evolution chain, game availability, or even more artwork. However, I intentionally selected a limited set of information to demonstrate my proficiency in successfully retrieving and presenting data from a third-party API in a visually appealing manner, showcasing my ability to make informed choices about data display within the project's scope.
+- Integrating Pokémon and user tagging functionality into posts and comments, a feature also previously implemented in Squigl. This would have enhanced the user experience by enabling direct references and links to other users or Pokémon. This would have fostered a more cohesive and interconnected environment within the platform.
+
 [Back to top 🔺](#pokébox)
 
 ## Bugs and Fixes
