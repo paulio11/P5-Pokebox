@@ -287,7 +287,7 @@ Leveraging React in the development of Pokébox enabled me to harness the power 
 - Components promote clean and modular code, making it easier to understand, update, and maintain the application.
 - Specific components can be updated without requiring a full page reload through React's virtual DOM, resulting in faster and more responsive user interfaces.
 
-The following are some of my components that appear across multiple pages.
+Each page and component actively contributes to the attainment of the goals outlined in the project's user stories. The subsequent components listed below are just some of the elements that span across multiple pages:
 
 #### [Ball.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Ball.js)
 
@@ -551,9 +551,32 @@ The _PostEditForm_ component allows users to modify their diary entries. By fetc
 
 ### Contexts
 
+Contexts in React are a powerful feature that enable developers to create and share data across the entire application, eliminating the need to explicitly pass props. They provide an great solution for passing data to deeply nested components.
+
+#### [CurrentUserContext.js](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/src/context/CurrentUserContext.js)
+
+The _CurrentUserContext_ component grants access to and facilitates modifications to the current user data for all other components within the application. This powerful context allows various components throughout the application, ranging from high-level ones like the login page that sets the current user, to more granular elements such as the Comment component. Even at this micro level, the Comment component uses the CurrentUserContext to determine whether the current user is the owner of the comment, enabling edit functionality.
+
+- Custom hooks: `useCurrentUser` and `useSetCurrentUser`. These hooks simplify the process of accessing the current user state and the function to update it within child components.
+- Inerceptors: The `useMemo()` hook is used to define two Axios interceptors. These interceptors are responsible for refreshing the authentication token and handling token expiration errors.
+
 ### Hooks
 
-usenav, useeff, useref etc
+This React application extensively utilizes various essential hooks, including `useNavigate`, `useRef`, `useEffect`, and `useMemo`. These widely adopted React hooks play a pivotal role in enhancing the application's functionality and performance. They contribute in the following ways:
+
+- **useNavigate** enables navigation within the application, facilitating seamless routing and user flow.
+- **useRef** provides a reliable mechanism for referencing and accessing mutable values across components.
+- **useEffect** allows the application to perform tasks such as data fetching from API, and updating the DOM.
+
+I also use two custom hooks:
+
+- **[useTitle](https://github.com/paulio11/P5-Pokebox/blob/main/src/hooks/useTitle.js)** is used to dynamically update the current title of the page.
+  - Used on a Trainer's profile and a Pokémon's information page to display their name.
+  - Will display "Loading..." while data is being fetched.
+  - Used on each component that renders a whole page to provide the correct and relevant title.
+- **[useClickOutsideToggle](https://github.com/paulio11/P5-Pokebox/blob/main/src/hooks/useClickOutsideToggle.js)** handles toggling a state when a user clicks outside a specified element. It provides the current toggle state, a function to update the state, and a reference to assign to the element that needs to be checked for clicks outside.
+  - Used with the _NavBar_ component.
+  - Code from the [Code Institute](https://codeinstitute.net/) _Momemts_ walkthrough.
 
 ### Utility Functions
 
