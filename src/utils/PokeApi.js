@@ -7,7 +7,7 @@ export const FetchPokemonList = async () => {
     const response = await pokeApi.get("pokemon/?limit=1010");
     return response.data.results;
   } catch (error) {
-    // Return empty list if error (to do)
+    return [];
   }
 };
 
@@ -70,5 +70,7 @@ export const FetchSpeciesData = async (id) => {
   try {
     const response = await pokeApi.get(`pokemon-species/${id}`);
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    return [];
+  }
 };

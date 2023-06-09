@@ -12,8 +12,21 @@
 
 1. [Introduction](#introduction)
 2. [Project Planning](#project-planning)
+   1. [GitHub Project](#github-project)
+   2. [Epics and User Stories](#epics-and-user-stories)
+   3. [Timeboxing](#timeboxing)
 3. [User Experience](#user-experience)
+   1. [Wireframes](#wireframes)
+   2. [Design Choices](#design-choices)
 4. [Features](#features)
+   1. [API Integration](#api-integration)
+   2. [Components](#components)
+   3. [Pages](#pages)
+   4. [Contexts](#contexts)
+   5. [Hooks](#hooks)
+   6. [Utility Functions](#utility-functions)
+   7. [Other](#other)
+   8. [Unimplemented Features](#unimplemented-features)
 5. [Bugs and Fixes](#bugs-and-fixes)
 6. [Technologies](#technologies)
 7. [Testing](#testing)
@@ -580,9 +593,48 @@ I also use two custom hooks:
 
 ### Utility Functions
 
+Utility functions are versatile functions that are utilized across many of my components, providing a streamlined approach to minimize code duplication. By organizing them in a dedicated separate file and importing them only when needed, it promotes code reusability and maintainability within the application.
+
+#### [Collection.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/utils/Collection.js)
+
+The function within is responsible for adding or removing a Pokémon from the user's collection. It performs the necessary updates to the collection, sends a PATCH request to update the corresponding user profile on the server, and updates the local user data if the request succeeds.
+
+- It takes three arguements:
+  - `newPokemon` is the Pokémon that the user is trying to add or remove from their collection.
+  - `uData` is the user profile object, containing the `pokemon` array.
+  - `setUData` is a state function that updates the user profile data.
+- Based on the `hasPokemon` value, the `updatedCollection` variable is computed. If hasPokemon is true, the newPokemon is removed from the collection by filtering out that specific Pokémon. If hasPokemon is false, the newPokemon is added to the collection using the spread operator.
+- The function makes an asynchronous PATCH request to update the user's profile at the profiles endpoint. The payload of the request contains the updated pokemon collection, which is sorted in ascending order of Pokémon ID.
+
+#### [Utils.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/utils/Utils.js)
+
+Utils.js contains the function `fetchMoreData()`. This function is used in the _React Infinite Scroll_ component as it's `next` attribute.
+
+- The function takes two arguments: `resource` and `setResource`.
+- The resource parameter represents the current resource being fetched, which importantly contains the URL of the next page of data.
+- `setResource` is a function used to update the resource with the new data.
+- The resource data is updated by merging the previous resource `(...prevResource)` with the following changes:
+  - The next property is updated with the `data.next` value from the response, indicating the URL of the next page of data.
+  - The results property is updated using the reduce function. The `data.results` array from the response is iterated over, and each new element is compared with the previous results array.
+  - Duplicates are skipped, and non-duplicate elements are added to the accumulator array. Ensuring only new data is added.
+
+#### [PokeApi.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/utils/PokeApi.js)
+
+This file includes three functions:
+
+- `FetchPokemonList()`, which retrieves a list of the 1,010 current Pokémon from the PokéAPI's _pokemon_ endpoint.
+- `FetchSpeciesData()`, which fetches species data for a Pokémon from the PokéAPI's _pokemon-species_ endpoint.
+- `FetchPokemonData()`, a comprehensive function that takes either a query or a list as arguments and retrieves data from two PokéAPI endpoints. It returns data based on processing time, results, or errors received. The file contains detailed comments explaining the function's implementation. Please refer to the file for more information.
+
 ### Other
 
-inf scroll
+Pokébox leverages the powerful capabilities of the [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) component to seamlessly and efficiently fetch additional data. By loading data incrementally instead of all at once, it significantly enhances performance. The data retrieved from the Pokébox API is paginated, with each response containing a count and a next value, which React Infinite Scroll utilizes to seamlessly fetch more data as needed.
+
+React Infinite Scroll is used in the following places:
+
+- Trainer list
+- Diary entry list
+- Comment list on post page
 
 ### Unimplemented Features
 
