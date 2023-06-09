@@ -282,10 +282,12 @@ To talk to these APIs, I use [Axios](https://axios-http.com/docs/intro), a JavaS
 
 Leveraging React in the development of Pokébox enabled me to harness the power of components, which presented numerous benefits such as:
 
-- React components can be reused across different parts of the application, saving time and effort.
+- They can be reused across different parts of the application, saving time and effort.
 - Components allow for a hierarchical and organized structure, simplifying the management and expansion of the codebase.
 - Components promote clean and modular code, making it easier to understand, update, and maintain the application.
 - Specific components can be updated without requiring a full page reload through React's virtual DOM, resulting in faster and more responsive user interfaces.
+
+The following are some of my components that appear across multiple pages.
 
 #### [Ball.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Ball.js)
 
@@ -307,7 +309,7 @@ Used in different situations, the modal feature improves user experience in spec
 - It defines functions to handle showing and closing the modal.
 - The component renders a button that triggers the modal display.
 - The modal component includes a header with a close button and a title.
-- It also has a body section that renders it's children elements.
+- It also has a body section that renders it's child elements.
 
 ![CustomModal component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-modal.png)
 
@@ -379,7 +381,70 @@ The component plays a crucial role in three sections of the application: the Pok
 
 ![Pokémon component on trainer page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-pokemoncollection.png)
 
+#### [PostCommentFooter.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/PostCommentFooter.js)
+
+This component is utilized at the bottom of every post and comment, as well as on the _New Diary Entry_ page. When employed at the bottom of a post or comment, it shows the username and avatar of the owner, linking to their profile. On the new diary entry page, it showcases the username and avatar of the currently logged-in user (obtained from the current user serializer), providing a preview of how their entire post will appear.
+
+![PostCommentFooter component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-commentfooter.png)
+
+#### [ToTopButton.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/ToTopButton.js)
+
+ToTopButton creates a button that becomes visible as the user scrolls down, and when clicked, it smoothly scrolls the page to the top. The button's visibility is controlled using the `useState` hook and updated based on the scroll position with the `handleScroll` function. The `useEffect` hook is used to add or remove a scroll event listener. The component returns a button labeled "Top". It is used in the main `App.js` file to ensure it appears on every page.
+
+![Scroll to top button in action](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-topbutton.gif)
+
 ### Pages
+
+The pages Pokébox use are sorted into the following directories/categories, each directory contains its own unique components:
+
+- Authentication and Account pages
+- Trainer Diary pages
+- Pokémon pages
+- Trainer Profile pages
+
+#### [Home Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/HomePage.js)
+
+The home page employs a clean and straightforward design that effectively highlights the three main uses of Pokébox. Each element serves as a link, seamlessly directing users to the relevant page. The Pokémon section features a randomly chosen image, selected using the `generateRandomNumber()` function. This function generates a random number between 1 and 1010, representing the total number of Pokémon, and uses it to display a random Pokémon image. This element adds an element of surprise to the otherwise static home page.
+
+![Home page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-home.png)
+
+#### [Login](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/auth/LogIn.js) and [Registration](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/auth/Register.js)
+
+Login.js is responsible for rendering a login form and handling the submission of login credentials to Pokébox API.
+
+- It creates two state variables: `logInData` and `errors`. LogInData is an object that holds the username and password entered by the user in the login form. Errors is an object that will store any errors returned from the server during the login process.
+- The `handleSubmit()` function, it makes an HTTP POST request to the log in endpoint with the logInData object as the request payload. If the request is successful, it takes the data from the response, and calls the `setCurrentUser()` function to set the current user. It then navigates to the user's profile page.
+- If the request returns an error it is displayed as a bootstrap `<Alert>` to the user.
+
+![Log in page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-login.png)
+
+In mostly the same way as Login.js, Register.js manages user registration. Capturing their username and passwords, sending the form data to the API endpoint for registration, and displaying any validation errors. It also provides navigation to the login page upon successful sign up.
+
+![Register page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-register.png)
+
+#### [Account Settings](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/account/Settings.js)
+
+The Settings component represents an account settings page where the current user can update their username and password. It utilizes state management, form handling, and API requests to communicate with the back-end.
+
+- Two functions, `handleUpdateUsername()` and `handleUpdatePassword()`, are defined to handle the form submissions for updating the username and password, respectively.
+- HTTP requests are made using an Axios instance to the back-end. If successful the user is notified.
+- If an error occurs, the response data (containing validation errors) is stored in the `errors` state and displayed to the user where appropriate.
+
+![Settings page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-settings.png)
+
+#### [Pokémon List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/pokemon/PokemonList.js)
+
+#### [Pokémon Infomation](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/pokemon/PokemonDexPage.js)
+
+#### [Trainer List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/TrainerList.js)
+
+#### [Trainer Profile](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/TrainerProfilePage.js)
+
+#### [Post List](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/AllPosts.js) and [Trainer Diary](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/TrainerDiary.js)
+
+#### [Post Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostPage.js)
+
+#### [Edit Post](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostEditForm.js) and [New Post Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/PostForm.js)
 
 ### Contexts
 
