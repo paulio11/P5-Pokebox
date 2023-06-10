@@ -8,17 +8,18 @@ import { axiosRes } from "../../api/AxiosDefaults";
 import styles from "../../styles/Settings.module.css";
 import useTitle from "../../hooks/useTitle";
 import { useNavigate } from "react-router-dom";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const Settings = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
 
   const [newUsername, setNewUsername] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
   const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   useTitle("Account Settings");
@@ -30,7 +31,7 @@ const Settings = () => {
         username: newUsername,
       });
       setCurrentUser({ ...currentUser, username: newUsername });
-      setMessage("Username successfully changed");
+      setCurrentNotification("Username changed successfully");
       setNewUsername("");
     } catch (error) {
       setErrors(error.response?.data);
@@ -45,7 +46,7 @@ const Settings = () => {
         new_password1: newPassword1,
         new_password2: newPassword2,
       });
-      setMessage("Password successfully changed");
+      setCurrentNotification("Password changed successfully");
       setOldPassword("");
       setNewPassword1("");
       setNewPassword2("");
@@ -134,11 +135,6 @@ const Settings = () => {
               </Col>
             </Row>
           </div>
-          {message && (
-            <Alert variant="success" onClose={() => setMessage("")} dismissible>
-              {message}
-            </Alert>
-          )}
         </>
       ) : (
         <>
