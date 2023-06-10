@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/AuthForms.module.css";
 import useTitle from "../../hooks/useTitle";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -15,6 +16,7 @@ const LogIn = () => {
   const { username, password } = logInData;
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("Log In");
 
@@ -25,6 +27,7 @@ const LogIn = () => {
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
       navigate(`/trainer/${data.user.profile_id}`);
+      setCurrentNotification(`You have logged in as ${data.user.username}.`);
     } catch (error) {
       // Catch any errors in the response
       setErrors(error.response?.data);

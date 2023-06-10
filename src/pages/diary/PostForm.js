@@ -5,6 +5,7 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 import useTitle from "../../hooks/useTitle";
 
 const PostForm = () => {
@@ -17,6 +18,7 @@ const PostForm = () => {
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("New Diary Entry");
 
@@ -61,6 +63,7 @@ const PostForm = () => {
     try {
       const { data } = await axiosReq.post("posts/", formData);
       navigate(`/post/${data.id}`);
+      setCurrentNotification("Diary entry posted successfully.");
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);

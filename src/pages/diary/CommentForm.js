@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/CommentForm.module.css";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const CommentForm = (props) => {
   const { post, setComments, setPost } = props;
   const [body, setBody] = useState("");
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   const handleChange = (event) => {
     setBody(event.target.value);
@@ -32,6 +34,7 @@ const CommentForm = (props) => {
         ],
       }));
       setBody("");
+      setCurrentNotification("Comment posted successfully.");
     } catch (error) {
       setErrors(error.response?.data);
     }

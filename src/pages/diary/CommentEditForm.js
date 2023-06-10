@@ -3,11 +3,13 @@ import { axiosRes } from "../../api/AxiosDefaults";
 import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/CommentEditForm.module.css";
 import CustomModal from "../../components/CustomModal";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const CommentEditForm = (props) => {
   const { id, body, setShowEditForm, setComments, setPost } = props;
   const [commentBody, setCommentBody] = useState(body);
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   const handleChange = (event) => {
     setCommentBody(event.target.value);
@@ -31,6 +33,7 @@ const CommentEditForm = (props) => {
         }),
       }));
       setShowEditForm(false);
+      setCurrentNotification("Comment edited successfully.");
     } catch (error) {
       setErrors(error.response?.data);
     }
@@ -52,6 +55,7 @@ const CommentEditForm = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
+      setCurrentNotification("Comment deleted.");
     } catch (error) {}
   };
 

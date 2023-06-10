@@ -5,6 +5,7 @@ import { axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useNavigate } from "react-router-dom";
 import PostCommentFooter from "../../components/PostCommentFooter";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const Post = (props) => {
   const {
@@ -23,6 +24,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
+  const setCurrentNotification = useSetCurrentNotification();
 
   const handleLike = async () => {
     if (currentUser?.username === owner || !currentUser) {
@@ -38,6 +40,7 @@ const Post = (props) => {
               : post;
           }),
         }));
+        setCurrentNotification("Diary entry liked.");
       } catch (error) {}
     }
   };
@@ -53,6 +56,7 @@ const Post = (props) => {
             : post;
         }),
       }));
+      setCurrentNotification("Diary entry unliked.");
     } catch (error) {}
   };
 

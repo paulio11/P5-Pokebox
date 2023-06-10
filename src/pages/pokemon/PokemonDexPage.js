@@ -9,6 +9,7 @@ import { Col, Row, ProgressBar } from "react-bootstrap";
 import LoadingText from "../../components/LoadingText";
 import Error404 from "../../components/Error404";
 import useTitle from "../../hooks/useTitle";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const PokemonDexPage = () => {
   const [hasPokemon, setHasPokemon] = useState(false);
   const [isFav, setIsFav] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const setCurrentNotification = useSetCurrentNotification();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,6 +72,11 @@ const PokemonDexPage = () => {
   const handleClick = () => {
     setHasPokemon(!hasPokemon);
     UpdateCollection(pData.id, uData, setUData);
+    setCurrentNotification(
+      hasPokemon
+        ? `${sData.name} has been removed from your collection.`
+        : `${sData.name} has been added to your collection.`
+    );
   };
 
   const handleFavorite = async () => {
@@ -82,6 +89,7 @@ const PokemonDexPage = () => {
       );
       setIsFav(true);
       setUData(response.data);
+      setCurrentNotification(`${sData.name} is now your favorite Pokémon.`);
     } catch (error) {}
   };
 

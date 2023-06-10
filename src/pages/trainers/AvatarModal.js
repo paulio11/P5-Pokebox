@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Modal, Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/AvatarModal.module.css";
 import { axiosReq } from "../../api/AxiosDefaults";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const AvatarModal = (props) => {
   const { showAvatarModal, setShowAvatarModal, data, reload, value } = props;
@@ -9,6 +10,7 @@ const AvatarModal = (props) => {
   const [newAvatar, setNewAvatar] = useState(null);
   const avatarInput = useRef(null);
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,6 +20,7 @@ const AvatarModal = (props) => {
       await axiosReq.patch(`profiles/${id}`, formData);
       setShowAvatarModal(false);
       reload(value + 1);
+      setCurrentNotification("Avatar successfully updated.");
     } catch (error) {
       setErrors(error.response?.data);
     }

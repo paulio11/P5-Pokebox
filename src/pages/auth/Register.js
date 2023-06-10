@@ -4,6 +4,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/AuthForms.module.css";
 import useTitle from "../../hooks/useTitle";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -14,6 +15,7 @@ const Register = () => {
   const { username, password1, password2 } = registerData;
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("Register");
 
@@ -27,10 +29,9 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Send form data to api register endpoint
       await axios.post("dj-rest-auth/registration/", registerData);
-      // If successful navigate to the login page
       navigate("/login");
+      setCurrentNotification("Registration successfull.");
     } catch (error) {
       // Catch any errors in the response
       setErrors(error.response?.data);

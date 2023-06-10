@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Pokemon.module.css";
 import { UpdateCollection } from "../utils/Collection";
 import { useNavigate } from "react-router-dom";
+import { useSetCurrentNotification } from "../contexts/NotificationContext";
 
 const Pokemon = (props) => {
   const {
@@ -15,6 +16,7 @@ const Pokemon = (props) => {
   } = props;
   const [collected, setCollected] = useState(false);
   const navigate = useNavigate();
+  const setCurrentNotification = useSetCurrentNotification();
 
   useEffect(() => {
     if (profileData) {
@@ -27,6 +29,11 @@ const Pokemon = (props) => {
     if (profileData && listPage) {
       UpdateCollection(id, profileData, setProfileData);
       setCollected(!collected);
+      setCurrentNotification(
+        collected
+          ? `${species.name} has been removed from your collection.`
+          : `${species.name} has been added to your collection.`
+      );
     }
   };
 

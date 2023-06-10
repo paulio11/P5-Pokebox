@@ -9,6 +9,7 @@ import LoadingText from "../../components/LoadingText";
 import CustomModal from "../../components/CustomModal";
 import Error404 from "../../components/Error404";
 import useTitle from "../../hooks/useTitle";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const PostEditForm = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ const PostEditForm = () => {
   const is_owner = currentUser?.username === postData?.owner;
   const [errors, setErrors] = useState({});
   const [noResults, setNoResults] = useState(false);
+  const setNotification = useSetCurrentNotification();
 
   useTitle("Editing Diary Entry");
 
@@ -75,6 +77,7 @@ const PostEditForm = () => {
     try {
       await axiosReq.put(`posts/${id}`, formData);
       navigate(`/post/${id}`);
+      setNotification("Diary entry edited successfully.");
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
@@ -86,6 +89,7 @@ const PostEditForm = () => {
     try {
       await axiosRes.delete(`posts/${id}`);
       navigate(`/trainer/${currentUser?.profile_id}`);
+      setNotification("Diary entry deleted.");
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
@@ -107,7 +111,7 @@ const PostEditForm = () => {
           <Form
             onSubmit={handleSubmit}
             className={styles.Container}
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
           >
             <div className={styles.Time}>{postData.created}</div>
             <hr />

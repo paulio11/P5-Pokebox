@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { Button, Form, Alert } from "react-bootstrap";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const AboutEditForm = (props) => {
   const { id, about, setShowAboutEdit, setData, data } = props;
   const [formAbout, setFormAbout] = useState(about);
   const [errors, setErrors] = useState({});
+  const setCurrentNotification = useSetCurrentNotification();
 
   const handleChange = (event) => {
     setFormAbout(event.target.value);
@@ -22,6 +24,7 @@ const AboutEditForm = (props) => {
         about: formAbout,
       });
       setShowAboutEdit(false);
+      setCurrentNotification("Profile updated successfully.");
     } catch (error) {
       setErrors(error.response?.data);
     }
