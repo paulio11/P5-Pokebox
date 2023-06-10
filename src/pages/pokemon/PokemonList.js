@@ -84,9 +84,13 @@ const PokemonList = () => {
       </div>
       <hr />
       <Form className={styles.SearchForm}>
-        <Form.Label hidden>Search for a Pokémon</Form.Label>
+        <Form.Label hidden htmlFor="search">
+          Search for a Pokémon
+        </Form.Label>
         <Form.Control
           value={query}
+          name="search"
+          id="search"
           placeholder="Search"
           onChange={handleChange}
         />
