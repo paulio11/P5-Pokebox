@@ -45,10 +45,14 @@ const Register = () => {
       <hr />
       <Form onSubmit={handleSubmit} className={styles.AuthForm}>
         <Form.Group>
-          <Form.Label hidden>Username</Form.Label>
+          <Form.Label hidden htmlFor="username">
+            Username
+          </Form.Label>
           <Form.Control
             type="text"
             name="username"
+            id="username"
+            autoComplete="off"
             placeholder="Username"
             value={username}
             onChange={handleChange}
@@ -60,10 +64,13 @@ const Register = () => {
           </Alert>
         ))}
         <Form.Group>
-          <Form.Label hidden>Password</Form.Label>
+          <Form.Label hidden htmlFor="password1">
+            Password
+          </Form.Label>
           <Form.Control
             type="password"
             name="password1"
+            id="password1"
             placeholder="Password"
             value={password1}
             onChange={handleChange}
@@ -75,10 +82,13 @@ const Register = () => {
           </Alert>
         ))}
         <Form.Group>
-          <Form.Label hidden>Confirm Password</Form.Label>
+          <Form.Label hidden htmlFor="password2">
+            Confirm Password
+          </Form.Label>
           <Form.Control
             type="password"
             name="password2"
+            id="password2"
             placeholder="Confirm password"
             value={password2}
             onChange={handleChange}

@@ -69,8 +69,12 @@ const TrainerList = () => {
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>
-          <Form.Label hidden>Search</Form.Label>
+          <Form.Label htmlFor="search" hidden>
+            Search
+          </Form.Label>
           <Form.Control
+            name="search"
+            id="search"
             value={query}
             placeholder="Search"
             onChange={handleChange}
@@ -79,10 +83,11 @@ const TrainerList = () => {
         {!query && (
           <>
             <Form.Group>
-              <Form.Label>Sort By</Form.Label>
+              <Form.Label htmlFor="sort_by">Sort By</Form.Label>
               <Form.Control
                 as="select"
                 name="sort_by"
+                id="sort_by"
                 value={sortBy}
                 onChange={handleSortChange}
               >
@@ -92,10 +97,11 @@ const TrainerList = () => {
               </Form.Control>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Sort Order</Form.Label>
+              <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
               <Form.Control
-                as="select"
                 name="sort_order"
+                id="sort_order"
+                as="select"
                 value={sortOrder}
                 onChange={handleSortChange}
               >

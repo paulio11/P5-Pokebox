@@ -45,10 +45,14 @@ const CommentForm = (props) => {
   return (
     <Form onSubmit={handleSubmit} className={styles.Form}>
       <Form.Group>
-        <Form.Label hidden>Comment:</Form.Label>
+        <Form.Label hidden htmlFor="body">
+          Comment:
+        </Form.Label>
         <Form.Control
           placeholder="Add a comment"
           as="textarea"
+          name="body"
+          id="body"
           value={body}
           onChange={handleChange}
           rows={4}

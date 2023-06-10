@@ -51,13 +51,17 @@ const LogIn = () => {
       <hr />
       <Form onSubmit={handleSubmit} className={styles.AuthForm}>
         <Form.Group controlId="username">
-          <Form.Label hidden>Username</Form.Label>
+          <Form.Label hidden htmlFor="username">
+            Username
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Username"
+            id="username"
             name="username"
             value={username}
             onChange={handleChange}
+            autoComplete="off"
           />
         </Form.Group>
         {errors.username?.map((message, idx) => (
@@ -66,10 +70,13 @@ const LogIn = () => {
           </Alert>
         ))}
         <Form.Group>
-          <Form.Label hidden>Password</Form.Label>
+          <Form.Label hidden htmlFor="password">
+            Password
+          </Form.Label>
           <Form.Control
             type="password"
             name="password"
+            id="password"
             placeholder="Password"
             value={password}
             onChange={handleChange}

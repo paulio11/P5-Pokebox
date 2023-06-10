@@ -91,11 +91,14 @@ const PostForm = () => {
             <Row>
               <Col xs={12} lg={6}>
                 <Form.Group>
-                  <Form.Label hidden>Diary Entry Text:</Form.Label>
+                  <Form.Label htmlFor="body" hidden>
+                    Diary Entry Text:
+                  </Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={6}
                     name="body"
+                    id="body"
                     value={body}
                     onChange={handleChange}
                     maxLength={400}

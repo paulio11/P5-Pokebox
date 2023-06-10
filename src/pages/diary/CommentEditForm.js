@@ -65,6 +65,8 @@ const CommentEditForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Control
+          name={`comment ${id} body`}
+          id={`comment ${id} body`}
           as="textarea"
           value={commentBody}
           onChange={handleChange}

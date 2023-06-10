@@ -36,9 +36,13 @@ const AboutEditForm = (props) => {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Form.Label hidden>About:</Form.Label>
+          <Form.Label hidden htmlFor="about">
+            About:
+          </Form.Label>
           <Form.Control
             as="textarea"
+            name="about"
+            id="about"
             value={formAbout}
             onChange={handleChange}
             rows={4}
