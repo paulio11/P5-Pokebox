@@ -1,0 +1,12 @@
+.Notification {
+  width: fit-content;
+  position: fixed;
+  top: 75px;
+  right: 10px;
+  background-color: #ba0000 !important;
+  color: white;
+}
+
+.Message::first-letter {
+  text-transform: uppercase;
+}

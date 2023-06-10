@@ -17,6 +17,7 @@ import AllPosts from "./pages/diary/AllPosts";
 import Settings from "./pages/account/Settings";
 import Error404 from "./components/Error404";
 import HomePage from "./pages/HomePage";
+import Notification from "./components/Notification";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         </div>
         <Footer />
       </div>
+      <Notification />
       <ToTopButton />
     </>
   );
