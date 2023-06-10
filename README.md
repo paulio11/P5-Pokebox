@@ -377,6 +377,24 @@ The _NavBar_ component is a crucial element in the application's UI as it render
 
 ![Collapsed navigation](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-navbar-small.png)
 
+#### [Notification.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Notification.js)
+
+This component leverages the `useCurrentNotification` context (defined below) to retrieve and present the current notification to the user. Additionally, a timeout function is implemented to automatically clear and remove the notification after a specified duration.
+
+The user receives a notification upon the successful completion of the following tasks:
+
+- Posting, editing, and deleting a diary entry.
+- Posting, editing, and deleting a comment.
+- Liking or unliking a diary entry.
+- Logging in, logging out, and registering.
+- Setting their favourite Pokémon.
+- Adding or removing a Pokémon from their collection.
+- Editing their profile or avatar.
+
+**Examples of notifications:**
+
+![Exampls of notifications](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-example-notifications.png)
+
 #### [Pokemon.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Pokemon.js)
 
 The component plays a crucial role in three sections of the application: the Pokémon list, the user's collection, and the favorite Pokémon display. Within these areas, it efficiently renders vital information for each Pokémon, including the sprite, ID, and name. Moreover, users can conveniently add or remove a Pokémon from their collection by simply right-clicking on this component while on the Pokémon List page.
@@ -572,6 +590,14 @@ The _CurrentUserContext_ component grants access to and facilitates modification
 
 - Custom hooks: `useCurrentUser` and `useSetCurrentUser`. These hooks simplify the process of accessing the current user state and the function to update it within child components.
 - Inerceptors: The `useMemo()` hook is used to define two Axios interceptors. These interceptors are responsible for refreshing the authentication token and handling token expiration errors.
+
+#### [NotificationContext.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/contexts/NotificationContext.js)
+
+The _NotificationContext_ component provides a set of utility functions and a context setup for managing the current notification.
+
+- The code sets up a context called `CurrentNotificationContext` using `createContext()` to manage the state of the current notification.
+- The `CurrentNotificationProvider` component acts as a provider for the `CurrentNotificationContext` and wraps its child components, allowing them to access the current notification state.
+- Custom hooks, `useCurrentNotification` and `useSetCurrentNotification`, are provided to easily access and update the `currentNotification` state value from any child component within the scope of the `CurrentNotificationProvider`.
 
 ### Hooks
 
