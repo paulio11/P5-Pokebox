@@ -6,8 +6,8 @@ To ensure the smooth operation of Pokébox, it is essential to set up and deploy
 
 Forking will create a copy of my original repository on your own GitHub account.
 
-1. [Login](https://github.com/login) or [sign up](https://github.com/join) to GitHub.
-2. Locate [this](https://github.com/paulio11/P5-Pokebo-API) GitHub repository.
+1. [Login](https://github.com/login) to GitHub.
+2. Locate [this](https://github.com/paulio11/P5-Pokebox) GitHub repository.
 3. Click the **Fork** button at the top right of the page.
 4. You will now have a copy on your GitHub account.
 
@@ -25,7 +25,7 @@ If you want to edit any of the files I would suggest using Gitpod - a browser ba
 
 ## Setting Axios Defaults
 
-1. Open up [AxiosDefaults.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/api/AxiosDefaults.js) inside your GitPod workspace or edit it using GitHubs editor.
+1. Open up [AxiosDefaults.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/api/AxiosDefaults.js) inside your GitPod workspace or edit it using the GitHub editor.
 2. Change the `baseURL` value to match the URL of your deployed API endpoint.
 
 ![Editing Axios defaults](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/deployment-api.png)
