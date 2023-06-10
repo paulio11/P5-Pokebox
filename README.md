@@ -645,6 +645,8 @@ Utils.js contains the function `fetchMoreData()`. This function is used in the _
   - The results property is updated using the reduce function. The `data.results` array from the response is iterated over, and each new element is compared with the previous results array.
   - Duplicates are skipped, and non-duplicate elements are added to the accumulator array. Ensuring only new data is added.
 
+The three functions, `setTokenTimestamp()`, `shouldRefreshToken()`, and `removeTokenTimestamp()`, form a cohesive system that facilitates retrieving and decoding the refresh token expiry time, storing it in local storage, checking if the token needs to be refreshed, and finally, removing the timestamp from local storage upon user logout. This mechanism effectively mitigates console errors that may occur when a user is logged out.
+
 #### [PokeApi.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/utils/PokeApi.js)
 
 This file includes three functions:
@@ -696,6 +698,7 @@ Given more time, there are numerous additional features that could have been inc
 - [React Infinte Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) - Allows implementation of infinite scrolling and loading of data.
 - [Axios](https://axios-http.com/docs/intro) - A promise based HTTP client.
 - [React Router](https://reactrouter.com/en/main/start/overview) - Enables client side routing.
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode) - Helps decode JWT tokens to get timestamp expiry time.
 - [Font Awesome](https://fontawesome.com/) - An icon library with a vast collection of scalable vector icons for web and mobile.
 
 ### Software and Other

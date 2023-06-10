@@ -6,6 +6,7 @@ import { Button, Form, Alert } from "react-bootstrap";
 import styles from "../../styles/AuthForms.module.css";
 import useTitle from "../../hooks/useTitle";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+import { setTokenTimestamp } from "../../utils/Utils";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -26,6 +27,7 @@ const LogIn = () => {
       // Send login data to server and get response
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       navigate(`/trainer/${data.user.profile_id}`);
       setCurrentNotification(`You have logged in as ${data.user.username}.`);
     } catch (error) {

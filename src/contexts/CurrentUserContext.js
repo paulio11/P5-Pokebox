@@ -1,7 +1,14 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import axios from "axios";
 import { axiosRes, axiosReq } from "../api/AxiosDefaults";
 import { useNavigate } from "react-router-dom";
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -30,16 +37,19 @@ export const CurrentUserProvider = ({ children }) => {
     // Intercept requests and attempt to refresh the authentication token
     axiosReq.interceptors.request.use(
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (err) {
-          setCurrentUser((prevCurrentUser) => {
-            if (prevCurrentUser) {
-              navigate("/login");
-            }
-            return null;
-          });
-          return config;
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                navigate("/signin");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
+            return config;
+          }
         }
         return config;
       },
@@ -54,14 +64,15 @@ export const CurrentUserProvider = ({ children }) => {
       async (err) => {
         if (err.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post("dj-rest-auth/token/refresh/");
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                navigate("/login");
+                navigate("/signin");
               }
               return null;
             });
+            removeTokenTimestamp();
           }
           return axios(err.config);
         }

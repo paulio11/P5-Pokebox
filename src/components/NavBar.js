@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { useSetCurrentNotification } from "../contexts/NotificationContext";
+import { removeTokenTimestamp } from "../utils/Utils";
 
 const NavBar = () => {
   // Get current user from context
@@ -24,6 +25,7 @@ const NavBar = () => {
       // Send log out request to API and then set current user to none
       await axios.post("dj-rest-auth/logout");
       setCurrentUser(null);
+      removeTokenTimestamp();
       setCurrentNotification("You have been logged out.");
     } catch (error) {}
   };
