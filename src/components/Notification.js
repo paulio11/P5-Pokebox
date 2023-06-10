@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Notification.module.css";
 import { Toast } from "react-bootstrap";
 import {
@@ -9,11 +9,14 @@ import {
 const Notification = () => {
   const currentNotification = useCurrentNotification();
   const setCurrentNotification = useSetCurrentNotification();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     let timer;
     if (currentNotification) {
+      setShow(true);
       timer = setTimeout(() => {
+        setShow(false);
         setCurrentNotification(null);
       }, 6000);
     }
@@ -24,7 +27,7 @@ const Notification = () => {
 
   if (currentNotification) {
     return (
-      <Toast show={currentNotification} className={styles.Notification}>
+      <Toast show={show} className={styles.Notification}>
         <Toast.Body className={styles.Message}>
           {currentNotification}
         </Toast.Body>
