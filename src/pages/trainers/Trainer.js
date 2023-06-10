@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../styles/Trainer.module.css";
-import { ProgressBar, Row, Col } from "react-bootstrap";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import Ball from "../../components/Ball";
 

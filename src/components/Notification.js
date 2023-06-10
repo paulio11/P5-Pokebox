@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Notification.module.css";
-import { Toast } from "react-bootstrap";
+import Toast from "react-bootstrap/Toast";
 import {
   useCurrentNotification,
   useSetCurrentNotification,

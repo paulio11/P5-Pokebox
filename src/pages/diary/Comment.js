@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "../../styles/Comment.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentEditForm from "../diary/CommentEditForm";
 

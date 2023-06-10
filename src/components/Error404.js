@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import useTitle from "../hooks/useTitle";
 
@@ -17,7 +17,8 @@ const Error404 = (props) => {
         The {pokemon && "Pokémon"}
         {trainer && "trainer with ID:"}
         {post && "diary entry with ID:"}
-        {page && "page you were looking for"} <strong>{query && query} </strong>
+        {page && "page you were looking for"}{" "}
+        <strong>{query && query} </strong>
         could not be found.
       </p>
       <Button variant="danger" onClick={() => navigate(-1)}>

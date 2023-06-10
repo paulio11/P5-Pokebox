@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
 import LogIn from "./pages/auth/LogIn";

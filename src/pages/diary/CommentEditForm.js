@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { axiosRes } from "../../api/AxiosDefaults";
-import { Button, Form, Alert } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/CommentEditForm.module.css";
 import CustomModal from "../../components/CustomModal";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";

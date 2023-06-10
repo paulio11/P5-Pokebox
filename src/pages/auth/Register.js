@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/AuthForms.module.css";
 import useTitle from "../../hooks/useTitle";

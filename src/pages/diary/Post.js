@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
-import { Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useNavigate } from "react-router-dom";

@@ -1,5 +1,9 @@
 import React, { useRef, useState } from "react";
-import { Modal, Button, Form, Alert, Spinner } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import styles from "../../styles/AvatarModal.module.css";
 import { axiosReq } from "../../api/AxiosDefaults";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/ToTopButton.module.css";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const ToTopButton = () => {
   const [isVisible, setIsVisible] = useState();

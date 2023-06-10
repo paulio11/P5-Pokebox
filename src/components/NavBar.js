@@ -1,5 +1,6 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
 import brandlogo from "../assets/brandlogo.png";
 import styles from "../styles/NavBar.module.css";

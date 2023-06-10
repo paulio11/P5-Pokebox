@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Alert, Button, Col, Form, Row } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import {
   useCurrentUser,
   useSetCurrentUser,

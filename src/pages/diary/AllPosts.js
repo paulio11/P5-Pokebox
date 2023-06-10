@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import LoadingText from "../../components/LoadingText";
 import { axiosReq } from "../../api/AxiosDefaults";
-import { Alert, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
 import Post from "./Post";
 import styles from "../../styles/AllPosts.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";

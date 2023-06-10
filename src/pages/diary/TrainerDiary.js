@@ -3,7 +3,7 @@ import { axiosReq } from "../../api/AxiosDefaults";
 import LoadingText from "../../components/LoadingText";
 import Post from "./Post";
 import styles from "../../styles/TrainerDariy.module.css";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
 

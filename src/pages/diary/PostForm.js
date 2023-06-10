@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
-import { Form, Button, Row, Col, Alert, Spinner } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";

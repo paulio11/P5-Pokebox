@@ -3,16 +3,14 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
 import LoadingText from "../../components/LoadingText";
 import styles from "../../styles/TrainerProfilePage.module.css";
-import {
-  Col,
-  ProgressBar,
-  Row,
-  Accordion,
-  Card,
-  OverlayTrigger,
-  Tooltip,
-  Alert,
-} from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import Row from "react-bootstrap/Row";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Alert from "react-bootstrap/Alert";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";

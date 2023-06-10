@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
-import { Alert, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
 import styles from "../../styles/PokemonList.module.css";
 import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";

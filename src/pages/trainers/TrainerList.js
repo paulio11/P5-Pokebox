@@ -3,7 +3,7 @@ import LoadingText from "../../components/LoadingText";
 import { axiosReq } from "../../api/AxiosDefaults";
 import Trainer from "./Trainer";
 import styles from "../../styles/TrainerList.module.css";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/Utils";
 import useTitle from "../../hooks/useTitle";
