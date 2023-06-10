@@ -6,8 +6,10 @@ import {
   useState,
 } from "react";
 import axios from "axios";
-import { axiosRes, axiosReq } from "../api/AxiosDefaults";
 import { useNavigate } from "react-router-dom";
+// API
+import { axiosRes, axiosReq } from "../api/AxiosDefaults";
+// Utils
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
 
 export const CurrentUserContext = createContext();

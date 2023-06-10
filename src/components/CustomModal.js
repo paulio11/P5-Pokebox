@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -8,6 +9,7 @@ const CustomModal = (props) => {
   const handleShow = () => setShow(true);
   const { buttonText, heading, children } = props;
 
+  // Return a modal with fields for button text, heading, and method to show/hide.
   return (
     <>
       <Button variant="dark" onClick={handleShow}>

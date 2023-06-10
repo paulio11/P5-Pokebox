@@ -1,5 +1,7 @@
 import React from "react";
+// CSS
 import styles from "../styles/LoadingText.module.css";
+// Bootstrap
 import Spinner from "react-bootstrap/Spinner";
 
 const LoadingText = (query) => {

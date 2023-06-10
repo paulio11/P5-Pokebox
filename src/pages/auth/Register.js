@@ -1,22 +1,28 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-import { Link, useNavigate } from "react-router-dom";
+// CSS
 import styles from "../../styles/AuthForms.module.css";
+// Hooks
 import useTitle from "../../hooks/useTitle";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const Register = () => {
+  // State variables.
+  const [errors, setErrors] = useState({});
   const [registerData, setRegisterData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
   const { username, password1, password2 } = registerData;
+
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("Register");
@@ -28,6 +34,7 @@ const Register = () => {
     });
   };
 
+  // Handles user registration, sends data to endpoint, user notified.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -35,10 +42,10 @@ const Register = () => {
       navigate("/login");
       setCurrentNotification("Registration successfull.");
     } catch (error) {
-      // Catch any errors in the response
       setErrors(error.response?.data);
     }
   };
+
   return (
     <>
       <h1>Register</h1>

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+// CSS
 import styles from "../../styles/Comment.module.css";
+// Components
 import PostCommentFooter from "../../components/PostCommentFooter";
+import CommentEditForm from "../diary/CommentEditForm";
+// Bootstrap
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import CommentEditForm from "../diary/CommentEditForm";
 
 const Comment = (props) => {
   const {

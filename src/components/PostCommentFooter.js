@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "../styles/PostCommentFooter.module.css";
 import { Link } from "react-router-dom";
+// CSS
+import styles from "../styles/PostCommentFooter.module.css";
 
 const PostCommentFooter = (props) => {
   const { profile_id, profile_avatar, owner } = props;

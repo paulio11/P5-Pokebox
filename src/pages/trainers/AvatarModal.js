@@ -1,22 +1,29 @@
 import React, { useRef, useState } from "react";
+// Bootstrap
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+// CSS
 import styles from "../../styles/AvatarModal.module.css";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const AvatarModal = (props) => {
   const { showAvatarModal, setShowAvatarModal, data, reload, value } = props;
   const { id, avatar } = data;
-  const [newAvatar, setNewAvatar] = useState(null);
   const avatarInput = useRef(null);
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
+
+  // State variables.
+  const [newAvatar, setNewAvatar] = useState(null);
+  const [errors, setErrors] = useState({});
   const [hideSpinner, setHideSpinner] = useState(true);
 
+  // Creates formData and sets PATCH request to endpoint, updating the profile avatar.
   const handleSubmit = async (event) => {
     event.preventDefault();
     setHideSpinner(false);
@@ -33,6 +40,7 @@ const AvatarModal = (props) => {
     }
   };
 
+  // Handles changes to the avatar.
   const handleChange = (event) => {
     if (avatarInput.current.files.length) {
       URL.revokeObjectURL(newAvatar);

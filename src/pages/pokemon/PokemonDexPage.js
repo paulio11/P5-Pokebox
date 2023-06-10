@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// Utils
 import { FetchPokemonData, FetchSpeciesData } from "../../utils/PokeApi";
 import { UpdateCollection } from "../../utils/Collection";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// CSS
 import styles from "../../styles/PokemonDexPage.module.css";
+// Bootstrap
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import ProgressBar from "react-bootstrap/ProgressBar";
+// Components
 import LoadingText from "../../components/LoadingText";
 import Error404 from "../../components/Error404";
 import useTitle from "../../hooks/useTitle";
-import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const PokemonDexPage = () => {
   const { id } = useParams();
-  const [loaded, setLoaded] = useState(false);
   const currentUser = useCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
+
+  // State variables.
+  const [loaded, setLoaded] = useState(false);
   const [pData, setPData] = useState({});
   const [sData, setSData] = useState({});
   const [uData, setUData] = useState({});
   const [hasPokemon, setHasPokemon] = useState(false);
   const [isFav, setIsFav] = useState(false);
   const [noResults, setNoResults] = useState(false);
-  const setCurrentNotification = useSetCurrentNotification();
 
+  // Fetches data for Pokémon with matching ID.
+  // Fetches both Pokémon data and species data.
+  // Fetches user profile to get collection and favorite data.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,6 +66,15 @@ const PokemonDexPage = () => {
     fetchData();
   }, [id, currentUser]);
 
+  // Compare user data with Pokémon name to see if Pokémon is favorite.
+  // Check if user has collected Pokémon.
+  useEffect(() => {
+    setIsFav(uData.favorite === pData.name);
+    if (uData.pokemon?.length) {
+      setHasPokemon(uData.pokemon.includes(pData.id));
+    }
+  }, [uData.favorite, uData.pokemon, pData.name, pData.id]);
+
   useTitle(
     `${
       sData.name
@@ -64,13 +84,9 @@ const PokemonDexPage = () => {
     }`
   );
 
-  useEffect(() => {
-    setIsFav(uData.favorite === pData.name);
-    if (uData.pokemon?.length) {
-      setHasPokemon(uData.pokemon.includes(pData.id));
-    }
-  }, [uData.favorite, uData.pokemon, pData.name, pData.id]);
-
+  // Handles clicks on the collection button.
+  // Adds to collection if user does not have Pokémon.
+  // Removes from collection if user does have Pokémon.
   const handleClick = () => {
     setHasPokemon(!hasPokemon);
     UpdateCollection(pData.id, uData, setUData);
@@ -81,6 +97,7 @@ const PokemonDexPage = () => {
     );
   };
 
+  // Sends a PATCH request to the endpoint updating the favorite Pokémon with the string from pData.name.
   const handleFavorite = async () => {
     try {
       const response = await axiosReq.patch(
@@ -95,6 +112,7 @@ const PokemonDexPage = () => {
     } catch (error) {}
   };
 
+  // Returns a 404 error page if Pokémon with the ID provided is not found.
   if (noResults) {
     return <Error404 pokemon query={id} />;
   }

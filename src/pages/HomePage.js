@@ -1,16 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+// CSS
 import styles from "../styles/HomePage.module.css";
+// Assets
 import brandLogo from "../assets/brandlogo.webp";
 import useTitle from "../hooks/useTitle";
 import trainers from "../assets/home-trainers.webp";
 import diary from "../assets/home-diary.webp";
-import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   useTitle("Home");
 
+  // Generates random num between 1 and 1010.
+  // Used in img src below to get a random Pokémon image.
   const generateRandomNumber = () => {
     var min = 1;
     var max = 1010;

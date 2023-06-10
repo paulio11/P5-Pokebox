@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
+// Utils
 import { FetchPokemonData, FetchPokemonList } from "../../utils/PokeApi";
+// Bootstrap
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import styles from "../../styles/PokemonList.module.css";
+// Components
 import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";
-import Sobble from "../../assets/sobble.webp";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from "../../api/AxiosDefaults";
 import CustomModal from "../../components/CustomModal";
+// Assets
+import Sobble from "../../assets/sobble.webp";
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// API
+import { axiosReq } from "../../api/AxiosDefaults";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const PokemonList = () => {
+  const currentUser = useCurrentUser();
+
+  // State variables.
   const [loaded, setLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
-  const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState(null);
 
   useTitle("Pokémon");
 
+  // Fetches Pokémon list then the Pokémon data.
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -35,6 +45,7 @@ const PokemonList = () => {
       } catch (error) {}
     };
 
+    // Fetch current user's profile data.
     const fetchProfile = async () => {
       if (currentUser) {
         const response = await axiosReq.get(
@@ -58,6 +69,7 @@ const PokemonList = () => {
     };
   }, [query, currentUser]);
 
+  // Handles search form change, converts query to lower case.
   const handleChange = (event) => {
     setQuery(event.target.value.toLowerCase());
     setLoaded(false);
@@ -95,7 +107,6 @@ const PokemonList = () => {
           onChange={handleChange}
         />
       </Form>
-
       {loaded ? (
         <>
           <div className={styles.ResultsContainer}>

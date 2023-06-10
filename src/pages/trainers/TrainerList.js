@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
+// Components
 import LoadingText from "../../components/LoadingText";
-import { axiosReq } from "../../api/AxiosDefaults";
 import Trainer from "./Trainer";
-import styles from "../../styles/TrainerList.module.css";
-import Form from "react-bootstrap/Form";
 import InfiniteScroll from "react-infinite-scroll-component";
+// API
+import { axiosReq } from "../../api/AxiosDefaults";
+// CSS
+import styles from "../../styles/TrainerList.module.css";
+// Bootstrap
+import Form from "react-bootstrap/Form";
+// Utils
 import { fetchMoreData } from "../../utils/Utils";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const TrainerList = () => {
+  // State variables.
   const [loaded, setLoaded] = useState(false);
   const [results, setResults] = useState([]);
   const [query, setQuery] = useState("");
@@ -18,6 +25,7 @@ const TrainerList = () => {
 
   useTitle("Trainers");
 
+  // Gets list of trainers from API, filtered or sorted depending on form values.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,11 +57,13 @@ const TrainerList = () => {
     };
   }, [query, sortBy, sortOrder]);
 
+  // Handles search form change, converts query to lower case.
   const handleChange = (event) => {
     setQuery(event.target.value.toLowerCase());
     setLoaded(false);
   };
 
+  // Handles sorting form changes
   const handleSortChange = (event) => {
     const { name, value } = event.target;
     if (name === "sort_by") {

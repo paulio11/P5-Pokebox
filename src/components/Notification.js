@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+// CSS
 import styles from "../styles/Notification.module.css";
+// Bootstrap
 import Toast from "react-bootstrap/Toast";
+// Contexts
 import {
   useCurrentNotification,
   useSetCurrentNotification,
@@ -11,6 +14,7 @@ const Notification = () => {
   const setCurrentNotification = useSetCurrentNotification();
   const [show, setShow] = useState(false);
 
+  // Shows notification if exists, sets to null after timeout.
   useEffect(() => {
     let timer;
     if (currentNotification) {

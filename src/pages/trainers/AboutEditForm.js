@@ -1,20 +1,27 @@
 import React, { useState } from "react";
+// API
 import { axiosRes } from "../../api/AxiosDefaults";
+// Components
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const AboutEditForm = (props) => {
   const { id, about, setShowAboutEdit, setData, data } = props;
-  const [formAbout, setFormAbout] = useState(about);
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
 
+  // State variables.
+  const [formAbout, setFormAbout] = useState(about);
+  const [errors, setErrors] = useState({});
+
+  // Handles changes in about form.
   const handleChange = (event) => {
     setFormAbout(event.target.value);
   };
 
+  // Sends PATCH request to endpoint with updated profile data.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

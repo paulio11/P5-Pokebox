@@ -1,14 +1,19 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+// CSS
 import styles from "../../styles/Post.module.css";
+// Bootstrap
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+// API
 import { axiosRes } from "../../api/AxiosDefaults";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link, useNavigate } from "react-router-dom";
-import PostCommentFooter from "../../components/PostCommentFooter";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// Components
+import PostCommentFooter from "../../components/PostCommentFooter";
 
 const Post = (props) => {
   const {
@@ -24,11 +29,13 @@ const Post = (props) => {
     comment_count,
     setPosts,
   } = props;
+  const setCurrentNotification = useSetCurrentNotification();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
-  const setCurrentNotification = useSetCurrentNotification();
 
+  // Sets post request to likes endpoint creating a new like object.
+  // Modifies post data to increment the like count and add the like ID
   const handleLike = async () => {
     if (currentUser?.username === owner || !currentUser) {
       return;
@@ -48,6 +55,8 @@ const Post = (props) => {
     }
   };
 
+  // Sends a delete request to remove the like.
+  // Modifies post data to lower the like count and set like ID to null.
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`likes/${like_id}`);

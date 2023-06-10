@@ -1,21 +1,31 @@
 import React, { useState } from "react";
+// API
 import { axiosRes } from "../../api/AxiosDefaults";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+// CSS
 import styles from "../../styles/CommentForm.module.css";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const CommentForm = (props) => {
   const { post, setComments, setPost } = props;
-  const [body, setBody] = useState("");
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
 
+  // State variables.
+  const [body, setBody] = useState("");
+  const [errors, setErrors] = useState({});
+
+  // Handles change in the value of the comment form.
   const handleChange = (event) => {
     setBody(event.target.value);
   };
 
+  // Sends a post request to the comments endpoint with the formData.
+  // Sets comments data to include new comment.
+  // Sets post data to increase comment count.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

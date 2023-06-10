@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Components
 import Post from "../../pages/diary/Post";
 import Comment from "../../pages/diary/Comment";
 import LoadingText from "../../components/LoadingText";
+import Error404 from "../../components/Error404";
+import InfiniteScroll from "react-infinite-scroll-component";
+// Bootstrap
 import Alert from "react-bootstrap/Alert";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import CommentForm from "./CommentForm";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// CSS
 import styles from "../../styles/PostPage.module.css";
-import Error404 from "../../components/Error404";
-import InfiniteScroll from "react-infinite-scroll-component";
+// Utils
 import { fetchMoreData } from "../../utils/Utils";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const PostPage = () => {
-  const { id } = useParams();
+  // State variables.
   const [loaded, setLoaded] = useState(false);
   const [post, setPost] = useState({ results: [] });
   const [comments, setComments] = useState({ results: [] });
-  const currentUser = useCurrentUser();
   const [noResults, setNoResults] = useState(false);
+
+  const currentUser = useCurrentUser();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +56,7 @@ const PostPage = () => {
 
   useTitle(`Diary Entry #${id}`);
 
+  // Returns a 404 error page if post with the ID provided is not found.
   if (noResults) {
     return <Error404 post query={id} />;
   }

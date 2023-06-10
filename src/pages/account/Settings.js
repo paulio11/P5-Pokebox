@@ -1,33 +1,39 @@
 import React, { useState } from "react";
+import { axiosRes } from "../../api/AxiosDefaults";
+import { useNavigate } from "react-router-dom";
+// Bootstrap
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+// Contexts
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import { axiosRes } from "../../api/AxiosDefaults";
-import styles from "../../styles/Settings.module.css";
-import useTitle from "../../hooks/useTitle";
-import { useNavigate } from "react-router-dom";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// CSS
+import styles from "../../styles/Settings.module.css";
+// Hooks
+import useTitle from "../../hooks/useTitle";
 
 const Settings = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const setCurrentNotification = useSetCurrentNotification();
+  const navigate = useNavigate();
 
+  // State variables.
   const [newUsername, setNewUsername] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   useTitle("Account Settings");
 
+  // Sends a PATCH request to update the username.
   const handleUpdateUsername = async (event) => {
     event.preventDefault();
     try {
@@ -42,6 +48,7 @@ const Settings = () => {
     }
   };
 
+  // Sends a POST request to update password.
   const handleUpdatePassword = async (event) => {
     event.preventDefault();
     try {
@@ -70,6 +77,7 @@ const Settings = () => {
               <Col xs={12} lg={6}>
                 <h2>Username</h2>
                 <hr />
+                {/* Username form */}
                 <Form
                   onSubmit={handleUpdateUsername}
                   className={styles.UsernameForm}
@@ -95,6 +103,7 @@ const Settings = () => {
               <Col xs={12} lg={6}>
                 <h2>Password</h2>
                 <hr />
+                {/* Password form */}
                 <Form onSubmit={handleUpdatePassword}>
                   <Form.Group>
                     <Form.Label hidden>Old Password:</Form.Label>

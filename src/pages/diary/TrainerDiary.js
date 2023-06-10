@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Components
 import LoadingText from "../../components/LoadingText";
 import Post from "./Post";
-import styles from "../../styles/TrainerDariy.module.css";
-import Alert from "react-bootstrap/Alert";
 import InfiniteScroll from "react-infinite-scroll-component";
+// CSS
+import styles from "../../styles/TrainerDariy.module.css";
+// Bootstrap
+import Alert from "react-bootstrap/Alert";
+// Utils
 import { fetchMoreData } from "../../utils/Utils";
 
 const TrainerDiary = (props) => {
@@ -12,6 +17,7 @@ const TrainerDiary = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState({});
 
+  // Fetch post data for post with owner matching ID
   useEffect(() => {
     const fetchPosts = async () => {
       try {

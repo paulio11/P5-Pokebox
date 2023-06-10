@@ -1,9 +1,10 @@
-import Container from "react-bootstrap/Container";
-import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
+// Bootstrap
+import Container from "react-bootstrap/Container";
+// Components and Pages
+import NavBar from "./components/NavBar";
 import LogIn from "./pages/auth/LogIn";
 import Register from "./pages/auth/Register";
-import styles from "./styles/App.module.css";
 import PokemonList from "./pages/pokemon/PokemonList";
 import PokemonDexPage from "./pages/pokemon/PokemonDexPage";
 import TrainerList from "./pages/trainers/TrainerList";
@@ -18,6 +19,8 @@ import Settings from "./pages/account/Settings";
 import Error404 from "./components/Error404";
 import HomePage from "./pages/HomePage";
 import Notification from "./components/Notification";
+// CSS
+import styles from "./styles/App.module.css";
 
 function App() {
   return (
@@ -43,6 +46,7 @@ function App() {
               <Route exact path="/newpost" element={<PostForm />} />
               <Route exact path="/editpost/:id" element={<PostEditForm />} />
               <Route exact path="/settings" element={<Settings />} />
+              {/* Route catches all invalid requests, returns 404 page */}
               <Route path="*" element={<Error404 page />} />
             </Routes>
           </Container>

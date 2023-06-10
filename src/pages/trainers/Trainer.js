@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+// CSS
 import styles from "../../styles/Trainer.module.css";
+// Bootstrap
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+// Components
 import Ball from "../../components/Ball";
 
 const Trainer = (props) => {

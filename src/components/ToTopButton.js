@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+// CSS
 import styles from "../styles/ToTopButton.module.css";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 
 const ToTopButton = () => {
   const [isVisible, setIsVisible] = useState();
 
+  // Smoothly scroll to top on click
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Show/hide button based on scroll ammount
   const handleScroll = () => {
-    if (window.pageYOffset > 100) {
+    if (window.scrollY > 100) {
       setIsVisible(true);
     } else {
       setIsVisible(false);

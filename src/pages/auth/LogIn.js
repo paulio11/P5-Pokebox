@@ -1,43 +1,51 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useNavigate } from "react-router-dom";
+// Contexts
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/AuthForms.module.css";
+// Hooks
 import useTitle from "../../hooks/useTitle";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// Utils
 import { setTokenTimestamp } from "../../utils/Utils";
 
 const LogIn = () => {
   const setCurrentUser = useSetCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
+  const navigate = useNavigate();
+
+  // State variables.
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
   });
-  const { username, password } = logInData;
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-  const setCurrentNotification = useSetCurrentNotification();
+
+  const { username, password } = logInData;
 
   useTitle("Log In");
 
+  // Handles login, sends data to login endpoint, sets currentUser and notifies user.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Send login data to server and get response
       const { data } = await axios.post("/dj-rest-auth/login/", logInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
       navigate(`/trainer/${data.user.profile_id}`);
       setCurrentNotification(`You have logged in as ${data.user.username}.`);
     } catch (error) {
-      // Catch any errors in the response
       setErrors(error.response?.data);
     }
   };
 
+  // Handles form change.
   const handleChange = (event) => {
     setLogInData({
       ...logInData,

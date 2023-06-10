@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
-import LoadingText from "../../components/LoadingText";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Components
+import LoadingText from "../../components/LoadingText";
+import InfiniteScroll from "react-infinite-scroll-component";
+// Bootstrap
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import Post from "./Post";
+// CSS
 import styles from "../../styles/AllPosts.module.css";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import InfiniteScroll from "react-infinite-scroll-component";
+// Utils
 import { fetchMoreData } from "../../utils/Utils";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const AllPosts = () => {
+  // State variables.
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState({});
   const [sortBy, setSortBy] = useState("created");
   const [sortOrder, setSortOrder] = useState("-");
   const [likeCheck, setLikeCheck] = useState(false);
   const [imageCheck, setImageCheck] = useState(false);
+
   const currentUser = useCurrentUser();
 
   useTitle("Diary Entries");
 
+  // Fetches post data
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -38,6 +48,7 @@ const AllPosts = () => {
     fetchPosts();
   }, [sortBy, sortOrder, likeCheck, imageCheck, currentUser?.profile_id]);
 
+  // Handles sorting form changes
   const handleSortChange = (event) => {
     const { name, value } = event.target;
     switch (name) {

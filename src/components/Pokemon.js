@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Pokemon.module.css";
-import { UpdateCollection } from "../utils/Collection";
 import { useNavigate } from "react-router-dom";
+// CSS
+import styles from "../styles/Pokemon.module.css";
+// Utils
+import { UpdateCollection } from "../utils/Collection";
+// Contexts
 import { useSetCurrentNotification } from "../contexts/NotificationContext";
 
 const Pokemon = (props) => {
@@ -18,12 +21,14 @@ const Pokemon = (props) => {
   const navigate = useNavigate();
   const setCurrentNotification = useSetCurrentNotification();
 
+  // Set collected state if Pokémon ID in pokemon array.
   useEffect(() => {
     if (profileData) {
       setCollected(profileData?.pokemon?.includes(id));
     }
   }, [profileData, id]);
 
+  // Override right click to manage collection.
   const handleRightClick = (event) => {
     event.preventDefault();
     if (profileData && listPage) {
@@ -37,6 +42,7 @@ const Pokemon = (props) => {
     }
   };
 
+  // Define className depending on props and state.
   const className = `${styles.PokemonCard} ${
     trainerPage
       ? styles.TrainerPage

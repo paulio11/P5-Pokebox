@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Components
 import LoadingText from "../../components/LoadingText";
+import Pokemon from "../../components/Pokemon";
+import Ball from "../../components/Ball";
+import avataroverlay from "../../assets/avataroverlay.webp";
+import TrainerDiary from "../diary/TrainerDiary";
+import AboutEditForm from "./AboutEditForm";
+import AvatarModal from "./AvatarModal";
+import Error404 from "../../components/Error404";
+// CSS
 import styles from "../../styles/TrainerProfilePage.module.css";
+// Bootstrap
 import Col from "react-bootstrap/Col";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Row from "react-bootstrap/Row";
@@ -11,33 +22,32 @@ import Card from "react-bootstrap/Card";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Alert from "react-bootstrap/Alert";
+// Utils
 import { FetchPokemonData } from "../../utils/PokeApi";
-import Pokemon from "../../components/Pokemon";
-import Ball from "../../components/Ball";
-import avataroverlay from "../../assets/avataroverlay.webp";
-import TrainerDiary from "../diary/TrainerDiary";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import AboutEditForm from "./AboutEditForm";
-import AvatarModal from "./AvatarModal";
-import Error404 from "../../components/Error404";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.profile_id.toString() === id;
+
+  // State variables.
   const [loaded, setLoaded] = useState(false);
   const [collectionLoaded, setCollectionLoaded] = useState(false);
-  const [data, setData] = useState([]); // Profile data
-  const { owner, created, avatar, about, favorite, pokemon } = data;
   const [colData, setColData] = useState([]); // Collection data
   const [favData, setFavData] = useState(null); // Favorite Pokémon data
   const [showAboutEdit, setShowAboutEdit] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false); // For avatar
-  const currentUser = useCurrentUser();
-  const is_owner = currentUser?.profile_id.toString() === id;
   const [noResults, setNoResults] = useState(false);
   const [avatarReload, setAvatarReload] = useState(0);
+  const [data, setData] = useState([]); // Profile data
+  const { owner, created, avatar, about, favorite, pokemon } = data;
 
+  // Fetch profile data.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,6 +69,7 @@ const TrainerProfilePage = () => {
 
   useTitle(`${owner ? owner : "Loading..."}`);
 
+  // Fetch data for profile's favorite Pokémon.
   useEffect(() => {
     const getFavData = async () => {
       try {
@@ -70,6 +81,7 @@ const TrainerProfilePage = () => {
     getFavData();
   }, [favorite]);
 
+  // Fetches data for Pokémon in users collection when clicked.
   const handleClick = async () => {
     if (pokemon?.length && !collectionLoaded) {
       try {
@@ -80,10 +92,12 @@ const TrainerProfilePage = () => {
     setCollectionLoaded(true);
   };
 
+  // Toggles display of "Change avatar" graphic overlay.
   const handleHover = () => {
     setIsHovered(!isHovered);
   };
 
+  // Returns a 404 error page if trainer/user with the ID provided is not found.
   if (noResults) {
     return <Error404 trainer query={id} />;
   }

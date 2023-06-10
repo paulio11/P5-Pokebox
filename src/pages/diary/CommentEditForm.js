@@ -1,22 +1,30 @@
 import React, { useState } from "react";
+// API
 import { axiosRes } from "../../api/AxiosDefaults";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/CommentEditForm.module.css";
+// Components
 import CustomModal from "../../components/CustomModal";
+// Contexts
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const CommentEditForm = (props) => {
   const { id, body, setShowEditForm, setComments, setPost } = props;
-  const [commentBody, setCommentBody] = useState(body);
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
 
+  // State variables.
+  const [commentBody, setCommentBody] = useState(body);
+  const [errors, setErrors] = useState({});
+
+  // Handles change in the value of the comment form.
   const handleChange = (event) => {
     setCommentBody(event.target.value);
   };
 
+  // Sends comment data to endpoint, updates "comments".
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -41,6 +49,8 @@ const CommentEditForm = (props) => {
     }
   };
 
+  // Sends delete request to endpoint, updates "comments" data.
+  // Updates "post data" and lowers comment_count.
   const handleDelete = async () => {
     setShowEditForm(false);
     try {

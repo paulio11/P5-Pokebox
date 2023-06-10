@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// PokéAPI
 export const pokeApi = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
   withCredentials: false,
@@ -7,6 +8,7 @@ export const pokeApi = axios.create({
   headers: { "Cache-Control": "no-cache" },
 });
 
+// Pokébox back-end API
 // Enter your backend API url in the following variable:
 axios.defaults.baseURL = "https://project-5-backend.herokuapp.com/";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";

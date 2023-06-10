@@ -1,41 +1,50 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+// API
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// Bootstrap
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+// CSS
 import styles from "../../styles/PostForm.module.css";
+// Components
 import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
 import CustomModal from "../../components/CustomModal";
 import Error404 from "../../components/Error404";
+// Hooks
 import useTitle from "../../hooks/useTitle";
-import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const PostEditForm = () => {
-  const { id } = useParams();
+  // State variables.
+  const [errors, setErrors] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const [hideSpinner, setHideSpinner] = useState(true);
+  const [noResults, setNoResults] = useState(false);
   const [postData, setPostData] = useState({
     owner: "",
     body: "",
     image: "",
   });
   const { body, image, owner } = postData;
-  const [loaded, setLoaded] = useState(false);
+
+  const { id } = useParams();
   const imageInput = useRef(null);
   const navigate = useNavigate();
+  const setNotification = useSetCurrentNotification();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === postData?.owner;
-  const [errors, setErrors] = useState({});
-  const [noResults, setNoResults] = useState(false);
-  const setNotification = useSetCurrentNotification();
-  const [hideSpinner, setHideSpinner] = useState(true);
 
   useTitle("Editing Diary Entry");
 
+  // Fetches post data.
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -54,6 +63,7 @@ const PostEditForm = () => {
     fetchPost();
   }, [id]);
 
+  // Handles changes in post body form.
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -61,6 +71,7 @@ const PostEditForm = () => {
     });
   };
 
+  // Handles changes to the post image.
   const handleImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -71,6 +82,7 @@ const PostEditForm = () => {
     }
   };
 
+  // Creates formData and sends PUT request to endpoint editing the post object.
   const handleSubmit = async (event) => {
     event.preventDefault();
     setHideSpinner(false);
@@ -93,6 +105,7 @@ const PostEditForm = () => {
     }
   };
 
+  // Sends DELETE request to endpoint deleting the post object.
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`posts/${id}`);
@@ -105,6 +118,7 @@ const PostEditForm = () => {
     }
   };
 
+  // Returns a 404 error page if post with the ID provided is not found.
   if (noResults) {
     return <Error404 post query={id} />;
   }

@@ -1,33 +1,42 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+// API
 import { axiosReq } from "../../api/AxiosDefaults";
+// Bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+// CSS
 import styles from "../../styles/PostForm.module.css";
+// Components
 import PostCommentFooter from "../../components/PostCommentFooter";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
+// Hooks
 import useTitle from "../../hooks/useTitle";
 
 const PostForm = () => {
+  // State variables.
+  const [errors, setErrors] = useState({});
+  const [hideSpinner, setHideSpinner] = useState(true);
   const [postData, setPostData] = useState({
     body: "",
     image: "",
   });
   const { body, image } = postData;
+
   const imageInput = useRef();
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
-  const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
-  const [hideSpinner, setHideSpinner] = useState(true);
 
   useTitle("New Diary Entry");
 
+  // Gets the current time to display in post object.
   const getCurrentTime = () => {
     const now = new Date();
     const options = {
@@ -40,8 +49,10 @@ const PostForm = () => {
     const formattedTime = now.toLocaleString("en-GB", options);
     return formattedTime;
   };
+
   const currentTime = getCurrentTime();
 
+  // Handles changes in post body form.
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -49,6 +60,7 @@ const PostForm = () => {
     });
   };
 
+  // Handles changes to the post image.
   const handleImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -59,6 +71,7 @@ const PostForm = () => {
     }
   };
 
+  // Creates formData and sends POST request to endpoint creating a post object.
   const handleSubmit = async (event) => {
     event.preventDefault();
     setHideSpinner(false);
