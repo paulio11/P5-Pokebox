@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/HomePage.module.css";
-import brandLogo from "../assets/brandlogo.png";
+import brandLogo from "../assets/brandlogo.webp";
 import useTitle from "../hooks/useTitle";
-import trainers from "../assets/home-trainers.png";
-import diary from "../assets/home-diary.png";
+import trainers from "../assets/home-trainers.webp";
+import diary from "../assets/home-diary.webp";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
@@ -22,7 +22,7 @@ const HomePage = () => {
   return (
     <>
       <div className={styles.Header}>
-        <img src={brandLogo} width={60} alt="Pokébox pokéball logo" />
+        <img src={brandLogo} alt="Pokébox pokéball logo" />
         <h1>POKÉBOX</h1>
       </div>
       <div className={styles.ItemContainer}>
@@ -39,7 +39,9 @@ const HomePage = () => {
         <div className={styles.Item} onClick={() => navigate("/trainers")}>
           <div>
             <h2>Trainers</h2>
-            <p>Discover our trainers and see who has the biggest collection!</p>
+            <p>
+              Discover our trainers and see who has the biggest collection!
+            </p>
           </div>
           <img src={trainers} alt="Pokémon trainers" />
         </div>

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import styles from "../../styles/PokemonList.module.css";
 import Pokemon from "../../components/Pokemon";
 import LoadingText from "../../components/LoadingText";
-import Sobble from "../../assets/sobble.png";
+import Sobble from "../../assets/sobble.webp";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/AxiosDefaults";
 import CustomModal from "../../components/CustomModal";

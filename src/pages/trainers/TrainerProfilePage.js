@@ -14,7 +14,7 @@ import Alert from "react-bootstrap/Alert";
 import { FetchPokemonData } from "../../utils/PokeApi";
 import Pokemon from "../../components/Pokemon";
 import Ball from "../../components/Ball";
-import avataroverlay from "../../assets/avataroverlay.png";
+import avataroverlay from "../../assets/avataroverlay.webp";
 import TrainerDiary from "../diary/TrainerDiary";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import AboutEditForm from "./AboutEditForm";

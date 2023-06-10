@@ -1,8 +1,8 @@
 import React from "react";
-import pokeball from "../assets/pokeball.png";
-import greatball from "../assets/greatball.png";
-import ultraball from "../assets/ultraball.png";
-import masterball from "../assets/masterball.png";
+import pokeball from "../assets/pokeball.webp";
+import greatball from "../assets/greatball.webp";
+import ultraball from "../assets/ultraball.webp";
+import masterball from "../assets/masterball.webp";
 import styles from "../styles/Pokeball.module.css";
 
 const Ball = (props) => {

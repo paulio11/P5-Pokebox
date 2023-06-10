@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
-import brandlogo from "../assets/brandlogo.png";
+import brandlogo from "../assets/brandlogo.webp";
 import styles from "../styles/NavBar.module.css";
 import {
   useCurrentUser,
