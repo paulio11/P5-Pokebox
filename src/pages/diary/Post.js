@@ -70,7 +70,11 @@ const Post = (props) => {
           <div>
             {is_owner && (
               <OverlayTrigger overlay={<Tooltip>Edit diary entry</Tooltip>}>
-                <Link to={`/editpost/${id}`} className={styles.EditLink}>
+                <Link
+                  to={`/editpost/${id}`}
+                  className={styles.EditLink}
+                  aria-label={`Edit diary entry ${id}`}
+                >
                   <i className="fas fa-pen-to-square"></i>
                 </Link>
               </OverlayTrigger>

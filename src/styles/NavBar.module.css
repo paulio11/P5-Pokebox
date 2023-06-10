@@ -9,7 +9,7 @@
 
 .NavLink {
   padding: 0.5rem 1rem 0.5rem 0;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .NavLinkActive {
@@ -20,12 +20,12 @@
 .NavLink:hover,
 .NavLinkActive:hover {
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 1);
 }
 
 .LoggedInAs {
   padding: 0.5rem 1rem 0.5rem 0;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .LoggedInAs > a {

@@ -134,6 +134,7 @@ const PostEditForm = () => {
                     value={body}
                     onChange={handleChange}
                     maxLength={400}
+                    aria-label="Diary entry text"
                   />
                 </Form.Group>
                 {errors.body?.map((message, index) => (

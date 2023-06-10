@@ -94,12 +94,14 @@ const AllPosts = () => {
               label="Show only entries I liked"
               name="like_check"
               onChange={handleSortChange}
+              aria-label="Show only entries I liked"
             />
           )}
           <Form.Check
             label="Show only entries with an image"
             name="image_check"
             onChange={handleSortChange}
+            aria-label="Show only entries with an image"
           />
         </div>
       </Form>

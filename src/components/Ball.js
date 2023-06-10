@@ -18,7 +18,15 @@ const Ball = (props) => {
     ballImage = masterball;
   }
 
-  return <img src={ballImage} alt="ball" className={styles.Ball} />;
+  return (
+    <img
+      src={ballImage}
+      alt="ball"
+      className={styles.Ball}
+      width={40}
+      height={40}
+    />
+  );
 };
 
 export default Ball;

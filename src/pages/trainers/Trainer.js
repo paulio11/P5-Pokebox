@@ -42,6 +42,7 @@ const Trainer = (props) => {
                   max={1010}
                   variant="danger"
                   className={styles.CollectionBar}
+                  aria-label={`${owner}'s collection progress`}
                 />
                 <div className={styles.CollectionPercent}>
                   {((pokemon.length / 1010) * 100).toFixed(2)}%

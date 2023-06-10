@@ -71,6 +71,7 @@ const CommentEditForm = (props) => {
           rows={4}
           maxLength={400}
           required
+          aria-label="Comment body text"
         />
       </Form.Group>
       {errors.body?.map((message, index) => (

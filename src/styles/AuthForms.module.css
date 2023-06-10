@@ -5,3 +5,11 @@
 .Info {
   margin-top: 40px;
 }
+
+.Link {
+  color: #ba0000;
+}
+
+.Link:hover {
+  color: #ef0101;
+}

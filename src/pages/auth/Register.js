@@ -100,7 +100,10 @@ const Register = () => {
       </Form>
       <div className={styles.Info}>
         If you already have an account you can{" "}
-        <Link to="/login">log in here</Link>.
+        <Link to="/login" className={styles.Link}>
+          log in here
+        </Link>
+        .
       </div>
     </>
   );

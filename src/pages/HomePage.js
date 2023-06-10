@@ -22,7 +22,12 @@ const HomePage = () => {
   return (
     <>
       <div className={styles.Header}>
-        <img src={brandLogo} alt="Pokébox pokéball logo" />
+        <img
+          src={brandLogo}
+          width={60}
+          height={60}
+          alt="Pokébox pokéball logo"
+        />
         <h1>POKÉBOX</h1>
       </div>
       <div className={styles.ItemContainer}>

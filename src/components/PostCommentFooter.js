@@ -16,6 +16,8 @@ const PostCommentFooter = (props) => {
           src={profile_avatar}
           alt={`${owner}'s avatar`}
           className={styles.Avatar}
+          width={60}
+          height={60}
         />
       </Link>
     </div>

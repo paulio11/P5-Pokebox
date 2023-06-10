@@ -176,10 +176,10 @@ const PokemonDexPage = () => {
                         <span>{base_stat}</span>
                       </div>
                       <ProgressBar
-                        aria-label={`${stat.name} progress bar is at ${base_stat}`}
                         now={base_stat}
                         max={255}
                         className={styles.StatBar}
+                        aria-label={`${stat.name} value`}
                       />
                     </div>
                   ))}

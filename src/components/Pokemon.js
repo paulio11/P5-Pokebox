@@ -51,7 +51,12 @@ const Pokemon = (props) => {
       onContextMenu={handleRightClick}
       onClick={() => navigate(`/pokemon/${id}`)}
     >
-      <img src={sprites.front_default} alt={`${species.name}'s sprite`} />
+      <img
+        src={sprites.front_default}
+        alt={`${species.name}'s sprite`}
+        width={96}
+        height={96}
+      />
       <span className={styles.Text}>[{id}]</span>
       <span className={styles.Text}>{species.name}</span>
     </div>
