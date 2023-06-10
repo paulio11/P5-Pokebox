@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/AxiosDefaults";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col, Alert, Spinner } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -19,6 +19,7 @@ const PostForm = () => {
   const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
+  const [hideSpinner, setHideSpinner] = useState(true);
 
   useTitle("New Diary Entry");
 
@@ -55,6 +56,7 @@ const PostForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setHideSpinner(false);
     const formData = new FormData();
     formData.append("body", body);
     if (imageInput.current.files.length > 0) {
@@ -67,6 +69,7 @@ const PostForm = () => {
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
+        setHideSpinner(true);
       }
     }
   };
@@ -149,7 +152,8 @@ const PostForm = () => {
             </Row>
           </Form>
           <Button onClick={handleSubmit} variant="danger">
-            Post diary entry
+            Post diary entry{" "}
+            <Spinner animation="border" size="sm" hidden={hideSpinner} />
           </Button>
         </>
       ) : (

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/AxiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Col, Form, Row, Button, Alert } from "react-bootstrap";
+import { Col, Form, Row, Button, Alert, Spinner } from "react-bootstrap";
 import styles from "../../styles/PostForm.module.css";
 import PostCommentFooter from "../../components/PostCommentFooter";
 import LoadingText from "../../components/LoadingText";
@@ -27,6 +27,7 @@ const PostEditForm = () => {
   const [errors, setErrors] = useState({});
   const [noResults, setNoResults] = useState(false);
   const setNotification = useSetCurrentNotification();
+  const [hideSpinner, setHideSpinner] = useState(true);
 
   useTitle("Editing Diary Entry");
 
@@ -67,6 +68,7 @@ const PostEditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setHideSpinner(false);
     const formData = new FormData();
     formData.append("body", body);
 
@@ -81,6 +83,7 @@ const PostEditForm = () => {
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
+        setHideSpinner(true);
       }
     }
   };
@@ -187,7 +190,8 @@ const PostEditForm = () => {
               Cancel
             </Button>
             <Button onClick={handleSubmit} variant="danger">
-              Save changes
+              Save changes{" "}
+              <Spinner animation="border" size="sm" hidden={hideSpinner} />
             </Button>
             <CustomModal
               buttonText="Delete diary entry"

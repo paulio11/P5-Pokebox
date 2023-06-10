@@ -389,7 +389,8 @@ The user receives a notification upon the successful completion of the following
 - Logging in, logging out, and registering.
 - Setting their favourite Pokémon.
 - Adding or removing a Pokémon from their collection.
-- Editing their profile or avatar.
+- Editing user profile or avatar.
+- Changing username or password.
 
 **Examples of notifications:**
 

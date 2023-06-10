@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Modal, Button, Form, Alert } from "react-bootstrap";
+import { Modal, Button, Form, Alert, Spinner } from "react-bootstrap";
 import styles from "../../styles/AvatarModal.module.css";
 import { axiosReq } from "../../api/AxiosDefaults";
 import { useSetCurrentNotification } from "../../contexts/NotificationContext";
@@ -11,9 +11,11 @@ const AvatarModal = (props) => {
   const avatarInput = useRef(null);
   const [errors, setErrors] = useState({});
   const setCurrentNotification = useSetCurrentNotification();
+  const [hideSpinner, setHideSpinner] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setHideSpinner(false);
     const formData = new FormData();
     formData.append("avatar", avatarInput.current.files[0]);
     try {
@@ -23,6 +25,7 @@ const AvatarModal = (props) => {
       setCurrentNotification("Avatar successfully updated.");
     } catch (error) {
       setErrors(error.response?.data);
+      setHideSpinner(true);
     }
   };
 
@@ -79,7 +82,8 @@ const AvatarModal = (props) => {
             </Button>
             {newAvatar && (
               <Button variant="danger" type="submit">
-                Save changes
+                Save changes{" "}
+                <Spinner animation="border" size="sm" hidden={hideSpinner} />
               </Button>
             )}
           </div>
