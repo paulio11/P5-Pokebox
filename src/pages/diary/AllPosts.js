@@ -75,9 +75,10 @@ const AllPosts = () => {
       <hr />
       <Form className={styles.SortForm}>
         <Form.Group>
-          <Form.Label>Sort By</Form.Label>
+          <Form.Label htmlFor="sort_by">Sort By</Form.Label>
           <Form.Control
             as="select"
+            id="sort_by"
             name="sort_by"
             value={sortBy}
             onChange={handleSortChange}
@@ -88,8 +89,9 @@ const AllPosts = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Sort Order</Form.Label>
+          <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
           <Form.Control
+            id="sort_order"
             as="select"
             name="sort_order"
             value={sortOrder}
@@ -101,19 +103,29 @@ const AllPosts = () => {
         </Form.Group>
         <div>
           {currentUser && (
-            <Form.Check
-              label="Show only entries I liked"
-              name="like_check"
-              onChange={handleSortChange}
-              aria-label="Show only entries I liked"
-            />
+            <Form.Group>
+              <Form.Label htmlFor="like_check">
+                Show only entries I liked
+              </Form.Label>
+              <Form.Check
+                id="like_check"
+                name="like_check"
+                onChange={handleSortChange}
+                aria-label="Show only entries I liked"
+              />
+            </Form.Group>
           )}
-          <Form.Check
-            label="Show only entries with an image"
-            name="image_check"
-            onChange={handleSortChange}
-            aria-label="Show only entries with an image"
-          />
+          <Form.Group>
+            <Form.Label htmlFor="image_check">
+              Show only entries with an image
+            </Form.Label>
+            <Form.Check
+              id="image_check"
+              name="image_check"
+              onChange={handleSortChange}
+              aria-label="Show only entries with an image"
+            />
+          </Form.Group>
         </div>
       </Form>
       {loaded ? (
