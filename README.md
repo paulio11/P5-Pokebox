@@ -518,7 +518,7 @@ Similar to the _Pokémon List_ page, the _TrainerList_ component generates a pag
 The _TrainerProfilePage_ component is responsible for rendering a trainer's profile page, including their avatar, personal information, favorite Pokemon, trainer diary, and Pokemon collection.
 
 - The function `getFavData()` calls the function `FetchPokemonData` with the profile's favourite Pokémon as an arguement. This data is then passed to the `Pokemon` component as props along with the variable `trainerPage` which the component uses to style the output.
-- The `handleClick()` function is triggered when the bar representing the user's Pokémon collection is clicked. Once clicked it also calls the function `FetchPokemonData` but with the profile's Pokémon (collection) array as the argument.
+- The `loadCollection()` function is triggered when the bar representing the user's Pokémon collection is clicked. Once clicked sets the variables necessary for the infinte scroll component and then calls the function `fetchMoreData` using the profile's Pokémon (collection) array as the argument.
 - If the user viewing the profile is the profile's `owner` an edit button appears to allow editing of the `about` text and `avatar`.
   - Editing the avatar uses the [AvatarModal](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AvatarModal.js) component.
   - Editing the about text uses the [AboutEditForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AboutEditForm.js) component. When called it is rendered in place of the about text.
@@ -657,19 +657,20 @@ This file includes three functions:
 
 ### Other
 
-Pokébox leverages the powerful capabilities of the [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) component to seamlessly and efficiently fetch additional data. By loading data incrementally instead of all at once, it significantly enhances performance. The data retrieved from the Pokébox API is paginated, with each response containing a count and a next value, which React Infinite Scroll utilizes to seamlessly fetch more data as needed.
+Pokébox leverages the powerful capabilities of the [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) component to seamlessly and efficiently fetch additional data. By loading data incrementally instead of all at once, it significantly enhances performance. The data retrieved from the Pokébox API and PokéAPI is paginated, with each response containing a count and a next value, which React Infinite Scroll utilizes to seamlessly fetch more data as needed.
 
 React Infinite Scroll is used in the following places:
 
 - Trainer list
 - Diary entry list
 - Comment list on post page
+- Pokémon list
+- Trainer's Pokémon collection
 
 ### Unimplemented Features
 
 Given more time, there are numerous additional features that could have been incorporated into this project, many of which align with the features I previously implemented in a related project called [Squigl](https://github.com/paulio11/P4-Squigl-Twitter-Clone). Due to the extended development period of that project, I was able to successfully implement nearly all desired functionalities. Some of those elements could be seamlessly applied to enhance this project in a similar manner.
 
-- To optimize the performance of the _Pokémon List_ page, the implementation of the _React Infinite Scroll_ component would have been beneficial. Since the data for this page is paginated, integrating infinite scrolling would have been feasible. However, due to the complexity of making multiple concurrent requests to different endpoints, it would have required additional effort to ensure proper functionality.
 - User following. While developing the project, I implemented two filters for displaying posts with images, and liked posts. Introducing a third filter for posts from users you follow would not have required much additional work. However, I made a deliberate choice to prioritize integrating Pokémon-related features into the website.
 - Implementing moderation features, which are crucial for websites that allow user-generated content, was a successful addition to my [previous project](https://github.com/paulio11/P4-Squigl-Twitter-Clone). However, due to my focus on incorporating the Pokémon elements and learning React, I was unable to allocate sufficient time to implement moderation functionalities in this current project.
 - While utilizing the extensive information provided by the PokéAPI, I had the opportunity to include additional details such as a Pokémon's moveset, type advantages and disadvantages, evolution chain, game availability, or even more artwork. However, I intentionally selected a limited set of information to demonstrate my proficiency in successfully retrieving and presenting data from a third-party API in a visually appealing manner, showcasing my ability to make informed choices about data display within the project's scope.
