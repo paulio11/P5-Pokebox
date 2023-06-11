@@ -28,8 +28,6 @@ import { FetchPokemonData } from "../../utils/PokeApi";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // Hooks
 import useTitle from "../../hooks/useTitle";
-// Infinite Scroll
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
@@ -38,15 +36,15 @@ const TrainerProfilePage = () => {
 
   // State variables.
   const [loaded, setLoaded] = useState(false);
+  const [collectionLoaded, setCollectionLoaded] = useState(false);
   const [colData, setColData] = useState([]); // Collection data
   const [favData, setFavData] = useState(null); // Favorite Pokémon data
-  const [data, setData] = useState([]); // Profile data
-  const [showAboutEdit, setShowAboutEdit] = useState(false); // Profile editing
-  const [showAvatarModal, setShowAvatarModal] = useState(false); // Profile editing
+  const [showAboutEdit, setShowAboutEdit] = useState(false);
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false); // For avatar
-  const [noResults, setNoResults] = useState(false); // If 404
-  const [avatarReload, setAvatarReload] = useState(0); // To force reload
-
+  const [noResults, setNoResults] = useState(false);
+  const [avatarReload, setAvatarReload] = useState(0);
+  const [data, setData] = useState([]); // Profile data
   const { owner, created, avatar, about, favorite, pokemon } = data;
 
   // Fetch profile data.
@@ -62,6 +60,8 @@ const TrainerProfilePage = () => {
         }
       }
     };
+
+    setCollectionLoaded(false);
     setNoResults(false);
     setLoaded(false);
     fetchData();
@@ -77,38 +77,19 @@ const TrainerProfilePage = () => {
         setFavData(response[0]);
       } catch (error) {}
     };
+
     getFavData();
   }, [favorite]);
 
-  // State variables for infinite scrolling
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
   // Fetches data for Pokémon in users collection when clicked.
-  const loadCollection = async () => {
-    if (pokemon?.length && !colData.length) {
-      setPage(1); // Reset the page number
-      setColData([]); // Clear the collection data
-      setHasMore(true); // Reset the hasMore flag
-      fetchMoreData(); // Fetch the first page of data
+  const handleClick = async () => {
+    if (pokemon?.length && !collectionLoaded) {
+      try {
+        const response = await FetchPokemonData(null, pokemon);
+        setColData(response);
+      } catch (error) {}
     }
-  };
-
-  // Fetches more data for infinite scrolling
-  const fetchMoreData = async () => {
-    if (!hasMore) return;
-    try {
-      const response = await FetchPokemonData(
-        null,
-        pokemon.slice((page - 1) * 100, page * 100)
-      );
-      if (response.length > 0) {
-        setColData((prevData) => [...prevData, ...response]);
-        setPage((prevPage) => prevPage + 1);
-      } else {
-        setHasMore(false);
-      }
-    } catch (error) {}
+    setCollectionLoaded(true);
   };
 
   // Toggles display of "Change avatar" graphic overlay.
@@ -132,7 +113,6 @@ const TrainerProfilePage = () => {
           <hr />
           <div className={styles.ProfileContainer}>
             <Row>
-              {/* Avatar */}
               <Col xs={12} md={2} className={styles.AvatarCol}>
                 <div
                   className={`${styles.AvatarContainer} ${
@@ -165,7 +145,6 @@ const TrainerProfilePage = () => {
                     your avatar
                   </div>
                 )}
-                {/* Avatar edit modal */}
                 <AvatarModal
                   showAvatarModal={showAvatarModal}
                   setShowAvatarModal={setShowAvatarModal}
@@ -180,7 +159,6 @@ const TrainerProfilePage = () => {
                 <div>
                   {is_owner && !showAboutEdit && (
                     <>
-                      {/* Edit tooltip */}
                       <OverlayTrigger
                         overlay={<Tooltip>Edit your profile</Tooltip>}
                       >
@@ -191,7 +169,6 @@ const TrainerProfilePage = () => {
                       </OverlayTrigger>
                     </>
                   )}
-                  {/* About info and edit form */}
                   {showAboutEdit ? (
                     <AboutEditForm
                       id={id}
@@ -208,7 +185,6 @@ const TrainerProfilePage = () => {
                   I have collected {pokemon.length} Pokémon!
                 </div>
               </Col>
-              {/* Favorite Pokémon information */}
               {favData && (
                 <Col xs={12} md={2}>
                   <div className={styles.FavText}>My favorite Pokémon is:</div>
@@ -218,10 +194,9 @@ const TrainerProfilePage = () => {
             </Row>
             <Row>
               <Col>
-                {/* Pokémon collection */}
                 <div
                   className={styles.CollectionContainer}
-                  onClick={loadCollection}
+                  onClick={handleClick}
                 >
                   <Accordion defaultActiveKey="0">
                     <Card className={styles.Card}>
@@ -258,23 +233,20 @@ const TrainerProfilePage = () => {
                               {owner} has not collected any Pokémon yet
                             </Alert>
                           )}
-                          <InfiniteScroll
-                            dataLength={colData.length}
-                            next={fetchMoreData}
-                            hasMore={hasMore}
-                            loader={<LoadingText />}
-                            endMessage={`All of ${owner}'s collected Pokémon have loaded.`}
-                          >
+                          {collectionLoaded ? (
                             <div className={styles.PokemonContainer}>
                               {colData.map((pokemon, index) => (
                                 <Pokemon
                                   key={index}
                                   {...pokemon}
                                   profileData={data}
+                                  // setProfileData={setData}
                                 />
                               ))}
                             </div>
-                          </InfiniteScroll>
+                          ) : (
+                            <LoadingText />
+                          )}
                         </Card.Body>
                       </Accordion.Collapse>
                     </Card>
@@ -283,7 +255,6 @@ const TrainerProfilePage = () => {
               </Col>
             </Row>
           </div>
-          {/* Trainer's diary posts */}
           <TrainerDiary owner={owner} id={id.toString()} />
         </>
       ) : (
