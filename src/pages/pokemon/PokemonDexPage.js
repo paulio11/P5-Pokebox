@@ -197,7 +197,7 @@ const PokemonDexPage = () => {
                         now={base_stat}
                         max={255}
                         className={styles.StatBar}
-                        aria-label={`${stat.name} value`}
+                        aria-hidden
                       />
                     </div>
                   ))}

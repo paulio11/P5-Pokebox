@@ -243,6 +243,7 @@ const TrainerProfilePage = () => {
                               now={pokemon.length}
                               max={1010}
                               className={styles.CollectionBar}
+                              aria-hidden
                             />
                             <div className={styles.CollectionPercent}>
                               {((pokemon.length / 1010) * 100).toFixed(2)}%
