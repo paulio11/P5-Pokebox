@@ -68,9 +68,7 @@ const CommentEditForm = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
       setCurrentNotification("Comment deleted.");
-    } catch (error) {
-      setCurrentNotification(error.message, "API Error");
-    }
+    } catch (error) {}
   };
 
   return (

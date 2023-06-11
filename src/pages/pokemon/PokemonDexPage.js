@@ -58,9 +58,7 @@ const PokemonDexPage = () => {
 
           setLoaded(true);
         }
-      } catch (error) {
-        setCurrentNotification(error.message, "API Error");
-      }
+      } catch (error) {}
     };
 
     setNoResults(false);
@@ -111,9 +109,7 @@ const PokemonDexPage = () => {
       setIsFav(true);
       setUData(response.data);
       setCurrentNotification(`${sData.name} is now your favorite Pokémon.`);
-    } catch (error) {
-      setCurrentNotification(error.message, "API Error");
-    }
+    } catch (error) {}
   };
 
   // Returns a 404 error page if Pokémon with the ID provided is not found.

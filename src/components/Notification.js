@@ -30,12 +30,10 @@ const Notification = () => {
   }, [currentNotification, setCurrentNotification]);
 
   if (currentNotification) {
-    const { notification, type } = currentNotification;
     return (
       <Toast show={show} className={styles.Notification}>
-        <Toast.Body className={`${styles.Message} ${type && styles.Error}`}>
-          <span className={styles.Type}>{type && `${type}: `}</span>
-          {notification}
+        <Toast.Body className={styles.Message}>
+          {currentNotification}
         </Toast.Body>
       </Toast>
     );

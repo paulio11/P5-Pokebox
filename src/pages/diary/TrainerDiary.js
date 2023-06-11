@@ -11,14 +11,11 @@ import styles from "../../styles/TrainerDariy.module.css";
 import Alert from "react-bootstrap/Alert";
 // Utils
 import { fetchMoreData } from "../../utils/Utils";
-// Contexts
-import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const TrainerDiary = (props) => {
   const { id, owner } = props;
   const [loaded, setLoaded] = useState(false);
   const [posts, setPosts] = useState({});
-  const setCurrentNotification = useSetCurrentNotification();
 
   // Fetch post data for post with owner matching ID
   useEffect(() => {
@@ -27,9 +24,7 @@ const TrainerDiary = (props) => {
         const { data } = await axiosReq.get(`posts/?owner__profile=${id}`);
         setPosts(data);
         setLoaded(true);
-      } catch (error) {
-        setCurrentNotification(error.message, "API Error");
-      }
+      } catch (error) {}
     };
 
     setLoaded(false);

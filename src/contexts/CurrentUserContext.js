@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { axiosRes, axiosReq } from "../api/AxiosDefaults";
 // Utils
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
-// Contexts
-import { useSetCurrentNotification } from "./NotificationContext";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -23,7 +21,6 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 // Provider component to manage the current user state
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const setCurrentNotification = useSetCurrentNotification();
   const navigate = useNavigate();
 
   // Function to fetch the current user data on component mount

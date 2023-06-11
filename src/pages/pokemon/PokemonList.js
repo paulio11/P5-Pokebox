@@ -12,7 +12,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Sobble from "../../assets/sobble.webp";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 // API
 import { axiosReq } from "../../api/AxiosDefaults";
 // Hooks
@@ -22,7 +21,6 @@ import { Link } from "react-router-dom";
 
 const PokemonList = () => {
   const currentUser = useCurrentUser();
-  const setCurrentNotification = useSetCurrentNotification();
 
   // State variables.
   const [loaded, setLoaded] = useState(false);
@@ -46,9 +44,7 @@ const PokemonList = () => {
         );
         setResults(pokemonData);
         setLoaded(true);
-      } catch (error) {
-        setCurrentNotification(error.message, "PokéAPI Error");
-      }
+      } catch (error) {}
     };
     const fetchProfile = async () => {
       if (currentUser) {
