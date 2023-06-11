@@ -19,3 +19,37 @@
 .SearchJoke {
   margin-top: 16px;
 }
+
+.LoadingProgress,
+.FailedToLoad {
+  margin: 0 auto;
+  padding: 10px;
+  width: fit-content;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.LoadingProgress {
+  background-color: green;
+}
+
+.FailedToLoad {
+  margin-top: 12px;
+  background-color: #ba0000;
+}
+
+.FailedDescription {
+  font-size: smaller;
+  margin-bottom: 0;
+}
+
+.FailedToLoad a {
+  color: white;
+  font-weight: bold;
+}
+
+.FailedToLoad a:hover {
+  text-decoration: underline;
+  color: white;
+}
