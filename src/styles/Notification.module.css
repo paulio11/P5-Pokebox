@@ -10,3 +10,11 @@
 .Message::first-letter {
   text-transform: uppercase;
 }
+
+.Error {
+  background-color: black;
+}
+
+.Type {
+  font-weight: bold;
+}

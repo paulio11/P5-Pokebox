@@ -51,7 +51,9 @@ const Post = (props) => {
           }),
         }));
         setCurrentNotification("Diary entry liked.");
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(error.message, "API Error");
+      }
     }
   };
 
@@ -69,7 +71,9 @@ const Post = (props) => {
         }),
       }));
       setCurrentNotification("Diary entry unliked.");
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(error.message, "API Error");
+    }
   };
 
   return (

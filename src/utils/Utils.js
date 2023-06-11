@@ -5,6 +5,7 @@ import { axiosReq } from "../api/AxiosDefaults";
 
 // Used within the react-infinite-scroll component.
 export const fetchMoreData = async (resource, setResource) => {
+  const setCurrentNotification = useSetCurrentNotification();
   try {
     const { data } = await axiosReq.get(resource.next);
     setResource((prevResource) => ({

@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { axiosRes, axiosReq } from "../api/AxiosDefaults";
 // Utils
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/Utils";
+// Contexts
+import { useSetCurrentNotification } from "./NotificationContext";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -21,6 +23,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 // Provider component to manage the current user state
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const setCurrentNotification = useSetCurrentNotification();
   const navigate = useNavigate();
 
   // Function to fetch the current user data on component mount
@@ -28,7 +31,9 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-    } catch (error) {}
+    } catch (error) {
+      // This error is expected when there is no currentUser
+    }
   };
 
   useEffect(() => {

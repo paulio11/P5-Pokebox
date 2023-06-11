@@ -11,6 +11,7 @@ import TrainerDiary from "../diary/TrainerDiary";
 import AboutEditForm from "./AboutEditForm";
 import AvatarModal from "./AvatarModal";
 import Error404 from "../../components/Error404";
+import InfiniteScroll from "react-infinite-scroll-component";
 // CSS
 import styles from "../../styles/TrainerProfilePage.module.css";
 // Bootstrap
@@ -26,14 +27,14 @@ import Alert from "react-bootstrap/Alert";
 import { FetchPokemonData } from "../../utils/PokeApi";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 // Hooks
 import useTitle from "../../hooks/useTitle";
-// Infinite Scroll
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
   const currentUser = useCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
   const is_owner = currentUser?.profile_id.toString() === id;
 
   // State variables.
@@ -59,6 +60,8 @@ const TrainerProfilePage = () => {
       } catch (error) {
         if (error.response?.status === 404) {
           setNoResults(true);
+        } else {
+          setCurrentNotification(error.message, "API Error");
         }
       }
     };
@@ -75,7 +78,9 @@ const TrainerProfilePage = () => {
       try {
         const response = await FetchPokemonData(favorite, null);
         setFavData(response[0]);
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(error.message, "PokéAPI Error");
+      }
     };
     getFavData();
   }, [favorite]);
@@ -108,7 +113,9 @@ const TrainerProfilePage = () => {
       } else {
         setHasMore(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(error.message, "PokéAPI Error");
+    }
   };
 
   // Toggles display of "Change avatar" graphic overlay.

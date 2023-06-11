@@ -1,14 +1,19 @@
+// API
 import { pokeApi } from "../api/AxiosDefaults";
+// Contexts
+import { useSetCurrentNotification } from "../contexts/NotificationContext";
 
 // Fetch the list of Pokémon from PokeAPI
 // Fetched data inclueds Pokémon name and URL
 export const FetchPokemonList = async (offset, limit) => {
+  const setCurrentNotification = useSetCurrentNotification();
   try {
     const response = await pokeApi.get(
       `pokemon/?offset=${offset}&limit=${limit}`
     );
     return response.data.results;
   } catch (error) {
+    setCurrentNotification(error.message, "PokéAPI Error");
     return [];
   }
 };
@@ -16,6 +21,7 @@ export const FetchPokemonList = async (offset, limit) => {
 // This function asynchronously fetches data about Pokémon based on the provided
 // query or list of Pokémon names.
 export const FetchPokemonData = async (query, list, setNoResults) => {
+  const setCurrentNotification = useSetCurrentNotification();
   try {
     // If a query is provided, fetch data for a single Pokémon.
     if (query) {
@@ -49,15 +55,19 @@ export const FetchPokemonData = async (query, list, setNoResults) => {
       setNoResults(true);
       return [];
     }
+    setCurrentNotification(error.message, "PokéAPI Error");
+    return [];
   }
 };
 
 // Fetch data from a Pokémon's species page using Pokémon ID
 export const FetchSpeciesData = async (id) => {
+  const setCurrentNotification = useSetCurrentNotification();
   try {
     const response = await pokeApi.get(`pokemon-species/${id}`);
     return response.data;
   } catch (error) {
+    setCurrentNotification(error.message, "PokéAPI Error");
     return [];
   }
 };

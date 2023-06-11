@@ -12,6 +12,7 @@ import Post from "./Post";
 import styles from "../../styles/AllPosts.module.css";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 // Utils
 import { fetchMoreData } from "../../utils/Utils";
 // Hooks
@@ -27,10 +28,11 @@ const AllPosts = () => {
   const [imageCheck, setImageCheck] = useState(false);
 
   const currentUser = useCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("Diary Entries");
 
-  // Fetches post data
+  // Fetch post data
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -41,7 +43,9 @@ const AllPosts = () => {
         );
         setPosts(data);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(error.message, "API Error");
+      }
     };
 
     setLoaded(false);

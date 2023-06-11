@@ -7,9 +7,16 @@ const CurrentNotificationContext = createContext();
 export const CurrentNotificationProvider = ({ children }) => {
   const [currentNotification, setCurrentNotification] = useState(null);
 
+  const setNotification = (notification, type) => {
+    // Perform any necessary logic using the additionalParam
+    // For example, you can pass it along with the notification object
+    const updatedNotification = { notification, type };
+    setCurrentNotification(updatedNotification);
+  };
+
   return (
     <CurrentNotificationContext.Provider
-      value={{ currentNotification, setCurrentNotification }}
+      value={{ currentNotification, setCurrentNotification: setNotification }}
     >
       {children}
     </CurrentNotificationContext.Provider>
