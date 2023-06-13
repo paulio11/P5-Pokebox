@@ -17,7 +17,7 @@ import useTitle from "../../hooks/useTitle";
 const TrainerList = () => {
   // State variables.
   const [loaded, setLoaded] = useState(false);
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("col_size");
   const [sortOrder, setSortOrder] = useState("-");
@@ -29,12 +29,12 @@ const TrainerList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosReq.get(
+        const { data } = await axiosReq.get(
           query
             ? `profiles/?owner__username=${query}`
             : `profiles/?ordering=${sortOrder}${sortBy}`
         );
-        setResults(response.data.results);
+        setData(data);
         setLoaded(true);
       } catch (error) {
         if (error.response?.status === 404) {
@@ -44,7 +44,7 @@ const TrainerList = () => {
       }
     };
 
-    setResults({});
+    setData({});
     setNoResults(false);
     setLoaded(false);
 
@@ -131,16 +131,16 @@ const TrainerList = () => {
       )}
       {loaded ? (
         <>
-          {results.length && (
+          {data.results.length && (
             <InfiniteScroll
               className={styles.ResultsContainer}
-              children={results.map((trainer) => (
+              children={data.results.map((trainer) => (
                 <Trainer key={trainer.id} {...trainer} />
               ))}
-              dataLength={results.length}
+              dataLength={data.count}
               loader={<LoadingText />}
-              hasMore={!!results.next}
-              next={() => fetchMoreData(results, setResults)}
+              hasMore={!!data.next}
+              next={() => fetchMoreData(data, setData)}
             />
           )}
         </>
