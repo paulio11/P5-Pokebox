@@ -21,11 +21,47 @@
 
 ## Automated Testing
 
+The automated testing was conducted briefly and remains currently incomplete. However, it presents an opportunity for me to enhance my knowledge by delving deeper into this area - this was a learning experience. The testing encompassed the evaluation of the following components:
+
+![Automated testing results](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/testing-automated-results.png)
+
+### [Ball.test.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/__tests__/Ball.test.js)
+
+| Test                               | Result |
+| ---------------------------------- | ------ |
+| Returns image                      | ✓      |
+| Returns poké ball if size is 250   | ✓      |
+| Returns great ball if size is 500  | ✓      |
+| Returns ultra ball if size is 750  | ✓      |
+| Returns masterball if size is 1010 | ✓      |
+
+### [CustomModal.test.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/__tests__/CustomModal.test.js)
+
+| Test                                         | Result |
+| -------------------------------------------- | ------ |
+| Buttom renders and modal is hidden           | ✓      |
+| Modal elements render when button is clicked | ✓      |
+| Modal hides when close button is clicked     | ✓      |
+
+### [Footer.test.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/__tests__/Footer.test.js)
+
+| Test           | Result |
+| -------------- | ------ |
+| Footer renders | ✓      |
+
+### [NavBar.test.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/__tests__/NavBar.test.js)
+
+| Test                                                         | Result |
+| ------------------------------------------------------------ | ------ |
+| Renders correct links when user is logged out                | ✓      |
+| Renders correct links when user is logged in                 | ✓      |
+| Renders "Log in" and "Register" again after clicking log out | ✓      |
+
 [Back to top 🔺](#testing)
 
 ## Manual Testing
 
-These manual tests were carried out on the following pages/components:
+Manual testing was more comprehensive. Testing was carried out on the following pages/components:
 
 ### [Home](https://project-5-pokebox.herokuapp.com/)
 
