@@ -36,12 +36,7 @@ const TrainerList = () => {
         );
         setData(data);
         setLoaded(true);
-      } catch (error) {
-        if (error.response?.status === 404) {
-          setLoaded(true);
-          setNoResults(true);
-        }
-      }
+      } catch (error) {}
     };
 
     setData({});
@@ -122,16 +117,9 @@ const TrainerList = () => {
           </>
         )}
       </Form>
-      {noResults && (
-        <div className="d-flex flex-column align-items-center">
-          <span className={styles.SearchError}>
-            No trainer named <strong>{query}</strong> found!
-          </span>
-        </div>
-      )}
       {loaded ? (
         <>
-          {data.results.length && (
+          {data.results.length ? (
             <InfiniteScroll
               className={styles.ResultsContainer}
               children={data.results.map((trainer) => (
@@ -142,6 +130,12 @@ const TrainerList = () => {
               hasMore={!!data.next}
               next={() => fetchMoreData(data, setData)}
             />
+          ) : (
+            <div className="d-flex flex-column align-items-center">
+              <span className={styles.SearchError}>
+                No trainer named <strong>{query}</strong> found!
+              </span>
+            </div>
           )}
         </>
       ) : (
