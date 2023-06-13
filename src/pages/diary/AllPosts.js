@@ -104,25 +104,27 @@ const AllPosts = () => {
         <div>
           {currentUser && (
             <Form.Group>
-              <Form.Label htmlFor="like_check">
+              <Form.Label hidden htmlFor="like_check">
                 Show only entries I liked
               </Form.Label>
               <Form.Check
                 id="like_check"
                 name="like_check"
                 onChange={handleSortChange}
+                label="Show only entries I liked"
                 aria-label="Show only entries I liked"
               />
             </Form.Group>
           )}
           <Form.Group>
-            <Form.Label htmlFor="image_check">
+            <Form.Label hidden htmlFor="image_check">
               Show only entries with an image
             </Form.Label>
             <Form.Check
               id="image_check"
               name="image_check"
               onChange={handleSortChange}
+              label="Show only entries with an image"
               aria-label="Show only entries with an image"
             />
           </Form.Group>

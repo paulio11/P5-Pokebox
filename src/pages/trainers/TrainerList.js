@@ -21,7 +21,6 @@ const TrainerList = () => {
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("col_size");
   const [sortOrder, setSortOrder] = useState("-");
-  const [noResults, setNoResults] = useState(false);
 
   useTitle("Trainers");
 
@@ -40,7 +39,6 @@ const TrainerList = () => {
     };
 
     setData({});
-    setNoResults(false);
     setLoaded(false);
 
     const queryTimer = setTimeout(() => {

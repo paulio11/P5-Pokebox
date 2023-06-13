@@ -21,7 +21,7 @@ const Notification = () => {
       setShow(true);
       timer = setTimeout(() => {
         setShow(false);
-        setCurrentNotification(null, null);
+        setCurrentNotification(null);
       }, 6000);
     }
     return () => {
