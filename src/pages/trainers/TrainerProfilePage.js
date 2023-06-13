@@ -43,8 +43,12 @@ const TrainerProfilePage = () => {
   const [showAboutEdit, setShowAboutEdit] = useState(false); // Profile editing
   const [showAvatarModal, setShowAvatarModal] = useState(false); // Profile editing
   const [isHovered, setIsHovered] = useState(false); // For avatar
-  const [noResults, setNoResults] = useState(false); // If 404
   const [avatarReload, setAvatarReload] = useState(0); // To force reload
+  const [noResults, setNoResults] = useState(false); // If 404
+
+  // State variables for infinite scrolling
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const { owner, created, avatar, about, favorite, pokemon } = data;
 
@@ -61,6 +65,12 @@ const TrainerProfilePage = () => {
         }
       }
     };
+
+    // Reset infinite scroll collection loader
+    setHasMore(true);
+    setPage(1);
+    setColData([]);
+
     setNoResults(false);
     setLoaded(false);
     fetchData();
@@ -79,13 +89,9 @@ const TrainerProfilePage = () => {
     getFavData();
   }, [favorite]);
 
-  // State variables for infinite scrolling
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
   // Fetches data for Pokémon in users collection when clicked.
   const loadCollection = async () => {
-    if (pokemon?.length && !colData.length) {
+    if (pokemon?.length) {
       setPage(1); // Reset the page number
       setColData([]); // Clear the collection data
       setHasMore(true); // Reset the hasMore flag
