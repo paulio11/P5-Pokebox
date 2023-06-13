@@ -45,6 +45,7 @@ const TrainerProfilePage = () => {
   const [isHovered, setIsHovered] = useState(false); // For avatar
   const [avatarReload, setAvatarReload] = useState(0); // To force reload
   const [noResults, setNoResults] = useState(false); // If 404
+  const [clicked, setClicked] = useState(false); // Tracking clicked status of collection
 
   // State variables for infinite scrolling
   const [page, setPage] = useState(1);
@@ -71,6 +72,7 @@ const TrainerProfilePage = () => {
     setPage(1);
     setColData([]);
 
+    setClicked(false);
     setNoResults(false);
     setLoaded(false);
     fetchData();
@@ -91,11 +93,12 @@ const TrainerProfilePage = () => {
 
   // Fetches data for Pokémon in users collection when clicked.
   const loadCollection = async () => {
-    if (pokemon?.length) {
+    if (pokemon?.length && !clicked) {
       setPage(1); // Reset the page number
       setColData([]); // Clear the collection data
       setHasMore(true); // Reset the hasMore flag
       fetchMoreData(); // Fetch the first page of data
+      setClicked(true);
     }
   };
 
