@@ -71,7 +71,8 @@ const PokemonList = () => {
     const limit = 100;
     const moreData = await FetchPokemonList(offset, limit);
 
-    // Filter out entries with "url" containing a number equal to or greater than 10001
+    // Filter out entries with "url" containing a number equal to or greater than 10001.
+    // This filters out Pokémon alternate forms that appear in the list after entry 1010.
     const filteredData = moreData.filter((item) => {
       const url = item.url;
       const match = url.match(/\/(\d+)\//);
