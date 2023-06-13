@@ -1,5 +1,5 @@
-// Components
 import { render, screen } from "@testing-library/react";
+// Components
 import Ball from "../Ball";
 
 test("Returns image", () => {
