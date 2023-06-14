@@ -108,7 +108,12 @@ const Post = (props) => {
                     {!currentUser && "Log in to like this post."}
                     {currentUser &&
                       currentUser?.username !== owner &&
+                      !like_id &&
                       "Click to like this post!"}
+                    {currentUser &&
+                      currentUser?.username !== owner &&
+                      like_id &&
+                      "Click to unlike this post!"}
                     {currentUser &&
                       currentUser?.username === owner &&
                       "You can't like your own post."}
