@@ -61,13 +61,13 @@ The automated testing was conducted briefly and remains currently incomplete. Ho
 
 ## Manual Testing
 
-Manual testing proved to be more comprehensive. To ensure thoroughness, each test is accompanied by a screenshot or Video illustrating the test outcome or procedure. Testing efforts were focused on the following pages/components:
+Manual testing proved to be more comprehensive. To ensure thoroughness, each test is accompanied by a screenshot or video (webm) illustrating the test outcome or procedure. Testing efforts were focused on the following pages/components:
 
 ### [Home](https://project-5-pokebox.herokuapp.com/)
 
-| Test                                            | Expected Result                                            | Result | Screenshot / Video                                                                                                      |
+| Test                                            | Expected Result                                            | Result |                                                                                                                         |
 | ----------------------------------------------- | ---------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Hover effect works for the main 3 links         | Hovering over each element turns the greyscale overlay on. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-home-1.webm) |
+| Hover effect works for the main 3 links         | Hovering over each element turns the greyscale filter on.  | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-home-1.webm) |
 | Pokémon element links to Pokémon list           | Clicking takes user to "/pokemon".                         | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-home-2.webm) |
 | Trainers element links to Trainer list          | Clicking takes user to "/trainers".                        | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-home-3.webm) |
 | Diaries element links to Diary Entries          | Clicking takes user to "/posts".                           | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-home-4.webm) |
@@ -75,7 +75,7 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### NavBar Component
 
-| Test                                                                    | Expected Result                                                                                                        | Result | Screenshot / Video                                                                                                         |
+| Test                                                                    | Expected Result                                                                                                        | Result |                                                                                                                            |
 | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------- |
 | Navbar swaps between mobile and desktop view                            | Full navbar shown at desktop widths, collapsed navbar shown at mobile widths.                                          | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-nav-1.webm)     |
 | Hamburger button toggles display of navlinks                            | Clicking the icon shows navlinks, clicking again hides navlinks.                                                       | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-nav-2.webm)     |
@@ -88,13 +88,13 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Error 404](https://project-5-pokebox.herokuapp.com/banana)
 
-| Test                                                 | Expected Result                                                                                                              | Result | Screenshot / Video                                                                                                       |
+| Test                                                 | Expected Result                                                                                                              | Result |                                                                                                                          |
 | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
 | Component renders correctly and go back button works | Visiting "/banana" shows 404 error page with correct error message, clicking go back sends me to the previous page I visited | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-error-1.webm) |
 
 ### [Register](https://project-5-pokebox.herokuapp.com/register)
 
-| Test                                          | Expected Result                                                                                   | Result | Screenshot / Video                                                                                                              |
+| Test                                          | Expected Result                                                                                   | Result |                                                                                                                                 |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | Username field is required                    | Not entering a username shows an alert message when clicking register.                            | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-register-1.png) |
 | Trying a username with invalid characters     | Trying a username with a ? in shows an alert message when clicking register.                      | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-register-2.png) |
@@ -109,7 +109,7 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Log in](https://project-5-pokebox.herokuapp.com/login)
 
-| Test                                        | Expected Result                                                                            | Result | Screenshot / Video                                                                                                           |
+| Test                                        | Expected Result                                                                            | Result |                                                                                                                              |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | Username field validation                   | Not entering a username shows an alert message when clicking log in.                       | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-login-1.png) |
 | Password field validation                   | Not entering a password shows an alert message when clicking log in.                       | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-login-2.png) |
@@ -119,13 +119,13 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### Log out
 
-| Test          | Expected Result                                                            | Result | Screenshot / Video                                                                                                        |
+| Test          | Expected Result                                                            | Result |                                                                                                                           |
 | ------------- | -------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
 | Log out works | User is logged out, redirected to home page, log out notification pops up. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-logout-1.webm) |
 
 ### [Pokémon List](https://project-5-pokebox.herokuapp.com/pokemon)
 
-| Test                                       | Expected Result                                                                                                                        | Result | Screenshot / Video                                                                                                                 |
+| Test                                       | Expected Result                                                                                                                        | Result |                                                                                                                                    |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | List loads                                 | Loader shows, then a list of Pokémon rendered using the pokemon component.                                                             | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-pokemonlist-1.png) |
 | Infinite scroll works                      | Scrolling down the page loads more Pokémon using the react-infinite-scroll component.                                                  | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-pokemonlist-2.webm)     |
@@ -139,7 +139,7 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Pokémon Information](https://project-5-pokebox.herokuapp.com/pokemon/pikachu)
 
-| Test                                | Expected Result                                                                                                                                                    | Result | Screenshot / Video                                                                                                                 |
+| Test                                | Expected Result                                                                                                                                                    | Result |                                                                                                                                    |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Correct information                 | Visiting "/pokemon/1" shows the information for Bulbasaur.                                                                                                         | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-pokemoninfo-2.png) |
 | Previous and next buttons work      | Clicking the next increases the ID in the url and loads the next Pokémon, clicking the previous button decreases the ID in the url and loads the previous Pokémon. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-pokemoninfo-1.webm)     |
@@ -152,7 +152,7 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Trainer List](https://project-5-pokebox.herokuapp.com/trainers)
 
-| Test                          | Expected Result                                                                                   | Result | Screenshot / Video                                                                                                                 |
+| Test                          | Expected Result                                                                                   | Result |                                                                                                                                    |
 | ----------------------------- | ------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Data fetched                  | Loader is shown then the list of trainers is displayed.                                           | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-trainerlist-1.png) |
 | Infinite scroll works         | Scrolling down the page loads more trainers using the react-infinite-scroll component.            | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-trainerlist-2.webm)     |
@@ -168,7 +168,7 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Trainer Profile](https://project-5-pokebox.herokuapp.com/trainer/19)
 
-| Test                         | Expected Result                                                                                                                    | Result | Screenshot / Video                                                                                                                 |
+| Test                         | Expected Result                                                                                                                    | Result |                                                                                                                                    |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Correct information shown    | Visting "/trainer/19" shows an loader then Ash's profile information.                                                              | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-trainerinfo-1.png) |
 | Clicking collection bar      | Clicking the collection bar reveals the user's Pokémon collection, scrolling down loads more Pokémon using react-infinite-scroll.  | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-trainerinfo-2.webm)     |
@@ -182,113 +182,95 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ### [Diary Entry List](https://project-5-pokebox.herokuapp.com/posts)
 
-| Test                                 | Result | Screenshot / Video                                                                                             |
-| ------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
-| Data fetched                         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Infinite scroll                      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by date descending              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by date ascending               | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by like count descending        | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by like count ascending         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by comment count descending     | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Sort by comment count ascending      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Liked filter shown if logged in      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| No like filter if logged out         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Show only liked entries filter       | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Show only entries with images filter | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                                 | Expected Result                                                                                                                   | Result |                                                                                                                                   |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Data fetched                         | Loader is shown then a list of the most recent diary entries are displayed, scrolling down loads more using react-infinite-scroll | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-1.webm)      |
+| Sort by date descending              | Selecting date and descending shows the most recent posts at the top.                                                             | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-2.png)  |
+| Sort by date ascending               | Selecting date and ascending shows the oldest posts at the top.                                                                   | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-3.png)  |
+| Sort by like count descending        | Selecting like count and descending shows the most liked posts at the top.                                                        | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-4.png)  |
+| Sort by like count ascending         | Selecting like count and ascending shows the least liked posts at the top.                                                        | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-5.png)  |
+| Sort by comment count descending     | Selecting comment count and descending shows the posts with the most comments at the top.                                         | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-6.png)  |
+| Sort by comment count ascending      | Selecting comment count and ascending shows the posts with the least comments at the top.                                         | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-7.png)  |
+| Liked filter shown if logged in      | When logged in the "Show only entries I liked" filter is shown.                                                                   | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-8.png)  |
+| No like filter if logged out         | If the user is logged out the "Show only entries I liked" filter should be hidden.                                                | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-9.png)  |
+| Show only liked entries filter       | Ticking the "Show only entries I liked" checkbox shows only posts the logged in user liked.                                       | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-10.png) |
+| Show only entries with images filter | Ticking the "Show only entries with an image" checkbox shows only posts with an image.                                            | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-diarylist-11.webm)     |
 
 ### Post Component
 
-| Test                                  | Result | Screenshot / Video                                                                                             |
-| ------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| All post information shown            | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Time links to correct post page       | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Username links to the owner's profile | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edit button shown if owner            | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edit button not shown if not owner    | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Can't like if owner                   | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Like button                           | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Like notification                     | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Like count goes up                    | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Unlike button                         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Unlike notification                   | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Like count goes down                  | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                                  | Expected Result                                                                                                                                             | Result |                                                                                                                              |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| All post information shown            | Post component renders post date, body, image, and owner correctly for each post.                                                                           | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-1.png)  |
+| Time links to correct post page       | Clicking the red time in the post header takes you to that posts page.                                                                                      | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-2.webm)      |
+| Username links to the owner's profile | Clicking the username or avatar in the post footer takes you to that user's profile.                                                                        | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-3.webm)      |
+| Edit button shown if owner            | When I'm logged in and viewing one of my posts I can see the edit button.                                                                                   | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-4.png)  |
+| Edit button not shown if not owner    | When I'm logged in or out and I'm viewing another's post I can't see the edit button.                                                                       | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-5.png)  |
+| Can't like if owner                   | When I'm logged in and viewing my own post I can't click the like button, the tooltip notifies me.                                                          | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-6.png)  |
+| Like button                           | When I click the like button the tooltip changes, the post like count goes up, the heart turns pink, and the liked notification pops up.                    | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-7.webm) |
+| Unlike button                         | When I click the unlike button the tooltip changes, the post like count goes down, the heart becomes just an outline, and the unliked notification pops up. | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-post-8.webm) |
 
 ### [Diary Entry Page](https://project-5-pokebox.herokuapp.com/post/36)
 
-| Test                            | Result | Screenshot / Video                                                                                             |
-| ------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| Alert shown if logged out       | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comment form shown if logged in | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comments loaded                 | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comments infinite scroll        | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Posting new comment             | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| New comment notification        | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comment count goes up           | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Unknown diary entry error       | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                            | Expected Result                                                                                                         | Result |                                                                                                                                  |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| Alert shown if logged out       | If I am logged out the comment form is hidden, and I see an alert message instead.                                      | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-postpage-1.png)  |
+| Comment form shown if logged in | If I am logged in I can see the comment form.                                                                           | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-postpage-2.png)  |
+| Comments loaded                 | A post's comments are shown and as I scroll down more load using react-infinite-scroll.                                 | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-postpage-3.webm)      |
+| Posting new comment             | When I post a comment the comment appears, the post comment count goes up, and the posted comment notification pops up. | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-postpage-4.webm) |
+| Unknown diary entry error       | Visiting "/post/9999" shows the 404 error page with the correct message.                                                | ✓      | [Screenshot ](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-postpage-5.png) |
 
 ### Comment Component
 
-| Test                              | Result | Screenshot / Video                                                                                             |
-| --------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| All comment information shown     | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Username links to owner's profile | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edit button shown if owner        | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edit form displays                | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Save changes button works         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edited comment notification       | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Delete comment button shows modal | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Click yes deletes comment         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Deleted comment notification      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comment removed                   | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Comment count goes down           | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                              | Expected Result                                                                                                                                                                                       | Result |                                                                                                                                |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| All comment information shown     | The comment component renders comment date, body, and owner correctly for each comment.                                                                                                               | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-comment-1.png) |
+| Username links to owner's profile | Clicking the username in the footer of the comment takes me to that user's profile page.                                                                                                              | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-comment-2.webm)     |
+| Edit button shown if owner        | When I'm logged in and viewing one of my comments I can see the edit button.                                                                                                                          | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-comment-3.png) |
+| Edit form displays                | When I click the edit button the edit form appears, I can change the comment and save it, the edited comment notification pops up.                                                                    | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-comment-4.webm)     |
+| Delete comment tests              | When I click the delete button, the delete modal appears, clicking yes deletes the comment, the comment is removed, the post's comment count goes down, and the deleted comment notification pops up. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-comment-5.webm)     |
 
 ### [New Post Page](https://project-5-pokebox.herokuapp.com/newpost)
 
-| Test                              | Result | Screenshot / Video                                                                                             |
-| --------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| Alert shown if logged out         | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Time and date shown               | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Username shown with working link  | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Body input validation             | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Image upload                      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Post button works                 | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| New post notification             | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Redirected to the new post's page | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                      | Expected Result                                                                                                                                      | Result |                                                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Alert shown if logged out | If I am logged out and I visit "/newpost" I am shown an alert message with go back and log in buttons.                                               | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-newpost-1.png) |
+| Mock post elements shown  | The current date and time are shown in the post form header, and clicking your username in the footer takes you to your profile.                     | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-newpost-2.webm)     |
+| Body input validation     | The body input field is required, I can't post with it empty, an alert should be shown.                                                              | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-newpost-3.png) |
+| Image upload              | I can select an image and it is displayed within the form.                                                                                           | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-newpost-4.webm)     |
+| Submitting a post         | I can click the post diary entry button and my entry is posted, then I am redirected to that new post's page, and the new post notification pops up. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-newpost-5.webm)     |
 
-### [Edit Post Page](https://project-5-pokebox.herokuapp.com/newpost)
+### [Edit Post Page](https://project-5-pokebox.herokuapp.com/editpost/63)
 
-| Test                                   | Result | Screenshot / Video                                                                                             |
-| -------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| Unknown diary entry error              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Alert shown if logged out or not owner | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Correct post data loaded               | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Delete button shows modal              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Clicking yes deletes post              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Deleted post notification              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Save changes button works              | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Edited post notification               | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Redirected to the post's page          | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
+| Test                                   | Expected Result                                                                                                                            | Result |                                                                                                                                 |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| Unknown diary entry error              | Visiting "/editpost/9999" shows the 404 error page with the correct message.                                                               | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-editpost-1.png) |
+| Alert shown if logged out or not owner | Entering the ID of a post I'm not the owner of in the address bar shows an alert.                                                          | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-editpost-2.png) |
+| Correct post data loaded               | Visiting the edit page of a post I own loads and displays the correct data.                                                                | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-editpost-3.png) |
+| Delete button                          | Clicking delete diary entry shows the modal, clicking yes deletes the post, redirected to profile page, deleted post notification pops up. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-editpost-4.webm)     |
+| Save changes button                    | Clicking save changes updates the post, redirected to the post's page, edited post notification pops up.                                   | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-editpost-5.webm)     |
 
-### [Settings](https://project-5-pokebox.herokuapp.com/newpost)
+### [Settings](https://project-5-pokebox.herokuapp.com/settings)
 
-| Test                           | Result | Screenshot / Video                                                                                             |
-| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------- |
-| Username field validation      | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Change username works          | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Changed username notification  | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Change reflected in nav bar    | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Old password field validation  | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| New password fields validation | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Change password works          | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-| Change password notification   | ✓      | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test.png) |
-
-<!-- Something shown when logged out -->
+| Test                             | Expected Result                                                                                                                                                                | Result |                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| Username field required          | Leaving the username field empty and clicking change username shows that the field is required.                                                                                | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-1.png)  |
+| Username not available           | Trying to change my username to someone elses shows an alert.                                                                                                                  | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-2.png)  |
+| Username with invalid characters | Trying to include a ? in my username shows an alert.                                                                                                                           | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-3.png)  |
+| Change username works            | Entering a valid user name and clicking change username will show the changed username notification and the change is instantly reflected in the nav bar.                      | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-4.webm)      |
+| Old password incorrect           | Entering the wrong old password and clicking change password shows an alert.                                                                                                   | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-5.png)  |
+| Old password field validation    | Attempting to change password without entering my old password shows an alert.                                                                                                 | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-6.png)  |
+| New password field required      | Leaving the new password field empty and clicking change password shows that the field is required.                                                                            | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-7.png)  |
+| Confirm password field required  | Leaving the confirm password field empty and clicking change password shows that the field is required.                                                                        | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-8.png)  |
+| Passwords don't match            | Entering passwords that don't match into both fields and clicking change password shows an alert.                                                                              | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-9.png)  |
+| Short password                   | Trying 1234 as my password show an alert message when clicking register.                                                                                                       | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-10.png) |
+| Change password works            | Correctly entering my old password and the same valid password in both fields then clicking okay changes my password, the changed password notification pops up.               | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-11.webm)     |
+| Logged out settings page         | Visiting the settings page as a logged out user shows an alert, a go back button that takes me back to my previous page, and a log in button that takes me to the log in page. | ✓      | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-settings-12.png) |
 
 ### ToTopButton Component
 
-| Test | Result | Screenshot / Video |
-| ---- | ------ | ------------------ |
+| Test                                       | Expected Result                                                                                                                                           | Result |                                                                                                                        |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| To Top button displays correctly and works | At first the button is hidden, scrolling down shows the button, clicking the button scrolls back to the top of the page, then the button is hidden again. | ✓      | [Video](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/manualtesting/test-top-1.webm) |
 
 [Back to top 🔺](#testing)
 
@@ -300,8 +282,6 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 | Edge                | [Screenshot]() |
 | Safari              | [Screenshot]() |
 | Mobile Safari (iOS) | [Screenshot]() |
-
-<!-- Mention tracking issue thingy here.... -->
 
 [Back to top 🔺](#testing)
 
