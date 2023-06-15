@@ -26,6 +26,7 @@ const AllPosts = () => {
   const [sortOrder, setSortOrder] = useState("-");
   const [likeCheck, setLikeCheck] = useState(false);
   const [imageCheck, setImageCheck] = useState(false);
+  const [query, setQuery] = useState("");
 
   const currentUser = useCurrentUser();
   const setCurrentNotification = useSetCurrentNotification();
@@ -39,7 +40,7 @@ const AllPosts = () => {
         const { data } = await axiosReq.get(
           `posts/?ordering=${sortOrder}${sortBy}&likes__owner__profile=${
             likeCheck ? currentUser?.profile_id : ""
-          }&has_image=${imageCheck && "True"}`
+          }&has_image=${imageCheck && "True"}&search=${query}`
         );
         setPosts(data);
         setLoaded(true);
@@ -51,7 +52,14 @@ const AllPosts = () => {
     };
 
     setLoaded(false);
-    fetchPosts();
+
+    const queryTimer = setTimeout(() => {
+      fetchPosts();
+    }, 1000);
+
+    return () => {
+      clearTimeout(queryTimer);
+    };
   }, [
     sortBy,
     sortOrder,
@@ -59,6 +67,7 @@ const AllPosts = () => {
     imageCheck,
     currentUser?.profile_id,
     setCurrentNotification,
+    query,
   ]);
 
   // Handles sorting form changes
@@ -82,11 +91,27 @@ const AllPosts = () => {
     }
   };
 
+  // Handles search form change.
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+    setLoaded(false);
+  };
+
   return (
     <>
       <h1>Diary Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
+        <Form.Group>
+          <Form.Label htmlFor="search">Search For</Form.Label>
+          <Form.Control
+            name="search"
+            id="search"
+            value={query}
+            placeholder="Entry text or owner"
+            onChange={handleChange}
+          />
+        </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="sort_by">Sort By</Form.Label>
           <Form.Control
@@ -114,7 +139,7 @@ const AllPosts = () => {
             <option value="-">Descending</option>
           </Form.Control>
         </Form.Group>
-        <div>
+        {/* <div>
           {currentUser && (
             <Form.Group>
               <Form.Label hidden htmlFor="like_check">
@@ -141,7 +166,7 @@ const AllPosts = () => {
               aria-label="Show only entries with an image"
             />
           </Form.Group>
-        </div>
+        </div> */}
       </Form>
       {loaded ? (
         <>
