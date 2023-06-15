@@ -97,6 +97,13 @@ const AllPosts = () => {
     setLoaded(false);
   };
 
+  // Prevents refresh of page when enter is pressed in search field.
+  const preventSubmit = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <h1>Diary Entries</h1>
@@ -110,6 +117,7 @@ const AllPosts = () => {
             value={query}
             placeholder="Entry text or owner"
             onChange={handleChange}
+            onKeyDown={preventSubmit}
           />
         </Form.Group>
         <Form.Group>

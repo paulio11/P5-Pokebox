@@ -72,6 +72,13 @@ const TrainerList = () => {
     }
   };
 
+  // Prevents refresh of page when enter is pressed in search field.
+  const preventSubmit = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <h1>Trainers</h1>
@@ -87,6 +94,7 @@ const TrainerList = () => {
             value={query}
             placeholder="Search"
             onChange={handleChange}
+            onKeyDown={preventSubmit}
           />
         </Form.Group>
         <Form.Group>

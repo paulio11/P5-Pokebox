@@ -103,6 +103,13 @@ const PokemonList = () => {
     setLoaded(false);
   };
 
+  // Prevents refresh of page when enter is pressed in search field.
+  const preventSubmit = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
@@ -135,6 +142,7 @@ const PokemonList = () => {
           id="search"
           placeholder="Search"
           onChange={handleChange}
+          onKeyDown={preventSubmit}
         />
       </Form>
       {loaded ? (
