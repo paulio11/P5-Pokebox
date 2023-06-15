@@ -11,11 +11,51 @@
 
 ## Validation
 
+### HTML ([W3C Markup Validation](https://validator.w3.org/))
+
+The only HTML file for this project, [index.html](https://github.com/paulio11/P5-Pokebox/blob/main/public/index.html), resides in the public directory. This essential file serves as the container for the React app. Although it may generate some errors when directly analyzed using the W3C Markup Validator due to the presence of variables in place of URLs, it's important to note that these variables, such as `"%PUBLIC_URL%"`, are dynamically replaced with actual URLs during the rendering and execution of the code.
+
+To circumvent these validation errors, the source code was obtained by directly copying it from the compiled application within the web browser. This approach ensures that the final version of the HTML file successfully passes validation without any errors. For a visual representation of the validation results, you can refer to this [screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/validation-html.png).
+
+### JavaScript ([ESLint](https://eslint.org/))
+
+ESLint played a crucial role in maintaining the quality of my JavaScript code during the entire development process. By using ESLint, I was able to identify and address errors promptly, as they were displayed in the console while running the application. To ensure consistency and adherence to coding conventions, I utilized ESLint in conjunction with the Prettier plugin. This powerful combination allowed me to satisfy the linter's requirements, such as using double quotes and maintaining proper spacing around curly brackets.
+
+Thanks to ESLint's continuous validation, I successfully eliminated all validation errors in the final product. You can observe in the accompanying gif that executing `npx eslint .` across all files returns zero errors. This demonstrates the effectiveness of ESLint in ensuring code quality. Additionally, when initiating `npm start` in the terminal, the application compiles successfully without any issues.
+
+By leveraging ESLint and the integration with Prettier, I was able to streamline my development workflow, improve code consistency, and deliver a high-quality final product.
+
+![ESLint in action](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/terminal.gif)
+
 ### CSS ([Jigsaw CSS Validation](https://jigsaw.w3.org/css-validator/))
 
-### JavaScript ([JSHint](https://jshint.com/))
-
-### HTML ([W3C Markup Validation](https://validator.w3.org/))
+| Filename                                                                                                                   | Result         | PDF Showing Results                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [AllPosts.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/AllPosts.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/allposts.pdf)           |
+| [App.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/App.module.css)                               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/app.pdf)                |
+| [AuthForms.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/AuthForms.module.css)                   | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/authforms.pdf)          |
+| [AvatarModal.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/AvatarModal.module.css)               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/avatarmodal.pdf)        |
+| [Comment.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Comment.module.css)                       | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/comment.pdf)            |
+| [CommentEditForm.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/CommentEditForm.module.css)       | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/commenteditform.pdf)    |
+| [CommentForm.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/CommentForm.module.css)               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/commentform.pdf)        |
+| [Footer.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Footer.module.css)                         | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/footer.pdf)             |
+| [HomePage.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/HomePage.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/homepage.pdf)           |
+| [LoadingText.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/LoadingText.module.css)               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/loadingtext.pdf)        |
+| [NavBar.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/NavBar.module.css)                         | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/navbar.pdf)             |
+| [Notification.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Notification.module.css)             | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/notification.pdf)       |
+| [Pokeball.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Pokeball.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/pokeball.pdf)           |
+| [Pokemon.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Pokemon.module.css)                       | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/pokemon.pdf)            |
+| [PokemonDexPage.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/PokemonDexPage.module.css)         | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/pokemondexpage.pdf)     |
+| [Post.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Post.module.css)                             | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/post.pdf)               |
+| [PostCommentFooter.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/PostCommentFooter.module.css)   | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/postcommentfooter.pdf)  |
+| [PostForm.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/PostForm.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/postform.pdf)           |
+| [PostPage.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/PostPage.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/postpage.pdf)           |
+| [Settings.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Settings.module.css)                     | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/settings.pdf)           |
+| [ToTopButton.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/ToTopButton.module.css)               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/totopbutton.pdf)        |
+| [Trainer.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/Trainer.module.css)                       | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/trainer.pdf)            |
+| [TrainerDiary.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/TrainerDiary.module.css)             | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/trainerdiary.pdf)       |
+| [TrainerList.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/TrainerList.module.css)               | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/trainerlist.pdf)        |
+| [TrainerProfilePage.module.css](https://github.com/paulio11/P5-Pokebox/blob/main/src/styles/TrainerProfilePage.module.css) | No Error Found | [Link](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/validation/trainerprofilepage.pdf) |
 
 [Back to top 🔺](#testing)
 
