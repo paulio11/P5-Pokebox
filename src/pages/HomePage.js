@@ -48,9 +48,7 @@ const HomePage = () => {
         <div className={styles.Item} onClick={() => navigate("/trainers")}>
           <div>
             <h2>Trainers</h2>
-            <p>
-              Discover our trainers and see who has the biggest collection!
-            </p>
+            <p>Discover our trainers and see who has the biggest collection!</p>
           </div>
           <img src={trainers} alt="Pokémon trainers" />
         </div>

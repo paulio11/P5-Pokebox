@@ -38,14 +38,15 @@ const TrainerDiary = (props) => {
         <>
           {posts.results.length ? (
             <InfiniteScroll
-              children={posts.results.map((post, index) => (
-                <Post key={index} {...post} setPosts={setPosts} />
-              ))}
               dataLength={posts.results.length}
               loader={<LoadingText />}
               hasMore={!!posts.next}
               next={() => fetchMoreData(posts, setPosts)}
-            />
+            >
+              {posts.results.map((post, index) => (
+                <Post key={index} {...post} setPosts={setPosts} />
+              ))}
+            </InfiniteScroll>
           ) : (
             <Alert variant="dark">{owner} has no diary entries</Alert>
           )}

@@ -78,8 +78,7 @@ const PokemonDexPage = () => {
   useTitle(
     `${
       sData.name
-        ? sData.name.charAt(0).toUpperCase() +
-          sData.name.slice(1).toLowerCase()
+        ? sData.name.charAt(0).toUpperCase() + sData.name.slice(1).toLowerCase()
         : "Loading..."
     }`
   );
@@ -97,7 +96,8 @@ const PokemonDexPage = () => {
     );
   };
 
-  // Sends a PATCH request to the endpoint updating the favorite Pokémon with the string from pData.name.
+  // Sends a PATCH request to the endpoint updating the favorite Pokémon with
+  // the string from pData.name.
   const handleFavorite = async () => {
     try {
       const response = await axiosReq.patch(
@@ -151,8 +151,8 @@ const PokemonDexPage = () => {
                           className={`fas fa-square-xmark ${styles.RedCross}`}
                         ></i>{" "}
                         Add{" "}
-                        <span className={styles.FirstCap}>{sData.name}</span>{" "}
-                        to your collection
+                        <span className={styles.FirstCap}>{sData.name}</span> to
+                        your collection
                       </>
                     )}
                   </button>
@@ -207,8 +207,8 @@ const PokemonDexPage = () => {
                     onClick={handleFavorite}
                     className={`${styles.CollectionBtn} ${styles.FavBtn}`}
                   >
-                    Set <span className={styles.FirstCap}>{sData.name}</span>{" "}
-                    as your favorite Pokémon
+                    Set <span className={styles.FirstCap}>{sData.name}</span> as
+                    your favorite Pokémon
                   </button>
                 )}
                 {isFav && (

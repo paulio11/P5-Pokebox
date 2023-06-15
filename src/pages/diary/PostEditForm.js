@@ -233,8 +233,8 @@ const PostEditForm = () => {
       {!is_owner && loaded && (
         <>
           <Alert variant="dark">
-            You do not have permission to edit <strong>{owner}'s</strong> diary
-            entry.
+            You do not have permission to edit <strong>{owner}&apos;s</strong>{" "}
+            diary entry.
           </Alert>
           <Button variant="danger" onClick={() => navigate(-1)}>
             <i className="fas fa-arrow-left" /> Go back

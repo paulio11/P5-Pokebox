@@ -122,7 +122,7 @@ const LogIn = () => {
       )}
       {!currentUser && (
         <div className={styles.Info}>
-          If you don't have an account you can{" "}
+          If you do not have an account you can{" "}
           <Link to="/register" className={styles.Link}>
             register here
           </Link>

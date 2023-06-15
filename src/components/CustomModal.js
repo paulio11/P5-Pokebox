@@ -9,7 +9,8 @@ const CustomModal = (props) => {
   const handleShow = () => setShow(true);
   const { buttonText, heading, children } = props;
 
-  // Return a modal with fields for button text, heading, and method to show/hide.
+  // Return a modal with fields for button text, heading, and method to
+  // show/hide.
   return (
     <>
       <Button variant="dark" onClick={handleShow}>

@@ -8,14 +8,15 @@ import masterball from "../assets/masterball.webp";
 import styles from "../styles/Pokeball.module.css";
 
 const Ball = (props) => {
+  const { size } = props;
   let ballImage;
 
   // Set ballImage based on the Pokémon collection size
-  if (props.size <= 250) {
+  if (size <= 250) {
     ballImage = pokeball;
-  } else if (props.size <= 500) {
+  } else if (size <= 500) {
     ballImage = greatball;
-  } else if (props.size <= 750) {
+  } else if (size <= 750) {
     ballImage = ultraball;
   } else {
     ballImage = masterball;

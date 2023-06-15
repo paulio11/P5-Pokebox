@@ -120,14 +120,15 @@ const TrainerList = () => {
           {data.results.length ? (
             <InfiniteScroll
               className={styles.ResultsContainer}
-              children={data.results.map((trainer) => (
-                <Trainer key={trainer.id} {...trainer} />
-              ))}
               dataLength={data.count}
               loader={<LoadingText />}
               hasMore={!!data.next}
               next={() => fetchMoreData(data, setData)}
-            />
+            >
+              {data.results.map((trainer) => (
+                <Trainer key={trainer.id} {...trainer} />
+              ))}
+            </InfiniteScroll>
           ) : (
             <div className="d-flex flex-column align-items-center">
               <span className={styles.SearchError}>
