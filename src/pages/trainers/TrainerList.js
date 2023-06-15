@@ -13,6 +13,8 @@ import Form from "react-bootstrap/Form";
 import { fetchMoreData } from "../../utils/Utils";
 // Hooks
 import useTitle from "../../hooks/useTitle";
+// Contexts
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 
 const TrainerList = () => {
   // State variables.
@@ -21,6 +23,8 @@ const TrainerList = () => {
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("col_size");
   const [sortOrder, setSortOrder] = useState("-");
+
+  const setCurrentNotification = useSetCurrentNotification();
 
   useTitle("Trainers");
 
@@ -52,7 +56,7 @@ const TrainerList = () => {
     return () => {
       clearTimeout(queryTimer);
     };
-  }, [query, sortBy, sortOrder]);
+  }, [query, sortBy, sortOrder, setCurrentNotification]);
 
   // Handles search form change, converts query to lower case.
   const handleChange = (event) => {

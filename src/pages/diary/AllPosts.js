@@ -52,7 +52,14 @@ const AllPosts = () => {
 
     setLoaded(false);
     fetchPosts();
-  }, [sortBy, sortOrder, likeCheck, imageCheck, currentUser?.profile_id]);
+  }, [
+    sortBy,
+    sortOrder,
+    likeCheck,
+    imageCheck,
+    currentUser?.profile_id,
+    setCurrentNotification,
+  ]);
 
   // Handles sorting form changes
   const handleSortChange = (event) => {

@@ -36,7 +36,7 @@ const TrainerDiary = (props) => {
 
     setLoaded(false);
     fetchPosts();
-  }, [id]);
+  }, [id, setCurrentNotification]);
 
   return (
     <>

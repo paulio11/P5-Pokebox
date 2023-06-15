@@ -74,7 +74,7 @@ const PokemonDexPage = () => {
     setNoResults(false);
     setLoaded(false);
     fetchData();
-  }, [id, currentUser]);
+  }, [id, currentUser, setCurrentNotification]);
 
   // Compare user data with Pokémon name to see if Pokémon is favorite.
   // Check if user has collected Pokémon.

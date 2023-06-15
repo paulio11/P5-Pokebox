@@ -27,12 +27,14 @@ import Alert from "react-bootstrap/Alert";
 import { FetchPokemonData } from "../../utils/PokeApi";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 // Hooks
 import useTitle from "../../hooks/useTitle";
 
 const TrainerProfilePage = () => {
   const { id } = useParams();
   const currentUser = useCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
   const is_owner = currentUser?.profile_id.toString() === id;
 
   // State variables.
@@ -93,7 +95,7 @@ const TrainerProfilePage = () => {
       }
     };
     getFavData();
-  }, [favorite]);
+  }, [favorite, setCurrentNotification]);
 
   // Fetches data for Pokémon in users collection when clicked.
   const loadCollection = async () => {

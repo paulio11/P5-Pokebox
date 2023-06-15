@@ -70,7 +70,7 @@ const PokemonList = () => {
     return () => {
       clearTimeout(queryTimer);
     };
-  }, [query, currentUser]);
+  }, [query, currentUser, setCurrentNotification]);
 
   // React Infinite Scroll component next function.
   const loadMoreData = async () => {
