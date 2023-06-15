@@ -51,7 +51,11 @@ const Post = (props) => {
           }),
         }));
         setCurrentNotification("Diary entry liked.");
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(
+          "An error occurred while attempting to like. Please try again."
+        );
+      }
     }
   };
 
@@ -69,7 +73,11 @@ const Post = (props) => {
         }),
       }));
       setCurrentNotification("Diary entry unliked.");
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(
+        "An error occurred while attempting to unlike. Please try again."
+      );
+    }
   };
 
   return (

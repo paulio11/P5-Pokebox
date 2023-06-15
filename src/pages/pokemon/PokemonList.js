@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 // CSS
@@ -12,15 +13,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Sobble from "../../assets/sobble.webp";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useSetCurrentNotification } from "../../contexts/NotificationContext";
 // API
 import { axiosReq } from "../../api/AxiosDefaults";
 // Hooks
 import useTitle from "../../hooks/useTitle";
+// Utils
 import { FetchPokemonList, FetchPokemonData } from "../../utils/PokeApi";
-import { Link } from "react-router-dom";
 
 const PokemonList = () => {
   const currentUser = useCurrentUser();
+  const setCurrentNotification = useSetCurrentNotification();
 
   // State variables.
   const [loaded, setLoaded] = useState(false);
@@ -44,7 +47,11 @@ const PokemonList = () => {
         );
         setResults(pokemonData);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(
+          "An error occurred while attempting to load data from PokéAPI. Please try again."
+        );
+      }
     };
     const fetchProfile = async () => {
       if (currentUser) {

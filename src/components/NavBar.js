@@ -32,7 +32,11 @@ const NavBar = () => {
       setCurrentUser(null);
       removeTokenTimestamp();
       setCurrentNotification("You have been logged out.");
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(
+        "An error occurred while attempting to log out. Please try again."
+      );
+    }
   };
 
   // Variables for logged in and logged out nav link items

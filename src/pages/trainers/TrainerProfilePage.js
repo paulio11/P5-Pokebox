@@ -86,7 +86,11 @@ const TrainerProfilePage = () => {
       try {
         const response = await FetchPokemonData(favorite, null);
         setFavData(response[0]);
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(
+          "An error occurred while attempting to load your information. Please try again."
+        );
+      }
     };
     getFavData();
   }, [favorite]);
@@ -116,7 +120,11 @@ const TrainerProfilePage = () => {
       } else {
         setHasMore(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(
+        "An error occurred while attempting load more Pokémon. Please try again."
+      );
+    }
   };
 
   // Toggles display of "Change avatar" graphic overlay.

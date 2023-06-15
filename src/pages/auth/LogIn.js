@@ -72,7 +72,7 @@ const LogIn = () => {
       ) : (
         <>
           <Form onSubmit={handleSubmit} className={styles.AuthForm}>
-            <Form.Group controlId="username">
+            <Form.Group>
               <Form.Label hidden htmlFor="username">
                 Username
               </Form.Label>

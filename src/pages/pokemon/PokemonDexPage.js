@@ -50,15 +50,25 @@ const PokemonDexPage = () => {
           setSData(sResponse);
 
           if (currentUser) {
-            const uResponse = await axiosReq.get(
-              `profiles/${currentUser.profile_id}`
-            );
-            setUData(uResponse.data);
+            try {
+              const uResponse = await axiosReq.get(
+                `profiles/${currentUser.profile_id}`
+              );
+              setUData(uResponse.data);
+            } catch (error) {
+              setCurrentNotification(
+                "An error occurred while attempting to load your information. Please try again."
+              );
+            }
           }
 
           setLoaded(true);
         }
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(
+          "An error occurred while attempting to load the Pokémon list. Please try again."
+        );
+      }
     };
 
     setNoResults(false);
@@ -101,7 +111,7 @@ const PokemonDexPage = () => {
   const handleFavorite = async () => {
     try {
       const response = await axiosReq.patch(
-        `profiles/${currentUser?.profile_id}`,
+        `profiles1/2${currentUser?.profile_id}`,
         {
           favorite: pData.name,
         }
@@ -109,7 +119,11 @@ const PokemonDexPage = () => {
       setIsFav(true);
       setUData(response.data);
       setCurrentNotification(`${sData.name} is now your favorite Pokémon.`);
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(
+        `Failed to update your favorite Pokémon. Please try again.`
+      );
+    }
   };
 
   // Returns a 404 error page if Pokémon with the ID provided is not found.

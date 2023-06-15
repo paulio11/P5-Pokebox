@@ -35,7 +35,11 @@ const TrainerList = () => {
         );
         setData(data);
         setLoaded(true);
-      } catch (error) {}
+      } catch (error) {
+        setCurrentNotification(
+          "An error occurred while attempting to load trainer data. Please try again."
+        );
+      }
     };
 
     setData({});

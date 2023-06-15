@@ -22,7 +22,6 @@ import HomePage from "./pages/HomePage";
 import Notification from "./components/Notification";
 // CSS
 import styles from "./styles/App.module.css";
-import ErrorAlert from "./components/ErrorAlert";
 
 function App() {
   return (
@@ -31,7 +30,6 @@ function App() {
         <div>
           <NavBar />
           <Container className={styles.MainContainer}>
-            <ErrorAlert />
             <Routes>
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LogIn />} />

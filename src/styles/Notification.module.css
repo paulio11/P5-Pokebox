@@ -3,18 +3,10 @@
   position: fixed;
   top: 75px;
   right: 10px;
-  background-color: #ba0000 !important;
   color: white;
+  background-color: #ba0000 !important;
 }
 
 .Message::first-letter {
   text-transform: uppercase;
-}
-
-.Error {
-  background-color: black;
-}
-
-.Type {
-  font-weight: bold;
 }

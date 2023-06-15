@@ -68,7 +68,11 @@ const CommentEditForm = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
       setCurrentNotification("Comment deleted.");
-    } catch (error) {}
+    } catch (error) {
+      setCurrentNotification(
+        "An error occurred while attempting to delete your comment. Please try again."
+      );
+    }
   };
 
   return (
