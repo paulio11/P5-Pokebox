@@ -33,9 +33,7 @@ const TrainerList = () => {
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(
-          query
-            ? `profiles/?owner__username=${query}`
-            : `profiles/?ordering=${sortOrder}${sortBy}`
+          `profiles/?ordering=${sortOrder}${sortBy}&search=${query}`
         );
         setData(data);
         setLoaded(true);
@@ -91,37 +89,33 @@ const TrainerList = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        {!query && (
-          <>
-            <Form.Group>
-              <Form.Label htmlFor="sort_by">Sort By</Form.Label>
-              <Form.Control
-                as="select"
-                name="sort_by"
-                id="sort_by"
-                value={sortBy}
-                onChange={handleSortChange}
-              >
-                <option value="owner__username">Username</option>
-                <option value="col_size">Pokémon collection</option>
-                <option value="created">Join date</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
-              <Form.Control
-                name="sort_order"
-                id="sort_order"
-                as="select"
-                value={sortOrder}
-                onChange={handleSortChange}
-              >
-                <option value="">Ascending</option>
-                <option value="-">Descending</option>
-              </Form.Control>
-            </Form.Group>
-          </>
-        )}
+        <Form.Group>
+          <Form.Label htmlFor="sort_by">Sort By</Form.Label>
+          <Form.Control
+            as="select"
+            name="sort_by"
+            id="sort_by"
+            value={sortBy}
+            onChange={handleSortChange}
+          >
+            <option value="owner__username">Username</option>
+            <option value="col_size">Pokémon collection</option>
+            <option value="created">Join date</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
+          <Form.Control
+            name="sort_order"
+            id="sort_order"
+            as="select"
+            value={sortOrder}
+            onChange={handleSortChange}
+          >
+            <option value="">Ascending</option>
+            <option value="-">Descending</option>
+          </Form.Control>
+        </Form.Group>
       </Form>
       {loaded ? (
         <>

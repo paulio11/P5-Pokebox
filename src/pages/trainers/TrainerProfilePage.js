@@ -281,7 +281,6 @@ const TrainerProfilePage = () => {
                             dataLength={colData.length}
                             next={fetchMoreData}
                             hasMore={hasMore}
-                            loader={<LoadingText />}
                             endMessage={`All of ${owner}'s collected Pokémon have loaded.`}
                           >
                             <div className={styles.PokemonContainer}>
