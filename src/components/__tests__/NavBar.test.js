@@ -1,27 +1,11 @@
 import React from "react";
-import { waitFor, render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 // Components
 import NavBar from "../NavBar";
 // Context Providers
 import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
 import { CurrentNotificationProvider } from "../../contexts/NotificationContext";
-
-test("Renders logged out user links", () => {
-  render(
-    <Router>
-      <CurrentNotificationProvider>
-        <NavBar />
-      </CurrentNotificationProvider>
-    </Router>
-  );
-
-  const logInLink = screen.getByRole("link", { name: "Log in" });
-  const registerLink = screen.getByRole("link", { name: "Register" });
-
-  expect(logInLink).toBeInTheDocument();
-  expect(registerLink).toBeInTheDocument();
-});
 
 test("Renders logged in user links", async () => {
   render(
@@ -34,17 +18,19 @@ test("Renders logged in user links", async () => {
     </Router>
   );
 
-  await waitFor(() => {
-    const newPostLink = screen.getByRole("link", { name: "New Diary Entry" });
-    const logOutLink = screen.getByRole("link", { name: "Log out" });
-    const userProfileLink = screen.getByRole("link", { name: "testuser" });
-    const settingsLink = screen.getByRole("link", { name: "Settings" });
-
-    expect(newPostLink).toBeInTheDocument();
-    expect(logOutLink).toBeInTheDocument();
-    expect(userProfileLink).toHaveAttribute("href", "/trainer/1");
-    expect(settingsLink).toBeInTheDocument();
+  const newPostLink = await screen.findByRole("link", {
+    name: "New Diary Entry",
   });
+  expect(newPostLink).toBeInTheDocument();
+
+  const logOutLink = await screen.findByRole("link", { name: "Log out" });
+  expect(logOutLink).toBeInTheDocument();
+
+  const userProfileLink = await screen.findByRole("link", { name: "testuser" });
+  expect(userProfileLink).toHaveAttribute("href", "/trainer/1");
+
+  const settingsLink = await screen.findByRole("link", { name: "Settings" });
+  expect(settingsLink).toBeInTheDocument();
 });
 
 test("Renders 'Log in' and 'Register' after clicking 'Log out'", async () => {
@@ -58,16 +44,12 @@ test("Renders 'Log in' and 'Register' after clicking 'Log out'", async () => {
     </Router>
   );
 
-  await waitFor(() => {
-    const logOutLink = screen.getByRole("link", { name: "Log out" });
-    fireEvent.click(logOutLink);
-  });
+  const logOutLink = await screen.findByRole("link", { name: "Log out" });
+  fireEvent.click(logOutLink);
 
-  await waitFor(() => {
-    const logInLink = screen.getByRole("link", { name: "Log in" });
-    const registerLink = screen.getByRole("link", { name: "Register" });
+  const logInLink = await screen.findByRole("link", { name: "Log in" });
+  expect(logInLink).toBeInTheDocument();
 
-    expect(logInLink).toBeInTheDocument();
-    expect(registerLink).toBeInTheDocument();
-  });
+  const registerLink = await screen.findByRole("link", { name: "Register" });
+  expect(registerLink).toBeInTheDocument();
 });

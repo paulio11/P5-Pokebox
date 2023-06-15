@@ -59,7 +59,9 @@ test("Modal hides when close button is clicked", async () => {
   await waitFor(() => {
     const heading = screen.queryByText("Test heading");
     expect(heading).not.toBeInTheDocument();
+  });
 
+  await waitFor(() => {
     const children = screen.queryByText("Children");
     expect(children).not.toBeInTheDocument();
   });
