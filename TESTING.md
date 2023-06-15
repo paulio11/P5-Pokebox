@@ -317,12 +317,18 @@ Manual testing proved to be more comprehensive. To ensure thoroughness, each tes
 
 ## Browser Testing
 
-| Browser             | Screenshot     |
-| ------------------- | -------------- |
-| Google Chrome       | [Screenshot]() |
-| Edge                | [Screenshot]() |
-| Safari              | [Screenshot]() |
-| Mobile Safari (iOS) | [Screenshot]() |
+Below are screenshots showcasing the Pokémon List page on the deployed Heroku version of Pokébox. Data is consistent throughout, showing the Pokémon collection of the same user, with each browser session logged in accordingly. I have thoroughly tested Pokébox on multiple browsers, and I'm pleased to confirm that it loads and operates in all of them.
+
+| Browser             | Screenshot                                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Google Chrome       | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/browser-chrome.png)         |
+| Edge                | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/browser-edge.png)           |
+| Safari              | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/browser-safari.png)         |
+| Mobile Safari (iOS) | [Screenshot](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/browser-safari-mobile.jpeg) |
+
+Please note that on both versions of Safari, users may encounter difficulties logging in or fetching data from PokéAPI unless they disable a specific option. This issue appears to be consistent across various React Advanced Front-End projects reported by other students. We are actively investigating this matter to find a suitable solution and ensure compatibility with Safari's settings. In the meantime, I recommend toggling off the option to enable seamless access to all features of Pokébox.
+
+![safari settings](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/safari-setting.png)
 
 [Back to top 🔺](#testing)
 
