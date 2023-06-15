@@ -139,34 +139,35 @@ const AllPosts = () => {
             <option value="-">Descending</option>
           </Form.Control>
         </Form.Group>
-        {/* <div>
-          {currentUser && (
-            <Form.Group>
-              <Form.Label hidden htmlFor="like_check">
-                Show only entries I liked
-              </Form.Label>
-              <Form.Check
-                id="like_check"
-                name="like_check"
-                onChange={handleSortChange}
-                label="Show only entries I liked"
-                aria-label="Show only entries I liked"
-              />
-            </Form.Group>
-          )}
-          <Form.Group>
-            <Form.Label hidden htmlFor="image_check">
-              Show only entries with an image
+      </Form>
+      <Form className={styles.SortForm}>
+        <strong>Diary Entry Filters:</strong>
+        {currentUser && (
+          <Form.Group className={styles.FilterGroup}>
+            <Form.Label hidden htmlFor="like_check">
+              Show only entries I liked
             </Form.Label>
             <Form.Check
-              id="image_check"
-              name="image_check"
+              id="like_check"
+              name="like_check"
               onChange={handleSortChange}
-              label="Show only entries with an image"
-              aria-label="Show only entries with an image"
+              label="Show only entries I liked"
+              aria-label="Show only entries I liked"
             />
           </Form.Group>
-        </div> */}
+        )}
+        <Form.Group className={styles.FilterGroup}>
+          <Form.Label hidden htmlFor="image_check">
+            Show only entries with an image
+          </Form.Label>
+          <Form.Check
+            id="image_check"
+            name="image_check"
+            onChange={handleSortChange}
+            label="Show only entries with an image"
+            aria-label="Show only entries with an image"
+          />
+        </Form.Group>
       </Form>
       {loaded ? (
         <>

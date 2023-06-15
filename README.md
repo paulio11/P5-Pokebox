@@ -379,9 +379,9 @@ The _NavBar_ component is a crucial element in the application's UI as it render
 
 #### [Notification.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Notification.js)
 
-This component leverages the `useCurrentNotification` context (defined below) to retrieve and present the current notification to the user. Additionally, a timeout function is implemented to automatically clear and remove the notification after a specified duration.
+This component utilizes the `useCurrentNotification` context (defined below) to efficiently retrieve and present the current notification to the user. Moreover, it incorporates a well-implemented timeout function to automatically clear and remove the notification after a specified duration. To ensure effective communication with either my own API or PokéAPI, the `useSetCurrentNotification` context function is employed in the majority of catch (error) blocks. This approach guarantees that the user is promptly notified in the event of a possible error.
 
-The user receives a notification upon the successful completion of the following tasks:
+In addition to error messages, the user will be promptly notified upon successful completion of the following actions:
 
 - Posting, editing, and deleting a diary entry.
 - Posting, editing, and deleting a comment.
@@ -547,6 +547,7 @@ _AllPosts_ displays a list of diary entries.
 - The posts it fetches can be sorted by like count, comment count and creation date.
 - They can also be filtered by posts liked by the user or posts with an image.
 - The `handleSortChange()` function handles changes in the _Sort By_, _Order By_, _Posts with image_, _Posts I liked_ input fields. The values are used in the `fetchPosts()` function, changing the API endpoint to fetch the desired results.
+- Posts can be searched for by either the author or body text.
 
 _TrainerDiary_ is similar to _AllPosts_ but the posts fetched are filtered by `owner`.
 
@@ -698,7 +699,9 @@ Given more time, there are numerous additional features that could have been inc
 - [Axios](https://axios-http.com/docs/intro) - A promise based HTTP client.
 - [React Router](https://reactrouter.com/en/main/start/overview) - Enables client side routing.
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode) - Helps decode JWT tokens to get timestamp expiry time.
+- [Mock Service Worker](https://www.npmjs.com/package/msw) - This was used to mock responses from the API for automated testing.
 - [Font Awesome](https://fontawesome.com/) - An icon library with a vast collection of scalable vector icons for web and mobile.
+- [ESLint](https://www.npmjs.com/package/eslint) - This is a tool for identifying and reporting on patterns/problems found in my JavaScript code. This was used in conjunction with the prettier config so it would understand my code formatting.
 
 ### Software and Other
 
