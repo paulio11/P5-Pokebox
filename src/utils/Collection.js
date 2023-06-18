@@ -8,7 +8,6 @@ import { useCurrentNotification } from "../contexts/NotificationContext";
 // If new it adds the Pokémon ID to the array.
 // Sends PATCH request with sorted array to update the profile object.
 export const UpdateCollection = async (newPokemon, uData, setUData) => {
-  const setCurrentNotification = useCurrentNotification();
   const hasPokemon = uData.pokemon.includes(newPokemon);
   const updatedCollection = hasPokemon
     ? uData.pokemon.filter((pokemon) => pokemon !== newPokemon)
@@ -21,9 +20,5 @@ export const UpdateCollection = async (newPokemon, uData, setUData) => {
       }),
     });
     setUData(response.data);
-  } catch (error) {
-    setCurrentNotification(
-      "An error occurred while attempting to update your collection. Please try again."
-    );
-  }
+  } catch (error) {}
 };
