@@ -109,6 +109,7 @@ const AllPosts = () => {
       <h1>Diary Entries</h1>
       <hr />
       <Form className={styles.SortForm}>
+        {/* Search field */}
         <Form.Group>
           <Form.Label htmlFor="search">Search For</Form.Label>
           <Form.Control
@@ -120,6 +121,7 @@ const AllPosts = () => {
             onKeyDown={preventSubmit}
           />
         </Form.Group>
+        {/* Sort by dropdown */}
         <Form.Group>
           <Form.Label htmlFor="sort_by">Sort By</Form.Label>
           <Form.Control
@@ -134,6 +136,7 @@ const AllPosts = () => {
             <option value="comment_count">Comment Count</option>
           </Form.Control>
         </Form.Group>
+        {/* Sort order dropdown */}
         <Form.Group>
           <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
           <Form.Control
@@ -152,6 +155,7 @@ const AllPosts = () => {
         <strong>Diary Entry Filters:</strong>
         {currentUser && (
           <Form.Group className={styles.FilterGroup}>
+            {/* Liked post filter */}
             <Form.Label hidden htmlFor="like_check">
               Show only entries I liked
             </Form.Label>
@@ -165,6 +169,7 @@ const AllPosts = () => {
           </Form.Group>
         )}
         <Form.Group className={styles.FilterGroup}>
+          {/* Image filter */}
           <Form.Label hidden htmlFor="image_check">
             Show only entries with an image
           </Form.Label>

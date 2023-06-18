@@ -63,6 +63,7 @@ const LogIn = () => {
       <hr />
       {currentUser ? (
         <>
+          {/* Alert for logged in users */}
           <p>You are already logged in.</p>
           {/* Go back button */}
           <Button variant="danger" onClick={() => navigate(-1)}>
@@ -72,6 +73,7 @@ const LogIn = () => {
       ) : (
         <>
           <Form onSubmit={handleSubmit} className={styles.AuthForm}>
+            {/* Username field */}
             <Form.Group>
               <Form.Label hidden htmlFor="username">
                 Username
@@ -92,6 +94,7 @@ const LogIn = () => {
               </Alert>
             ))}
             <Form.Group>
+              {/* Password field */}
               <Form.Label hidden htmlFor="password">
                 Password
               </Form.Label>

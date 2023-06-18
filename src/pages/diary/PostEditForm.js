@@ -140,6 +140,7 @@ const PostEditForm = () => {
             <Row>
               <Col xs={12} lg={6}>
                 <Form.Group>
+                  {/* Post body field */}
                   <Form.Label hidden htmlFor="body">
                     Diary Entry Text:
                   </Form.Label>
@@ -167,6 +168,7 @@ const PostEditForm = () => {
               </Col>
               <Col xs={12} lg={6}>
                 <Form.Group>
+                  {/* Post image input */}
                   {image ? (
                     <>
                       <img
@@ -232,6 +234,7 @@ const PostEditForm = () => {
       )}
       {!is_owner && loaded && (
         <>
+          {/* Alert for users who don't own the post object */}
           <Alert variant="dark">
             You do not have permission to edit <strong>{owner}&apos;s</strong>{" "}
             diary entry.

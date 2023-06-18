@@ -150,6 +150,7 @@ const TrainerProfilePage = () => {
       {loaded ? (
         <>
           <div className={styles.Header}>
+            {/* ID and username */}
             <div className={styles.ID}># {id}</div>
             <h1>{owner}</h1>
           </div>
@@ -185,6 +186,7 @@ const TrainerProfilePage = () => {
                 </div>
                 {showAboutEdit && (
                   <div className={styles.AvatarText}>
+                    {/* Avatar edit button */}
                     <i className="fas fa-arrow-up d-block"></i> Click to change
                     your avatar
                   </div>

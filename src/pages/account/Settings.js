@@ -151,6 +151,7 @@ const Settings = () => {
         </>
       ) : (
         <>
+          {/* Alert for logged out users */}
           <Alert variant="dark">
             You must be logged in to change your account settings.
           </Alert>

@@ -32,6 +32,7 @@ const Notification = () => {
   if (currentNotification) {
     return (
       <Toast show={show} className={styles.Notification}>
+        {/* Notification message */}
         <Toast.Body className={styles.Message}>
           {currentNotification}
         </Toast.Body>

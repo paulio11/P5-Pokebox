@@ -103,9 +103,12 @@ const PostPage = () => {
                   profile_avatar={currentUser.profile_avatar}
                 />
               ) : (
-                <Alert variant="secondary">
-                  Log in to add a comment to this diary entry.
-                </Alert>
+                <>
+                  {/* Alert for logged out users */}
+                  <Alert variant="secondary">
+                    Log in to add a comment to this diary entry.
+                  </Alert>
+                </>
               )}
             </Col>
           </Row>

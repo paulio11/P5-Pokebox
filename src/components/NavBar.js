@@ -42,6 +42,7 @@ const NavBar = () => {
   // Variables for logged in and logged out nav link items
   const loggedOutItems = (
     <>
+      {/* Links for logged out users */}
       <NavLink
         to="/login"
         className={({ isActive }) =>
@@ -62,6 +63,7 @@ const NavBar = () => {
   );
   const loggedInItems = (
     <>
+      {/* Links for logged in users */}
       <span className={styles.LoggedInAs}>
         Logged in as{" "}
         <Link to={`/trainer/${currentUser?.profile_id}`}>

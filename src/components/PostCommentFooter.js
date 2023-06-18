@@ -8,6 +8,7 @@ const PostCommentFooter = (props) => {
 
   return (
     <div>
+      {/* Link to owner's profile, includes avatar and username */}
       <Link
         to={`/trainer/${profile_id}`}
         className={`${styles.Link} ${styles.Owner}`}

@@ -77,6 +77,7 @@ const CommentEditForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      {/* Comment body form */}
       <Form.Group>
         <Form.Control
           name={`comment ${id} body`}
@@ -102,6 +103,7 @@ const CommentEditForm = (props) => {
         <Button disabled={!body.trim()} type="submit" variant="danger">
           Save
         </Button>
+        {/* Delete comment modal */}
         <CustomModal buttonText="Delete" heading="Delete Comment">
           <p>Are you sure you want to delete this comment?</p>
           <div className={styles.ModalButtons}>

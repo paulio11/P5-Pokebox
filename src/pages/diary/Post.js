@@ -87,6 +87,7 @@ const Post = (props) => {
           <div>
             {is_owner && (
               <OverlayTrigger overlay={<Tooltip>Edit diary entry</Tooltip>}>
+                {/* Edit post button */}
                 <Link
                   to={`/editpost/${id}`}
                   className={styles.EditLink}
@@ -96,10 +97,12 @@ const Post = (props) => {
                 </Link>
               </OverlayTrigger>
             )}
+            {/* Link to post page */}
             <Link to={`/post/${id}`} className={styles.Link}>
               {created}
             </Link>
           </div>
+          {/* Comment and like count */}
           <div className={styles.HeaderIcons}>
             <div
               className={styles.CommentInfo}
@@ -146,6 +149,7 @@ const Post = (props) => {
         <hr />
         <Row>
           <Col xs={12} lg={image ? 6 : undefined}>
+            {/* Post body text */}
             <div className={styles.Body}>{body}</div>
             <PostCommentFooter
               profile_id={profile_id}

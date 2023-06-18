@@ -17,12 +17,14 @@ const Trainer = (props) => {
       <div className={styles.TrainerCard}>
         <Link className={styles.TrainerLink} to={`/trainer/${id}`}>
           <Row>
+            {/* ID and join date */}
             <Col className={styles.Header}>
               <span>ID: #{id}</span>
               <span>{created}</span>
             </Col>
           </Row>
           <Row>
+            {/* Avatar */}
             <Col xs={3}>
               <img
                 src={avatar}
@@ -30,6 +32,7 @@ const Trainer = (props) => {
                 className={styles.Avatar}
               />
             </Col>
+            {/* Username and about text */}
             <Col>
               <div className={styles.TrainerName}>{owner}</div>
               <div>{about}</div>
@@ -38,6 +41,7 @@ const Trainer = (props) => {
           <Row>
             <Col>
               <hr />
+              {/* Collection progress */}
               <div className={styles.Footer}>
                 <Ball size={pokemon.length} />
                 <ProgressBar

@@ -54,6 +54,7 @@ const CommentForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit} className={styles.Form}>
+      {/* New comment form */}
       <Form.Group>
         <Form.Label hidden htmlFor="body">
           Comment:

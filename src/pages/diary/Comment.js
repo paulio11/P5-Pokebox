@@ -31,6 +31,7 @@ const Comment = (props) => {
         <div className={styles.Header}>
           {is_owner && (
             <OverlayTrigger overlay={<Tooltip>Edit comment</Tooltip>}>
+              {/* Edit comment button */}
               <i
                 className={`fas fa-pen-to-square ${styles.EditLink}`}
                 onClick={() => setShowEditForm(true)}
@@ -49,7 +50,10 @@ const Comment = (props) => {
             setPost={setPost}
           />
         ) : (
-          <p>{body}</p>
+          <>
+            {/* Comment text */}
+            <p>{body}</p>
+          </>
         )}
         <PostCommentFooter
           profile_id={profile_id}

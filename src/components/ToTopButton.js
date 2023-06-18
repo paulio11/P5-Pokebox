@@ -21,20 +21,24 @@ const ToTopButton = () => {
     }
   };
 
+  // Adds then removes listener to window scroll
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <Button
-      aria-label="Scroll to top"
-      variant="danger"
-      className={`${styles.TopButton} ${isVisible && `${styles.Visible}`}`}
-      onClick={handleClick}
-    >
-      <i className="fas fa-arrow-up"></i>
-    </Button>
+    <>
+      {/* Scroll to top button */}
+      <Button
+        aria-label="Scroll to top"
+        variant="danger"
+        className={`${styles.TopButton} ${isVisible && `${styles.Visible}`}`}
+        onClick={handleClick}
+      >
+        <i className="fas fa-arrow-up"></i>
+      </Button>
+    </>
   );
 };
 

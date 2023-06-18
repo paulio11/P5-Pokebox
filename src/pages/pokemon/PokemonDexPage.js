@@ -143,6 +143,7 @@ const PokemonDexPage = () => {
           <div className={styles.Container}>
             <Row>
               <Col xs={12} md={6}>
+                {/* Update collection button */}
                 {currentUser && (
                   <button
                     className={styles.CollectionBtn}
@@ -171,11 +172,13 @@ const PokemonDexPage = () => {
                     )}
                   </button>
                 )}
+                {/* Pokémon official artwork */}
                 <img
                   src={pData.sprites.other["official-artwork"].front_default}
                   alt={`${sData.name}'s official artwork`}
                   className={styles.Artwork}
                 />
+                {/* Genus text/description */}
                 <p className={styles.Genus}>
                   {
                     sData.genera.find((entry) => entry.language.name === "en")
@@ -185,6 +188,7 @@ const PokemonDexPage = () => {
               </Col>
               <Col xs={12} md={6}>
                 <div className={styles.Types}>
+                  {/* Types */}
                   {pData.types.map(({ type }) => (
                     <span
                       key={type.name}
@@ -194,6 +198,7 @@ const PokemonDexPage = () => {
                     </span>
                   ))}
                 </div>
+                {/* Pokédex entry text */}
                 <div className={styles.FlavorText}>
                   {sData.flavor_text_entries
                     .find((entry) => entry.language.name === "en")
@@ -201,6 +206,7 @@ const PokemonDexPage = () => {
                     "This Pokémon is still a mystery!"}
                 </div>
                 <div className={styles.Stats}>
+                  {/* Stats */}
                   {pData.stats.map(({ stat, base_stat }) => (
                     <div key={stat.name}>
                       <div className="d-flex justify-content-between align-items-start">
@@ -216,6 +222,7 @@ const PokemonDexPage = () => {
                     </div>
                   ))}
                 </div>
+                {/* Favorite button */}
                 {!isFav && currentUser && (
                   <button
                     onClick={handleFavorite}
@@ -239,6 +246,7 @@ const PokemonDexPage = () => {
               pData.id === 1 && "flex-row-reverse"
             }`}
           >
+            {/* Previous Pokémon button */}
             {pData.id !== 1 && (
               <Link
                 className={styles.FooterLink}
@@ -249,6 +257,7 @@ const PokemonDexPage = () => {
                 </span>
               </Link>
             )}
+            {/* Next Pokémon button */}
             {pData.id !== 1010 && (
               <Link
                 className={styles.FooterLink}

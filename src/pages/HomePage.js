@@ -35,6 +35,7 @@ const HomePage = () => {
         <h1>POKÉBOX</h1>
       </div>
       <div className={styles.ItemContainer}>
+        {/* Pokémon section link */}
         <div className={styles.Item} onClick={() => navigate("/pokemon")}>
           <div>
             <h2>Pokémon</h2>
@@ -45,6 +46,7 @@ const HomePage = () => {
             alt="Pokémon"
           />
         </div>
+        {/* Trainers section link */}
         <div className={styles.Item} onClick={() => navigate("/trainers")}>
           <div>
             <h2>Trainers</h2>
@@ -52,6 +54,7 @@ const HomePage = () => {
           </div>
           <img src={trainers} alt="Pokémon trainers" />
         </div>
+        {/* Diaries section link */}
         <div className={styles.Item} onClick={() => navigate("/posts")}>
           <div>
             <h2>Diaries</h2>

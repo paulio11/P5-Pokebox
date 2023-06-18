@@ -54,6 +54,7 @@ const Register = () => {
       <hr />
       {currentUser ? (
         <>
+          {/* Alert for logged in users */}
           <p>You have already registered.</p>
           {/* Go back button */}
           <Button variant="danger" onClick={() => navigate(-1)}>
@@ -63,6 +64,7 @@ const Register = () => {
       ) : (
         <>
           <Form onSubmit={handleSubmit} className={styles.AuthForm}>
+            {/* Username field */}
             <Form.Group>
               <Form.Label hidden htmlFor="username">
                 Username
@@ -83,6 +85,7 @@ const Register = () => {
               </Alert>
             ))}
             <Form.Group>
+              {/* Password1 field */}
               <Form.Label hidden htmlFor="password1">
                 Password
               </Form.Label>
@@ -101,6 +104,7 @@ const Register = () => {
               </Alert>
             ))}
             <Form.Group>
+              {/* Password2 field */}
               <Form.Label hidden htmlFor="password2">
                 Confirm Password
               </Form.Label>

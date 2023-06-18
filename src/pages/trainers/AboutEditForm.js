@@ -42,6 +42,7 @@ const AboutEditForm = (props) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
+        {/* About text field */}
         <Form.Group>
           <Form.Label hidden htmlFor="about">
             About:

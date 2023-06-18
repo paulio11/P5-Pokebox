@@ -103,6 +103,7 @@ const PostForm = () => {
             <hr />
             <Row>
               <Col xs={12} lg={6}>
+                {/* Post body field */}
                 <Form.Group>
                   <Form.Label htmlFor="body" hidden>
                     Diary Entry Text:
@@ -131,6 +132,7 @@ const PostForm = () => {
               </Col>
               <Col xs={12} lg={6}>
                 <Form.Group>
+                  {/* Post image input */}
                   {image ? (
                     <>
                       <img
@@ -179,6 +181,7 @@ const PostForm = () => {
         </>
       ) : (
         <>
+          {/* Alert for logged out users */}
           <Alert variant="dark">
             You must be logged in to create a new diary entry.
           </Alert>

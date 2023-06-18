@@ -84,6 +84,7 @@ const TrainerList = () => {
       <h1>Trainers</h1>
       <hr />
       <Form className={styles.SortForm}>
+        {/* Search field */}
         <Form.Group>
           <Form.Label htmlFor="search" hidden>
             Search
@@ -97,6 +98,7 @@ const TrainerList = () => {
             onKeyDown={preventSubmit}
           />
         </Form.Group>
+        {/* Sort by dropdown */}
         <Form.Group>
           <Form.Label htmlFor="sort_by">Sort By</Form.Label>
           <Form.Control
@@ -111,6 +113,7 @@ const TrainerList = () => {
             <option value="created">Join date</option>
           </Form.Control>
         </Form.Group>
+        {/* Sort order dropdown */}
         <Form.Group>
           <Form.Label htmlFor="sort_order">Sort Order</Form.Label>
           <Form.Control
@@ -141,6 +144,7 @@ const TrainerList = () => {
             </InfiniteScroll>
           ) : (
             <div className="d-flex flex-column align-items-center">
+              {/* 404 no trainer found! */}
               <span className={styles.SearchError}>
                 No trainer named <strong>{query}</strong> found!
               </span>
