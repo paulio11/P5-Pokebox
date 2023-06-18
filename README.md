@@ -18,6 +18,7 @@
 3. [User Experience](#user-experience)
    1. [Wireframes](#wireframes)
    2. [Design Choices](#design-choices)
+   3. [Front-End Library](#front-end-library)
 4. [Features](#features)
    1. [API Integration](#api-integration)
    2. [Components](#components)
@@ -37,12 +38,14 @@
 
 Pokébox is a user-friendly website that allows Pokémon enthusiasts to easily keep track of their Pokémon collections. The website is built using the popular React framework, providing a smooth and intuitive front-end experience. All data is stored in a SQL database managed by a reliable Django Rest Framework backend. The site pulls accurate Pokémon information from [PokéAPI](https://pokeapi.co/), ensuring that users have access to the most up-to-date data for their collection.
 
-Building a website like Pokébox offers several benefits for users:
+### Goals
 
-- Organization and Tracking: Pokébox provides a centralized platform for users to effectively organize and track their Pokémon collection. It allows users to keep a comprehensive record of their Pokémon, including details like species, stats, types, and more. This can be particularly useful for avid collectors who want to maintain a detailed inventory of their Pokémon.
-- Easy Access and Convenience: By having a dedicated website like Pokébox, users can conveniently access their Pokémon collection from any device with an internet connection. This means you can easily manage and view your Pokémon data on-the-go, whether you're using a computer, smartphone, or tablet.
-- Community Engagement: Pokébox can foster a sense of community among Pokémon enthusiasts. Users can connect with like-minded individuals, share their collections, and adventures. It provides a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
-- Reference and Information: Pokébox integrates with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This can serve as a valuable reference tool for users. Having a reliable source of information can enhance their overall Pokémon experience.
+Building a website like Pokébox will offer several benefits for users:
+
+- Organization and Tracking: Pokébox will provide a centralized platform for users to effectively organize and track their Pokémon collection. It will allow users to keep a comprehensive record of their Pokémon, including details like species, stats, types, and more. This can be particularly useful for avid collectors who want to maintain a detailed inventory of their Pokémon.
+- Easy Access and Convenience: By having a dedicated website like Pokébox, users will be able to conveniently access their Pokémon collection from any device with an internet connection. This means you can easily manage and view your Pokémon data on-the-go, whether you're using a computer, smartphone, or tablet.
+- Community Engagement: Pokébox will foster a sense of community among Pokémon enthusiasts. Users will be able to connect with like-minded individuals, share their collections, and adventures. It will provide a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
+- Reference and Information: Pokébox will integrate with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This will serve as a valuable reference tool for users. Having a reliable source of information should enhance their overall Pokémon experience.
 
 [Back to top 🔺](#pokébox)
 
@@ -60,7 +63,7 @@ The GitHub project board feature was used to keep track of what I was working on
 
 ### Epics and User Stories
 
-There will be two types of users visiting Pokébox. A new or logged out user and registered users. User stories were logged as issues on GitHub to track them through the project (see [Project Issues](https://github.com/paulio11/P5-Pokebox/issues?q=is%3Aissue+is%3Aclosed)). They were subject to manual testing at the end of the project to determine if I was successful with my objectives.
+There will be two types of users visiting Pokébox. A new or logged out user and registered users. User stories were logged as issues on GitHub to track them through the project (see [Project Issues](https://github.com/paulio11/P5-Pokebox/issues?q=is%3Aissue+is%3Aclosed)). They were subject to manual testing at the end of the project to determine if I was successful with my objectives. Succeeding in building an application that enables the following user stories will help Pokébox meet it's goals.
 
 #### Epic - New or logged out users
 
@@ -169,7 +172,7 @@ And if there is extra time, these features could be included:
 
 An early version of Pokébox would contain the following - every **must do** feature, view Pokémon information and view other user profiles and collections from **should do**, and finally user profile customisation from **could do**.
 
-Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I could have added given more time. See [unimplemented features](#unimplemented-features) below.
+Fortunately due to the length of this project I was able to produce all of the above features. There are many more possible features I might have added given more time. See [unimplemented features](#unimplemented-features) below.
 
 [Back to top 🔺](#pokébox)
 
@@ -268,6 +271,19 @@ The website incorporates various Bootstrap components for its design and functio
     <summary><strong>Diary entry page mobile layout</strong></summary>
     <img src="https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-layout-post-mobile.png">
 </details>
+
+### Front-End Library
+
+I have chosen to use React Bootstrap as the main front-end library for this project because:
+
+- React Bootstrap complements React's component-based approach, offering a rich collection of reusable components for building the user interface.
+- It provides a responsive grid system, ensuring the application looks great on different devices without much effort.
+- By leveraging Bootstrap's design principles, React Bootstrap enables developers to achieve a polished and modern UI with minimal design work.
+- The library benefits from the active React and Bootstrap communities, providing abundant resources and solutions for developers.
+- I can easily customise styles and behavior, tailoring the UI to project requirements while building upon the existing components.
+- React Bootstrap builds upon the robustness of Bootstrap, a widely used framework, ensuring stability, updates, and long-term support if I choose to further develop Pokébox in the future.
+
+In summary, React Bootstrap was chosen as the main front-end library for this project due to its compatibility with React, responsive design capabilities, consistent and professional look, strong community support, extensibility, and the reliability gained from being built on top of the battle-tested Bootstrap framework.
 
 [Back to top 🔺](#pokébox)
 
