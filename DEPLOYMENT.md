@@ -19,7 +19,7 @@ If you want to edit any of the files I would suggest using Gitpod - a browser ba
 2. Locate your copy of the repository.
 3. Click the new green **GitPod** button above the file list.
 4. [Login](https://gitpod.io/workspaces/) to Gitpod with your GitHub account.
-5. Dependancies will automatically be installed thanks to [package.json](https://github.com/paulio11/P5-Pokebox/blob/main/package.json).
+5. Dependencies will automatically be installed thanks to [package.json](https://github.com/paulio11/P5-Pokebox/blob/main/package.json).
 6. To run the server type `npm start` into the terminal.
 7. Make sure to push any changes you make to GitHub.
 
@@ -47,4 +47,4 @@ Pokébox is currently deployed to Heroku. Follow these steps if you want to depl
 11. Pay attention to the log and look out for any errors.
 12. If it was successful your app will now be live.
 
-Remeber to make sure your deployed Heroku URL matches the value of the `CORS_ALLOWED_ORIGINS` variable you previously get up before deploying your back-end.
+Remember to make sure your deployed Heroku URL matches the value of the `CLIENT_ORIGIN` config variable you previously set up before deploying your back-end.

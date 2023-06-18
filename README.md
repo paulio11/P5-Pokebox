@@ -82,7 +82,7 @@ There will be two types of users visiting Pokébox. A new or logged out user and
 | As a user I can search for a Pokémon to find the one I am looking for | ✓         |
 | As a user I can view specific Pokémon so I can see more information   | ✓         |
 
-#### Epic - A registered can customise their profile
+#### Epic - A registered can customize their profile
 
 | User Story                                                                                     | Achieved? |
 | ---------------------------------------------------------------------------------------------- | --------- |
@@ -105,7 +105,7 @@ There will be two types of users visiting Pokébox. A new or logged out user and
 | -------------------------------------------------------------------------------------------------- | --------- |
 | As a registered user I can post an entry to my diary to share something new                        | ✓         |
 | As a registered user I can edit my posts so that I can change them if necessary                    | ✓         |
-| As a registered user I can delete my psots so that I can remove them if necessary                  | ✓         |
+| As a registered user I can delete my posts so that I can remove them if necessary                  | ✓         |
 | As a registered user I can add an image to my post so that I can share an image                    | ✓         |
 | As a user I can view my own or another user's diary posts, so that I can see what they are sharing | ✓         |
 
@@ -132,13 +132,13 @@ There will be two types of users visiting Pokébox. A new or logged out user and
 | As a user I can sort trainers by the size of their Pokémon collection so I can see who is best    | ✓         |
 | As a user I can sort trainers by creation date so I can see who is new                            | ✓         |
 | As a user I can sort trainers by name so I can find myself or others                              | ✓         |
-| As a user I can sort diary entires by number of likes so I can find the most liked post           | ✓         |
-| As a user I can sort diary entires by number of comments so I can find the most talked about post | ✓         |
-| As a user I can sort diary entires by date so I can read what is new                              | ✓         |
+| As a user I can sort diary entries by number of likes so I can find the most liked post           | ✓         |
+| As a user I can sort diary entries by number of comments so I can find the most talked about post | ✓         |
+| As a user I can sort diary entries by date so I can read what is new                              | ✓         |
 
 ### Timeboxing
 
-Using MoSCoW prioritisation I categorised the features needed to meet the requirements of the user stories into the following categories:
+Using MoSCoW prioritization I categorized the features needed to meet the requirements of the user stories into the following categories:
 
 #### Must Do
 
@@ -280,7 +280,7 @@ I have chosen to use React Bootstrap as the main front-end library for this proj
 - It provides a responsive grid system, ensuring the application looks great on different devices without much effort.
 - By leveraging Bootstrap's design principles, React Bootstrap enables developers to achieve a polished and modern UI with minimal design work.
 - The library benefits from the active React and Bootstrap communities, providing abundant resources and solutions for developers.
-- I can easily customise styles and behavior, tailoring the UI to project requirements while building upon the existing components.
+- I can easily customize styles and behavior, tailoring the UI to project requirements while building upon the existing components.
 - React Bootstrap builds upon the robustness of Bootstrap, a widely used framework, ensuring stability, updates, and long-term support if I choose to further develop Pokébox in the future.
 
 In summary, React Bootstrap was chosen as the main front-end library for this project due to its compatibility with React, responsive design capabilities, consistent and professional look, strong community support, extensibility, and the reliability gained from being built on top of the battle-tested Bootstrap framework.
@@ -410,13 +410,13 @@ In addition to error messages, the user will be promptly notified upon successfu
 
 **Examples of notifications:**
 
-![Exampls of notifications](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-example-notifications.png)
+![Examples of notifications](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-example-notifications.png)
 
 #### [Pokemon.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Pokemon.js)
 
 The component plays a crucial role in three sections of the application: the Pokémon list, the user's collection, and the favorite Pokémon display. Within these areas, it efficiently renders vital information for each Pokémon, including the sprite, ID, and name. Moreover, users can conveniently add or remove a Pokémon from their collection by simply right-clicking on this component while on the Pokémon List page.
 
-- It manages the `collected` state using the useState hook, initially set to false. Then utilizes the `useEffect` hook to update the collected based on the user's Pokémon collection.
+- It manages the `collected` state using the useState hook, initially set to false. Then utilizes the `useEffect` hook to update collected based on the user's Pokémon collection.
 - It defines a `handleRightClick()` function to handle the right-click event, preventing the default behavior and instead it updates the user's Pokémon collection.
 - The component handles styling based on whether the Pokémon's ID exists in the user's Pokémon collection array. This approach reflects the collected status of the Pokemon to the user, enhancing the visual representation of their collection.
 - Clicking the component navigates the user to the relevant Pokémon Information page.
@@ -461,7 +461,7 @@ The home page employs a clean and straightforward design that effectively highli
 Login.js is responsible for rendering a login form and handling the submission of login credentials to Pokébox API.
 
 - It creates two state variables: `logInData` and `errors`. LogInData is an object that holds the username and password entered by the user in the login form. Errors is an object that will store any errors returned from the server during the login process.
-- The `handleSubmit()` function, it makes an HTTP POST request to the log in endpoint with the logInData object as the request payload. If the request is successful, it takes the data from the response, and calls the `setCurrentUser()` function to set the current user. It then navigates to the user's profile page.
+- The `handleSubmit()` function makes an HTTP POST request to the log in endpoint with the logInData object as the request payload. If the request is successful, it takes the data from the response, and calls the `setCurrentUser()` function to set the current user. It then navigates to the user's profile page.
 - If the request returns an error it is displayed as a bootstrap `<Alert>` to the user.
 
 ![Log in page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-login.png)
@@ -501,11 +501,11 @@ The _PokemonDexPage_ component fetches and displays information about a specific
   - The text displayed is from the first object in the genus array where the language value is "en".
   - `sData.genera.find((entry) => entry.language.name === "en")?.genus`
 - The Pokémon's type.
-  - Since there can be more than one type per Pokémon the `types` objects are is mapped over.
+  - Since there can be more than one type per Pokémon the `types` objects are mapped over.
   - Specific styles are applied based on the type name to reflect the type.
 - Pokémon statistics mapped over then displayed as bootstrap `<ProgressBar />`
 - The Pokémon's flavour text (their Pokédex entry from the games).
-  - The text provided by PokéAPI is direct from the old games and theirfor are formatted to fit those lower console screen widths. This meant there were odd symbols and line breaks in the text.
+  - The text provided by PokéAPI is direct from the old games so its formatted to fit those lower console screen widths. This meant there were odd symbols and line breaks in the text.
   - Text was cleared up using the JavaScript `replace()` function.
   - Not all Pokémon have this flavour text data so in cases where it is not present the text "This Pokémon is still a mystery" is shown instead.
 
@@ -533,13 +533,13 @@ Similar to the _Pokémon List_ page, the _TrainerList_ component generates a pag
 
 The _TrainerProfilePage_ component is responsible for rendering a trainer's profile page, including their avatar, personal information, favorite Pokemon, trainer diary, and Pokemon collection.
 
-- The function `getFavData()` calls the function `FetchPokemonData` with the profile's favourite Pokémon as an arguement. This data is then passed to the `Pokemon` component as props along with the variable `trainerPage` which the component uses to style the output.
+- The function `getFavData()` calls the function `FetchPokemonData` with the profile's favourite Pokémon as an argument. This data is then passed to the `Pokemon` component as props along with the variable `trainerPage` which the component uses to style the output.
 - The `handleClick()` function is triggered when the bar representing the user's Pokémon collection is clicked. Once clicked it also calls the function `FetchPokemonData` but with the profile's Pokémon (collection) array as the argument.
 - If the user viewing the profile is the profile's `owner` an edit button appears to allow editing of the `about` text and `avatar`.
   - Editing the avatar uses the [AvatarModal](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AvatarModal.js) component.
   - Editing the about text uses the [AboutEditForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/trainers/AboutEditForm.js) component. When called it is rendered in place of the about text.
 - There is an extensive use of the bootstrap `<Tooltip>` component. Highlighting the profile edit button and the collection display.
-- The profile's Pokémon collection is hidden at first, contained inside a bootstrap `<Accordian>` component.
+- The profile's Pokémon collection is hidden at first, contained inside a bootstrap `<Accordion>` component.
 - The [TrainerDiary](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/diary/TrainerDiary.js) component is used under the profile. This displays diary posts associated with the profile. See below.
 
 **A user editing their profile:**
@@ -600,14 +600,14 @@ The _PostEditForm_ component allows users to modify their diary entries. By fetc
 
 ### Contexts
 
-Contexts in React are a powerful feature that enable developers to create and share data across the entire application, eliminating the need to explicitly pass props. They provide an great solution for passing data to deeply nested components.
+Contexts in React are a powerful feature that enable developers to create and share data across the entire application, eliminating the need to explicitly pass props. They provide a great solution for passing data to deeply nested components.
 
 #### [CurrentUserContext.js](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/src/context/CurrentUserContext.js)
 
 The _CurrentUserContext_ component grants access to and facilitates modifications to the current user data for all other components within the application. This powerful context allows various components throughout the application, ranging from high-level ones like the login page that sets the current user, to more granular elements such as the Comment component. Even at this micro level, the Comment component uses the CurrentUserContext to determine whether the current user is the owner of the comment, enabling edit functionality.
 
 - Custom hooks: `useCurrentUser` and `useSetCurrentUser`. These hooks simplify the process of accessing the current user state and the function to update it within child components.
-- Inerceptors: The `useMemo()` hook is used to define two Axios interceptors. These interceptors are responsible for refreshing the authentication token and handling token expiration errors.
+- Interceptors: The `useMemo()` hook is used to define two Axios interceptors. These interceptors are responsible for refreshing the authentication token and handling token expiration errors.
 
 #### [NotificationContext.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/contexts/NotificationContext.js)
 
@@ -643,7 +643,7 @@ Utility functions are versatile functions that are utilized across many of my co
 
 The function within is responsible for adding or removing a Pokémon from the user's collection. It performs the necessary updates to the collection, sends a PATCH request to update the corresponding user profile on the server, and updates the local user data if the request succeeds.
 
-- It takes three arguements:
+- It takes three arguments:
   - `newPokemon` is the Pokémon that the user is trying to add or remove from their collection.
   - `uData` is the user profile object, containing the `pokemon` array.
   - `setUData` is a state function that updates the user profile data.
@@ -668,8 +668,8 @@ The three functions, `setTokenTimestamp()`, `shouldRefreshToken()`, and `removeT
 
 This file includes three functions:
 
-- `FetchPokemonList()`, which retrieves a list of the 1,010 current Pokémon from the PokéAPI's _pokemon_ endpoint.
-- `FetchSpeciesData()`, which fetches species data for a Pokémon from the PokéAPI's _pokemon-species_ endpoint.
+- `FetchPokemonList()`, which retrieves a list of the 1,010 current Pokémon from PokéAPI's _pokemon_ endpoint.
+- `FetchSpeciesData()`, which fetches species data for a Pokémon from PokéAPI's _pokemon-species_ endpoint.
 - `FetchPokemonData()`, a comprehensive function that takes either a query or a list as arguments and retrieves data from two PokéAPI endpoints. It returns data based on processing time, results, or errors received. The file contains detailed comments explaining the function's implementation. Please refer to the file for more detailed information.
 
 ### Other
@@ -713,7 +713,7 @@ There are no known bugs in the project at the time of project submission. I made
 - [Bootstrap](https://getbootstrap.com/) - A frontend toolkit.
 - [React](https://react.dev/) - A library for web and native user interfaces.
 - [React Bootstrap](https://react-bootstrap.netlify.app/) - A React library for building responsive and customizable UI components with Bootstrap styling.
-- [React Infinte Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) - Allows implementation of infinite scrolling and loading of data.
+- [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) - Allows implementation of infinite scrolling and loading of data.
 - [Axios](https://axios-http.com/docs/intro) - A promise based HTTP client.
 - [React Router](https://reactrouter.com/en/main/start/overview) - Enables client side routing.
 - [jwt-decode](https://www.npmjs.com/package/jwt-decode) - Helps decode JWT tokens to get timestamp expiry time.
@@ -759,11 +759,11 @@ This project is loosely based on Moments by [Code Institute](https://codeinstitu
 
 ### Text
 
-Information fetched from PokéAPI contain Pokémon flavour and genus text. This text along with the names of the Pokémon are the property of Nintendo / Creatures Inc / GAME FREAK inc.
+Information fetched from PokéAPI contains Pokémon flavour and genus text. This text along with the names of the Pokémon are the property of Nintendo / Creatures Inc / GAME FREAK inc.
 
 ### Images
 
-Images fetched from PokéAPI contain official game artwork and sprites taken directly from the Pokémon games. These assets are the property of Nintendo / Creatures Inc / GAME FREAK inc.
+Images fetched from PokéAPI contains official game artwork and sprites taken directly from the Pokémon games. These assets are the property of Nintendo / Creatures Inc / GAME FREAK inc.
 
 ### Acknowledgements
 
