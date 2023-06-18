@@ -102,7 +102,13 @@ const TrainerProfilePage = () => {
     if (pokemon?.length && !clicked) {
       setPage(1); // Reset the page number
       setColData([]); // Clear the collection data
-      setHasMore(true); // Reset the hasMore flag
+      // If the initial data length is less than the maximum Pokémon that
+      // can be displayed, set hasMore to false to hide loader.
+      if (data.pokemon.length < 100) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }
       fetchMoreData(); // Fetch the first page of data
       setClicked(true);
     }
@@ -271,7 +277,10 @@ const TrainerProfilePage = () => {
                         </Accordion.Toggle>
                       </OverlayTrigger>
                       <Accordion.Collapse eventKey="1">
-                        <Card.Body>
+                        <Card.Body
+                          id="scrollableDiv"
+                          className={styles.Scrollable}
+                        >
                           {!pokemon.length && (
                             <Alert variant="dark">
                               {owner} has not collected any Pokémon yet
@@ -281,7 +290,9 @@ const TrainerProfilePage = () => {
                             dataLength={colData.length}
                             next={fetchMoreData}
                             hasMore={hasMore}
+                            loader={<LoadingText />}
                             endMessage={`All of ${owner}'s collected Pokémon have loaded.`}
+                            scrollableTarget="scrollableDiv"
                           >
                             <div className={styles.PokemonContainer}>
                               {colData.map((pokemon, index) => (
