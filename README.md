@@ -695,6 +695,8 @@ Given more time, there are numerous additional features that could have been inc
 
 ## Bugs and Fixes
 
+There are no known bugs in the project at the time of project submission. I made it a priority to quickly address and resolve any issues that came up during development. To see the fixes I implemented, you can check my [commit history](https://github.com/paulio11/P5-Pokebox/commits/main) for commits labeled with the "Fix" prefix. The project is in a solid and dependable state for evaluation and the end-user.
+
 [Back to top 🔺](#pokébox)
 
 ## Technologies
