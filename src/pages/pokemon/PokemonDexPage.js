@@ -111,7 +111,7 @@ const PokemonDexPage = () => {
   const handleFavorite = async () => {
     try {
       const response = await axiosReq.patch(
-        `profiles1/2${currentUser?.profile_id}`,
+        `profiles/${currentUser?.profile_id}`,
         {
           favorite: pData.name,
         }
