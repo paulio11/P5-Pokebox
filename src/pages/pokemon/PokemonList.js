@@ -185,7 +185,11 @@ const PokemonList = () => {
                   <Link to="https://pokeapi.statuspage.io/" target="_blank">
                     status updates
                   </Link>{" "}
-                  or <Link to="/pokemon">reload this page</Link> to try again.
+                  or{" "}
+                  <Link to="/pokemon" onClick={() => window.location.reload()}>
+                    reload this page
+                  </Link>{" "}
+                  to try again.
                 </p>
               </div>
             )}
