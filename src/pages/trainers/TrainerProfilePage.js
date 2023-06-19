@@ -99,12 +99,12 @@ const TrainerProfilePage = () => {
 
   // Fetches data for Pokémon in users collection when clicked.
   const loadCollection = async () => {
-    if (pokemon?.length && !clicked) {
+    if (pokemon.length && !clicked) {
       setPage(1); // Reset the page number
       setColData([]); // Clear the collection data
       // If the initial data length is less than the maximum Pokémon that
       // can be displayed, set hasMore to false to hide loader.
-      if (data.pokemon.length < 100) {
+      if (pokemon.length < 100) {
         setHasMore(false);
       } else {
         setHasMore(true);
@@ -283,29 +283,30 @@ const TrainerProfilePage = () => {
                           id="scrollableDiv"
                           className={styles.Scrollable}
                         >
-                          {!pokemon.length && (
+                          {!pokemon.length ? (
                             <Alert variant="dark">
                               {owner} has not collected any Pokémon yet
                             </Alert>
+                          ) : (
+                            <InfiniteScroll
+                              dataLength={colData.length}
+                              next={fetchMoreData}
+                              hasMore={hasMore}
+                              loader={<LoadingText />}
+                              endMessage={`All of ${owner}'s collected Pokémon have loaded.`}
+                              scrollableTarget="scrollableDiv"
+                            >
+                              <div className={styles.PokemonContainer}>
+                                {colData.map((pokemon, index) => (
+                                  <Pokemon
+                                    key={index}
+                                    {...pokemon}
+                                    profileData={data}
+                                  />
+                                ))}
+                              </div>
+                            </InfiniteScroll>
                           )}
-                          <InfiniteScroll
-                            dataLength={colData.length}
-                            next={fetchMoreData}
-                            hasMore={hasMore}
-                            loader={<LoadingText />}
-                            endMessage={`All of ${owner}'s collected Pokémon have loaded.`}
-                            scrollableTarget="scrollableDiv"
-                          >
-                            <div className={styles.PokemonContainer}>
-                              {colData.map((pokemon, index) => (
-                                <Pokemon
-                                  key={index}
-                                  {...pokemon}
-                                  profileData={data}
-                                />
-                              ))}
-                            </div>
-                          </InfiniteScroll>
                         </Card.Body>
                       </Accordion.Collapse>
                     </Card>
