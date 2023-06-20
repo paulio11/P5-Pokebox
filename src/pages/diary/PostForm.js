@@ -27,8 +27,8 @@ const PostForm = () => {
     body: "",
     image: "",
   });
-  const { body, image } = postData;
 
+  const { body, image } = postData;
   const imageInput = useRef();
   const navigate = useNavigate();
   const currentUser = useCurrentUser();

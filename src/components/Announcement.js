@@ -22,8 +22,10 @@ const Announcement = () => {
       try {
         const { data } = await axiosReq.get("announcements/");
         // Set data as the latest announcement.
-        setData(data.results[0]);
-        setLoaded(true);
+        if (data.results.length) {
+          setData(data.results[0]);
+          setLoaded(true);
+        }
       } catch (error) {
         setCurrentNotification(
           "An error occurred while attempted to load announcements. Please try again."
