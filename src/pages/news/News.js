@@ -196,7 +196,7 @@ const News = () => {
               <Alert variant="dark">Invalid news item ID.</Alert>
             </>
           )}
-          {newsLoaded && !id && (
+          {!id && (
             <Form>
               <Row>
                 <Col lg={6} xs={12}>
