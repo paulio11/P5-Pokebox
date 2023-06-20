@@ -106,6 +106,14 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavLink
+              to="/news"
+              className={({ isActive }) =>
+                isActive ? styles.NavLinkActive : styles.NavLink
+              }
+            >
+              News
+            </NavLink>
+            <NavLink
               to="/pokemon"
               className={({ isActive }) =>
                 isActive ? styles.NavLinkActive : styles.NavLink
