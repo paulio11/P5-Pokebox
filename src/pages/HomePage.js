@@ -7,6 +7,7 @@ import brandLogo from "../assets/brandlogo.webp";
 import useTitle from "../hooks/useTitle";
 import trainers from "../assets/home-trainers.webp";
 import diary from "../assets/home-diary.webp";
+import logo from "../assets/home-news.webp";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -36,6 +37,14 @@ const HomePage = () => {
       </div>
       <div className={styles.ItemContainer}>
         {/* Pokémon section link */}
+        <div className={styles.Item} onClick={() => navigate("/news")}>
+          <div>
+            <h2>News</h2>
+            <p>The latest Pokémon news and Pokébox updates.</p>
+          </div>
+          <img src={logo} alt="news" />
+        </div>
+        {/* Pokémon section link */}
         <div className={styles.Item} onClick={() => navigate("/pokemon")}>
           <div>
             <h2>Pokémon</h2>
@@ -50,7 +59,7 @@ const HomePage = () => {
         <div className={styles.Item} onClick={() => navigate("/trainers")}>
           <div>
             <h2>Trainers</h2>
-            <p>Discover our trainers and see who has the biggest collection!</p>
+            <p>Find out who has caught them all!</p>
           </div>
           <img src={trainers} alt="Pokémon trainers" />
         </div>
