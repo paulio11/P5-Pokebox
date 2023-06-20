@@ -20,9 +20,12 @@ import Settings from "./pages/account/Settings";
 import Error404 from "./components/Error404";
 import HomePage from "./pages/HomePage";
 import Notification from "./components/Notification";
+import Announcement from "./components/Announcement";
+import News from "./pages/news/News";
+import NewNewsItemForm from "./pages/news/NewNewsItemForm";
 // CSS
 import styles from "./styles/App.module.css";
-import Announcement from "./components/Announcement";
+import EditNewsItemForm from "./pages/news/EditNewsItemForm";
 
 function App() {
   return (
@@ -36,6 +39,14 @@ function App() {
               <Route exact path="/" element={<HomePage />} />
               <Route exact path="/login" element={<LogIn />} />
               <Route exact path="/register" element={<Register />} />
+              <Route exact path="/news" element={<News />} />
+              <Route exact path="/news/:id" element={<News />} />
+              <Route exact path="/newnews" element={<NewNewsItemForm />} />
+              <Route
+                exact
+                path="/editnews/:id"
+                element={<EditNewsItemForm />}
+              />
               <Route exact path="/pokemon" element={<PokemonList />} />
               <Route exact path="/pokemon/:id" element={<PokemonDexPage />} />
               <Route exact path="/trainers" element={<TrainerList />} />
