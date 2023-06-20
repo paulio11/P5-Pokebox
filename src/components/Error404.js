@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import useTitle from "../hooks/useTitle";
 
 const Error404 = (props) => {
-  const { pokemon, trainer, post, page, query } = props;
+  const { pokemon, trainer, post, page, query, news } = props;
   const navigate = useNavigate();
 
   useTitle("Error 404");
@@ -20,6 +20,7 @@ const Error404 = (props) => {
         The {pokemon && "Pokémon"}
         {trainer && "trainer with ID:"}
         {post && "diary entry with ID:"}
+        {news && "news item with ID:"}
         {page && "page you were looking for"} <strong>{query && query} </strong>
         could not be found.
       </p>
