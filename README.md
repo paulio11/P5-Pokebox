@@ -484,6 +484,7 @@ The pages Pokébox use are sorted into the following directories/categories, eac
 - Trainer Diary pages
 - Pokémon pages
 - Trainer Profile pages
+- News pages
 
 #### [Home Page](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/HomePage.js)
 
@@ -638,16 +639,38 @@ The _PostEditForm_ component allows users to modify their diary entries. By fetc
 The _News_ page is designed to keep users informed about the latest Pokébox announcements and Pokémon news. It presents information in a simple and organized manner using a two-column view. The website announcements are displayed in a smaller container, while the news items are presented in a larger container to catch the user's attention.
 
 - To improve user navigation, the page incorporates React infinite scroll. Additionally, users can easily search for specific news items or filter them by category using a simple form.
+- If the logged in user is an administrator there are two extra buttons, one to add a news item, another to add an announcement.
+- Clicking the add announcement button overlays modal with a simple form.
 - Announcement data is mapped over and passed to the _Announcement_ component which renders a simple yet highlighted announcement. If the logged in user is an administrator they can see the edit button which toggles the edit form on and off.
-- The edit form allows an administrator to update or delete the comment.
+- The edit form allows an administrator to update or delete the announcement.
 - The news data is mapped over and passed to the _NewsItem_ component. This displays all elements of the news object. This conditioanlly renders an image if present, and a different bootstrap badge for each category, and the edit button if the logged on user is an admin.
 - When a user clicks the news item title it filters the queryset by the current ID so only that news item is displayed, this way a user can link directly to or share a specific news item.
 
 ![News page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-news.png)
 
+**Creating a new announcement:**
+
+![Creating announcement](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-announcement-new.png)
+
 **Editing an annoucement:**
 
 ![Editing announcement](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-announcement-edit.png)
+
+#### [NewNewsItemForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/news/NewNewsItemForm.js) and [EditNewsItemForm](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/news/EditNewsItemForm.js)
+
+These two components work together to display a form representing a posted news item. The first component enables an admin user to create a new news item and add an optional image. The category is selected through a dropdown input. The form validates all inputs and displays errors when necessary.
+
+The _EditNewsItemForm_ is similar in appearance but retrieves the news item data to pre-populate the form. It also includes a button to delete the news item, triggering a confirmation modal.
+
+For regular users without admin access, a message informs them of their limited permissions, and the forms are not displayed.
+
+**New news item form:**
+
+![new news item form](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-news-new.png)
+
+**Edit news item form:**
+
+![edit news item form](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-news-edit.png)
 
 ### Contexts
 
