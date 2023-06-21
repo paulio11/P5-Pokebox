@@ -1,7 +1,5 @@
 // API
 import { axiosReq } from "../api/AxiosDefaults";
-// Contexts
-import { useCurrentNotification } from "../contexts/NotificationContext";
 
 // Updates user's Pokémon collection (Pokémon array in profile object).
 // Takes newPokemon and filters it out of array if it exists.
