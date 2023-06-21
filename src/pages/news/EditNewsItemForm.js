@@ -128,6 +128,7 @@ const EditNewsItemForm = () => {
               </Form.Label>
               <Form.Control
                 name="title"
+                id="title"
                 placeholder="Title"
                 value={title}
                 className={styles.TitleField}
@@ -157,6 +158,7 @@ const EditNewsItemForm = () => {
                     as="textarea"
                     rows={10}
                     name="body"
+                    id="body"
                     value={body}
                     onChange={handleChange}
                     aria-label="body"
@@ -176,6 +178,7 @@ const EditNewsItemForm = () => {
                     as="select"
                     value={category}
                     name="category"
+                    id="category"
                     onChange={handleChange}
                     required
                     aria-label="category"
@@ -225,6 +228,7 @@ const EditNewsItemForm = () => {
                   <Form.File
                     accept="image/*"
                     onChange={handleImage}
+                    id="image"
                     ref={imageInput}
                     style={{ display: "none" }}
                   />

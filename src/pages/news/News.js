@@ -170,7 +170,7 @@ const News = () => {
             <h1>News</h1>
             {is_staff && (
               <>
-                {/* New news item button */}
+                {/* Add news item button */}
                 <Button
                   variant="dark"
                   aria-label="Add new news item"
@@ -203,6 +203,7 @@ const News = () => {
                   {/* News search field */}
                   <Form.Group>
                     <Form.Control
+                      name="search"
                       placeholder="Search"
                       value={query}
                       onChange={handleChange}
@@ -251,8 +252,8 @@ const News = () => {
                   />
                 ))}
               </InfiniteScroll>
-              {!news.results.length && (
-                <Alert variant="dark">There is nothing to read yet!</Alert>
+              {!news.results.length && !id && (
+                <Alert variant="dark">There is nothing to read!</Alert>
               )}
             </>
           ) : (

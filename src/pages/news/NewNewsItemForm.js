@@ -96,6 +96,7 @@ const NewNewsItemForm = () => {
                   className={styles.TitleField}
                   placeholder="Title"
                   aria-label="title"
+                  id="title"
                   name="title"
                   value={title}
                   onChange={handleChange}
@@ -121,6 +122,7 @@ const NewNewsItemForm = () => {
                       required
                       maxLength={1000}
                       as="textarea"
+                      id="body"
                       rows={10}
                       name="body"
                       value={body}
@@ -141,6 +143,7 @@ const NewNewsItemForm = () => {
                     <Form.Control
                       as="select"
                       value={category}
+                      id="category"
                       name="category"
                       onChange={handleChange}
                       required
