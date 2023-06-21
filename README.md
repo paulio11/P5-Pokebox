@@ -46,6 +46,7 @@ Building a website like Pokébox will offer several benefits for users:
 - Easy Access and Convenience: By having a dedicated website like Pokébox, users will be able to conveniently access their Pokémon collection from any device with an internet connection. This means you can easily manage and view your Pokémon data on-the-go, whether you're using a computer, smartphone, or tablet.
 - Community Engagement: Pokébox will foster a sense of community among Pokémon enthusiasts. Users will be able to connect with like-minded individuals, share their collections, and adventures. It will provide a platform for users to showcase their Pokémon achievements and engage in discussions related to the Pokémon world.
 - Reference and Information: Pokébox will integrate with PokéAPI, ensuring that users have access to accurate and up-to-date Pokémon data. This will serve as a valuable reference tool for users. Having a reliable source of information should enhance their overall Pokémon experience.
+- Latest Pokémon News Updates: Pokébox will feature a dedicated news section to keep users up to date with the latest Pokémon news and announcements. Users can expect to find information on new game releases, events, updates, and other important Pokémon-related developments.
 
 [Back to top 🔺](#pokébox)
 
@@ -136,6 +137,28 @@ There will be two types of users visiting Pokébox. A new or logged out user and
 | As a user I can sort diary entries by number of comments so I can find the most talked about post | ✓         |
 | As a user I can sort diary entries by date so I can read what is new                              | ✓         |
 
+#### Epic - A user can see Pokébox announcments and read the latest Pokémon news
+
+| User Story                                                                                                | Achieved? |
+| --------------------------------------------------------------------------------------------------------- | --------- |
+| As a user I am alerted to any Pokébox announcements so I am kept up to date with important website news   | ✓         |
+| As a user I can read the latest Pokémon news so I can keep up to date with the franchise I love           | ✓         |
+| As a user I can search news so I can find the article I am looking for                                    | ✓         |
+| As a user I can filter news articles by category so I can read about the area I am interested in the most | ✓         |
+
+#### Epic - As an administrator I can create, edit, update and delete annoucements and news articles
+
+| User Story                                                                                                                             | Achieved? |
+| -------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| As an administrator I can create new announcements so that I can keep the website users informed                                       | ✓         |
+| As an administrator I can edit announcements so I can change them if necessary                                                         | ✓         |
+| As an administrator I can delete announcements so I can remove them if they are no longer relevant                                     | ✓         |
+| As an administrator I can create news items so Pokébox can be kept up to date with the latest Pokémon news                             | ✓         |
+| As an administrator I can add an image to a news item so that a relevant image can be included                                         | ✓         |
+| As an administrator I can define which category a news item belongs to so that an end user can filter news relevant to their interests | ✓         |
+| As an administrator I can edit a news item so that I can update it if necessary                                                        | ✓         |
+| As an administrator I can delete a news item so that it can be removed if necessary                                                    | ✓         |
+
 ### Timeboxing
 
 Using MoSCoW prioritization I categorized the features needed to meet the requirements of the user stories into the following categories:
@@ -149,6 +172,7 @@ The final version of Pokébox must include the following:
 - Search for Pokémon
 - Manage Pokémon collection
 - View Pokémon collection
+- Admin users can post announcements
 
 This would produce the **minimal viable product**.
 
@@ -161,6 +185,7 @@ A more fully feature product would contain these features:
 - View other user profiles and collections
 - List other users
 - Search for other users
+- Admin users can edit and delete announcements
 
 #### Could Do
 
@@ -169,6 +194,8 @@ And if there is extra time, these features could be included:
 - User profile customisation
 - Commenting on posts
 - Viewing, editing and deleting comments
+- Admin users can create, edit, and delete news items
+- Categorised Pokémon news page
 
 An early version of Pokébox would contain the following - every **must do** feature, view Pokémon information and view other user profiles and collections from **should do**, and finally user profile customisation from **could do**.
 
@@ -318,6 +345,12 @@ Leveraging React in the development of Pokébox enabled me to harness the power 
 
 Each page and component actively contributes to the attainment of the goals outlined in the project's user stories. The subsequent components listed below are just some of the elements that span across multiple pages:
 
+#### [Announcement.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Announcement.js)
+
+The announcement component in our app fetches the latest updates from the Pokébox API and displays them in a dismissable bootstrap alert. It's placed below the NavBar in app.js, ensuring users are always up to date, no matter where they are on the site. The component reads local storage keys to check if the user has previously dismissed the alert, allowing them to hide it permanently.
+
+![announcement alert](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-announcement.png)
+
 #### [Ball.js](https://github.com/paulio11/P5-Pokebox/blob/main/src/components/Ball.js)
 
 This component is used on both the _Trainer List_ and _Trainer Profile_ pages. It takes the prop `size` (of the user's Pokémon collection) and returns a different image based on that size. Trainer's with a larger collection of Pokémon have their collection represented by a better Pokéball.
@@ -352,7 +385,7 @@ if (noResults) {
 }
 ```
 
-- The contents depend on the presence of certain properties. If `pokemon` is truthy, it includes the text "Pokémon". If `trainer` is truthy, it includes the text "trainer with ID:". If `post` is truthy, it includes the text "diary entry with ID:". If `page` is truthy, it includes the text "page you were looking for". The `query` is displayed within a `<strong>` element if it exists. The error message concludes with the text "could not be found."
+- The contents depend on the presence of certain properties. If `news` is truthy, it includes the text "news item with ID". If `pokemon` is truthy, it includes the text "Pokémon". If `trainer` is truthy, it includes the text "trainer with ID:". If `post` is truthy, it includes the text "diary entry with ID:". If `page` is truthy, it includes the text "page you were looking for". The `query` is displayed within a `<strong>` element if it exists. The error message concludes with the text "could not be found."
 - The button when clicked, triggers the `onClick` event handler, which navigates back in the browser history using the `navigate()` function.
 
 ![Error404 component](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-error404.png)
@@ -407,6 +440,8 @@ In addition to error messages, the user will be promptly notified upon successfu
 - Adding or removing a Pokémon from their collection.
 - Editing user profile or avatar.
 - Changing username or password.
+- Creating, editing, or deleting a news item.
+- Creating, editing, or deleting an announcement.
 
 **Examples of notifications:**
 
@@ -598,6 +633,22 @@ The _PostEditForm_ component allows users to modify their diary entries. By fetc
 
 ![Post edit form](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-editpost.png)
 
+#### [News](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/news/News.js), [Announcement](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/news/Announcement.js), and [NewsItem](https://github.com/paulio11/P5-Pokebox/blob/main/src/pages/news/NewsItem.js)
+
+The _News_ page is designed to keep users informed about the latest Pokébox announcements and Pokémon news. It presents information in a simple and organized manner using a two-column view. The website announcements are displayed in a smaller container, while the news items are presented in a larger container to catch the user's attention.
+
+- To improve user navigation, the page incorporates React infinite scroll. Additionally, users can easily search for specific news items or filter them by category using a simple form.
+- Announcement data is mapped over and passed to the _Announcement_ component which renders a simple yet highlighted announcement. If the logged in user is an administrator they can see the edit button which toggles the edit form on and off.
+- The edit form allows an administrator to update or delete the comment.
+- The news data is mapped over and passed to the _NewsItem_ component. This displays all elements of the news object. This conditioanlly renders an image if present, and a different bootstrap badge for each category, and the edit button if the logged on user is an admin.
+- When a user clicks the news item title it filters the queryset by the current ID so only that news item is displayed, this way a user can link directly to or share a specific news item.
+
+![News page](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-page-news.png)
+
+**Editing an annoucement:**
+
+![Editing announcement](https://raw.githubusercontent.com/paulio11/P5-Pokebox/main/documentation/images/readme-announcement-edit.png)
+
 ### Contexts
 
 Contexts in React are a powerful feature that enable developers to create and share data across the entire application, eliminating the need to explicitly pass props. They provide a great solution for passing data to deeply nested components.
@@ -681,6 +732,7 @@ React Infinite Scroll is used in the following places:
 - Trainer list
 - Diary entry list
 - Comment list on post page
+- News item list
 
 ### Unimplemented Features
 
