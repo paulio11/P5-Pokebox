@@ -12,7 +12,7 @@ const NewsItem = (props) => {
     props;
   const navigate = useNavigate();
 
-  // Badge variant variable assignment
+  // Badge variant variable assignment.
   let variant = "";
   switch (category) {
     case "Games":
@@ -28,6 +28,7 @@ const NewsItem = (props) => {
       variant = "primary";
   }
 
+  // Navigates to single news item.
   const handleNavigate = () => {
     setNewsLoaded(false);
     navigate(`/news/${id}`);

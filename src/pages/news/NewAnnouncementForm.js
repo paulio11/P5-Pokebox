@@ -17,10 +17,12 @@ const NewAnnouncementForm = (props) => {
   const [announcementBody, setAnnouncementBody] = useState("");
   const [errors, setErrors] = useState({});
 
+  // Handles changes in body text.
   const handleChange = (event) => {
     setAnnouncementBody(event.target.value);
   };
 
+  // Sends POST request to announcement endpoint, updates "announcements".
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -41,8 +43,10 @@ const NewAnnouncementForm = (props) => {
 
   return (
     <Modal show={show} centered>
+      {/* New announcement modal */}
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
+          {/* Announcement body field */}
           <Form.Group>
             <Form.Control
               name="body"
@@ -61,6 +65,7 @@ const NewAnnouncementForm = (props) => {
               {message}
             </Alert>
           ))}
+          {/* Buttons */}
           <Button
             variant="secondary"
             onClick={() => setShow(false)}

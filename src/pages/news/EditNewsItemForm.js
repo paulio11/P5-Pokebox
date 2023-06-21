@@ -119,6 +119,7 @@ const EditNewsItemForm = () => {
       <hr />
       {is_staff && loaded && (
         <Form onSubmit={handleSubmit}>
+          {/* Edit news item form */}
           <div className={styles.NewsItem}>
             {/* Title field */}
             <Form.Group>
@@ -236,7 +237,6 @@ const EditNewsItemForm = () => {
               </Col>
             </Row>
           </div>
-
           {/* Button row */}
           <div className={styles.ButtonContainer}>
             <Button variant="secondary" onClick={() => navigate(-1)}>

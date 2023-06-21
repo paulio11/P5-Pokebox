@@ -36,7 +36,7 @@ const HomePage = () => {
         <h1>POKÉBOX</h1>
       </div>
       <div className={styles.ItemContainer}>
-        {/* Pokémon section link */}
+        {/* News section link */}
         <div className={styles.Item} onClick={() => navigate("/news")}>
           <div>
             <h2>News</h2>

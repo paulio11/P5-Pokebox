@@ -14,6 +14,7 @@ const Announcement = (props) => {
   return (
     <div className={styles.Announcement}>
       <div className={styles.AnnouncementHeader}>
+        {/* Date / Time */}
         <p className={styles.Created}>{created}</p>
         {is_staff && (
           <OverlayTrigger overlay={<Tooltip>Edit announcement</Tooltip>}>
@@ -33,7 +34,10 @@ const Announcement = (props) => {
           setAnnouncements={setAnnouncements}
         />
       ) : (
-        <strong>{body}</strong>
+        <>
+          {/* Announcement body text */}
+          <strong>{body}</strong>
+        </>
       )}
     </div>
   );

@@ -69,6 +69,8 @@ const EditAnnouncementForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-2">
+      {/* Edit announcement form */}
+      {/* Body text field */}
       <Form.Group>
         <Form.Control
           as="textarea"
@@ -87,6 +89,7 @@ const EditAnnouncementForm = (props) => {
         </Alert>
       ))}
       <div className={styles.Buttons}>
+        {/* Buttons */}
         <Button variant="secondary" onClick={() => setShowEditForm(false)}>
           Cancel
         </Button>
