@@ -770,7 +770,12 @@ Given more time, there are numerous additional features that could have been inc
 
 ## Bugs and Fixes
 
-There are no known bugs in the project at the time of project submission. I made it a priority to quickly address and resolve any issues that came up during development. To see the fixes I implemented, you can check my [commit history](https://github.com/paulio11/P5-Pokebox/commits/main) for commits labeled with the "Fix" prefix. The project is in a solid and dependable state for evaluation and the end-user.
+There are no known major bugs in the project at the time of project submission. I made it a priority to quickly address and resolve any issues that came up during development. To see the fixes I implemented, you can check my [commit history](https://github.com/paulio11/P5-Pokebox/commits/main) for commits labeled with the "Fix" prefix. The project is in a solid and dependable state for evaluation and the end-user.
+
+There are however a few current issues:
+
+- When loading of the Pokémon List page, PokéAPI receives a significant number of requests. Consequently, there is a possibility of one or two requests failing. To address this issue, an error response triggers the return of `null` values for the corresponding Pokémon data, preventing the entire fetch request from halting and allowing the page to render properly. The resulting null objects are subsequently eliminated from the final data. Additionally, a user-friendly alert is displayed at the bottom of the list, notifying users if any Pokémon failed to load. You can see the function which makes this possible [here](https://github.com/paulio11/P5-Pokebox/blob/ed7a7d062070806681190e0cef61330673025ff3/src/utils/PokeApi.js#L18).
+- The Pokémon List page includes a feature that allows users to update the collected status of a Pokémon by right-clicking or long-pressing on it. However, it's important to note that on iOS devices, this functionality is currently not supported due to the default behavior of long-press actions on those devices.
 
 [Back to top 🔺](#pokébox)
 
